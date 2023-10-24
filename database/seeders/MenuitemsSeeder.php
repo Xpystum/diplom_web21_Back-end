@@ -19,7 +19,7 @@ class MenuitemsSeeder extends Seeder
         $items = [
 
             ['id' => 1, 'menu_id' => 1, 'item_name' => 'Автомобили', 'parrent_item_id' => null],
-            ['id' => 2, 'menu_id' => 1, 'item_name' => 'Грузовики и спецтехника', 'parrent_item_id' => null],
+            ['id' => 2, 'menu_id' => 1, 'item_name' => 'Спецтехника', 'parrent_item_id' => null],
             ['id' => 3, 'menu_id' => 1, 'item_name' => 'Запчасти', 'parrent_item_id' => null],
             ['id' => 4, 'menu_id' => 1, 'item_name' => 'Отзывы', 'parrent_item_id' => null],
             ['id' => 5, 'menu_id' => 1, 'item_name' => 'Каталог', 'parrent_item_id' => null],
