@@ -26,3 +26,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/items-menu', [IndexController::class, 'menu_items']);
+Route::post('/category-products', function(Request $request){
+    return $request->data;
+});
+
