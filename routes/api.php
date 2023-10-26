@@ -26,3 +26,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/items-menu', [IndexController::class, 'menu_items']);
+
+Route::get('/products', [IndexController::class, 'products']);
