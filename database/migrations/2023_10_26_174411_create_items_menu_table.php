@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('menu_id');
             $table->string('item_name');    
             $table->string('link')->nullable();
+            $table->string('alias')->nullable();
             $table->foreignId('parrent_item_id')->nullable();
             $table->timestamps();
-            $table->string('image')->nullable();
         });
     }
 

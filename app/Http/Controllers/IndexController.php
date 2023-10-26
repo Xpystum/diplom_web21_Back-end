@@ -9,6 +9,6 @@ class IndexController extends Controller
 {
     public function menu_items()
     {
-        return Items_menu::get();
+        return Items_menu::orderBy('id')->get();
     }
 }
