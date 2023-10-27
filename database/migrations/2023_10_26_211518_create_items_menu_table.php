@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('items_menu', function (Blueprint $table) {
             $table->id();
             $table->foreignId('menu_id');
-            $table->string('item_name');    
+            $table->string('item_name');  
+            $table->string('img')->nullable();
             $table->string('link')->nullable();
+            $table->string('alias')->nullable();
             $table->foreignId('parrent_item_id')->nullable();
             $table->timestamps();
-            $table->string('image')->nullable();
         });
     }
 
