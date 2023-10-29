@@ -28,3 +28,4 @@ use Illuminate\Support\Facades\Route;
 Route::post('/items-menu', [IndexController::class, 'menuItems']);
 Route::post('/category-products', [IndexController::class, 'categoryProducts']);
 
+
