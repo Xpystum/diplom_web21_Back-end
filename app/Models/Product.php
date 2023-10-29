@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Items_menu extends Model
+class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'items_menu';
+    protected $table = 'products';
 
-    public function menu(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Menu::class, 'menu_id');
+        return $this->belongsTo(CategoryProducts::class, 'category_id');
     }
 }

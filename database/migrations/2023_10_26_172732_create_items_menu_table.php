@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->foreignId('parrent_item_id')->nullable();
             $table->timestamps();
-            $table->string('image')->nullable();
         });
     }
 
