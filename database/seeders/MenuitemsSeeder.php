@@ -31,5 +31,5 @@ class MenuitemsSeeder extends Seeder
 
 
         DB::table('items_menu')->insert($items);
-    }
+    }   
 }

@@ -6,6 +6,7 @@ use App\Models\CategoryProducts;
 use App\Models\Items_menu;
 use App\Models\Menu;
 use App\Models\Product;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -47,4 +48,5 @@ class IndexController extends Controller
         return $data;
         
     }
+
 }
