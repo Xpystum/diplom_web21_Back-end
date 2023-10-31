@@ -438,6 +438,7 @@ class ProductSeeder extends Seeder
                 Центр Минеральные Воды — ваша гарантия безопасной сделки.',
                 'created_at' => now(),
                 'updated_at' => now(),
+                
             ],
 
             [
