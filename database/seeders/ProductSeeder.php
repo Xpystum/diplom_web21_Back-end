@@ -95,6 +95,8 @@ class ProductSeeder extends Seeder
                 Система помощи при парковке.
                 Круговой обзор.",
                 'additional' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -156,6 +158,8 @@ class ProductSeeder extends Seeder
                 • Активная подвеска
                 • Запуск...",
                 'additional' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -193,6 +197,8 @@ class ProductSeeder extends Seeder
                 СОСТОЯНИЕ НОВОГО АВТО!
                 ЗОНЫ РИСКА В БРОНЕ ПЛЕНКЕ",
                 'additional' => 'Более 200 проверенных автомобилей с пробегом',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -313,6 +319,8 @@ class ProductSeeder extends Seeder
                 • ПТС
                 • Свидетельство о регистрации",
                 'additional' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -387,6 +395,8 @@ class ProductSeeder extends Seeder
                 • USB интерфейс для задних пассажиров",
                 'additional' => ' Покупка автомобиля у официального дилера 
                 Порше Центр Минеральные Воды — ваша гарантия безопасной сделки.',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -426,6 +436,8 @@ class ProductSeeder extends Seeder
                 Мы ценим наших клиентов и обеспечиваем внимание и заботу с первого обращения.",
                 'additional' => 'Покупка автомобиля у официального дилера Порше 
                 Центр Минеральные Воды — ваша гарантия безопасной сделки.',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -490,6 +502,8 @@ class ProductSeeder extends Seeder
                 * Подробности уточняйте в отделе продаж.
                 Один владелец. ПТС оригинал. Отличное состояние автомобиля.",
                 'additional' => 'Модель: Macan',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -528,6 +542,8 @@ class ProductSeeder extends Seeder
                 Обмен не интересен , так как куплен уже автомобиль!
                 Автомобилем владела девушка, маршрут: дом -работа- дом, гаражное хранение.",
                 'additional' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -558,6 +574,8 @@ class ProductSeeder extends Seeder
                 'weight' => null,
                 'desription' => "Обмен: на равноценную",
                 'additional' => 'В рапторе, едет как танк, техника в отличном тех состоянии. Интересует обмен',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -595,6 +613,8 @@ class ProductSeeder extends Seeder
                  Есть недоделки по салону, но это мелочи по сравнению с тем что сделано.",
                 'additional' => 'Обмен: на более дорогую
                 на японский автомобиль',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
         ];
