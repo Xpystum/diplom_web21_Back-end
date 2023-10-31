@@ -45,6 +45,7 @@ class ProductSeeder extends Seeder
     
     public function run(): void
     {   
+
         $menu = [
 
             [
@@ -619,10 +620,7 @@ class ProductSeeder extends Seeder
             ],
 
         ];
-
-
         DB::table('products')->insert($menu);
-
         // через factory
         // Product::factory()->count(3)->create();
     }
