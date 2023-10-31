@@ -49,4 +49,7 @@ class IndexController extends Controller
         
     }
 
+    public function productItems(){
+        return Product::all();
+    }
 }
