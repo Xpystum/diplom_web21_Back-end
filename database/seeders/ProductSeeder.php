@@ -50,7 +50,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 1,
-                'name' => "BMW X6", 
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'year' => "2017",
                 'price' => "4150000",
                 'old_price' => null,
@@ -102,6 +103,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 2,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "BMW X7", 
                 'year' => "2023",
                 'price' => "17500000",
@@ -165,6 +168,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 3,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "BMW Z4", 
                 'year' => "2020",
                 'price' => "4150000",
@@ -204,6 +209,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 4,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "Porsche Macan", 
                 'year' => "2015",
                 'price' => "3299000",
@@ -326,6 +333,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 5,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "Porsche Panamera", 
                 'year' => "2020 ",
                 'price' => "24399000",
@@ -402,6 +411,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 6,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "Porsche Panamera", 
                 'year' => "2013",
                 'price' => "4199999",
@@ -444,6 +455,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 7,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "Porsche Panamera", 
                 'year' => "2013",
                 'price' => "12517000",
@@ -510,6 +523,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 8,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "Porsche Cayenne", 
                 'year' => "2013",
                 'price' => "940000",
@@ -550,6 +565,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 9,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "УАЗ 3151", 
                 'year' => "2013",
                 'price' => "369000",
@@ -582,6 +599,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 10,
+                'model' => 'X6',
+                "mark " => 'BMW',
                 'name' => "УАЗ Патриот", 
                 'year' => "2006",
                 'price' => "550000",
