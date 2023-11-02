@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('title');
+            $table->string('title')->nullable();
 
             $table->unsignedInteger('price');
-            $table->unsignedInteger('old_price');
+            $table->unsignedInteger('old_price')->nullable();
             $table->unsignedInteger('mileage')->comment('Пробег');
 
             $table->boolean('status')->default(0)->comment('Новый/Старый');
