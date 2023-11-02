@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\FilterModel;
 use App\Models\CategoryProducts;
 use App\Models\Items_menu;
 use App\Models\Menu;
@@ -11,41 +12,14 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function menuItems(Request $request)
+    public function menuItems(Request $request, FilterModel $action)
     {
-        
-        $items = Items_menu::all()->filter(function (Items_menu $item) use ($request) {
-            return $item->menu->name_menu == $request->name_menu;
-        })->map(function (Items_menu $item) {
-            return $item;
-        })->sortBy('id')->toArray();
-
-        $data = [];
-        foreach($items as $item){
-            $data[] = $item;
-        }
-
-        return $data;
+        return $action->handle($request->name_menu, (new Items_menu));
     }
 
-    public function categoryProducts(Request $request){
+    public function categoryProducts(Request $request, FilterModel $action){
 
-        if($request->alias == null){
-            return Product::get();
-        }
-
-        $products = Product::all()->filter(function (Product $product)  use ($request){
-            return $product->category->alias == $request->alias;
-        })->map(function (Product $product) {
-            return $product;
-        })->sortBy('id')->toArray();
-
-        $data = [];
-        foreach($products as $product){
-            $data[] = $product;
-        }
-
-        return $data;
+        return $action->handle($request->alias, (new Product));
         
     }
 
