@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('title');
-        });
+        Schema::dropIfExists('items_menu');
     }
 
     /**
@@ -22,7 +20,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('title');
+            $table->unsignedInteger('old_price')->nullable()->change();
         });
     }
 };

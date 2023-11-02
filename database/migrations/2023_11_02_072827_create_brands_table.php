@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedInteger('old_price')->nullable()->change();
+        Schema::create('brands', function (Blueprint $table) {
+            $table->id();
+            $table->string("img")->nullable();
+            $table->string("name");
+            $table->string("alias")->nullable();
+            $table->boolean('popular');
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedInteger('old_price')->nullable()->change();
-        });
+        Schema::dropIfExists('brands');
     }
 };
