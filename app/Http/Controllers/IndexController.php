@@ -58,28 +58,29 @@ class IndexController extends Controller
     public function relevanceProduct(Request $request){
         $productsTarget = Product::find($request->id);
 
-        //id 3
-        $productsRelevants = DB::table('products')
-            ->whereNotIn('id', [$productsTarget->id])
-        ->where(function (Builder $query) use ($productsTarget) {
-            $query->where('mark', '=' , $productsTarget->mark);
-        })
-        ->where(function (Builder $query) use ($productsTarget) {
+        $productsRelevants = Product::productsRelevants($productsTarget)->dd();
 
-            $query->where('year', '=' , $productsTarget->year)
-            ->orWhere(function (Builder $query) use ($productsTarget) {
-                $query->whereBetween('year', [$productsTarget->year - 8, $productsTarget->year + 8]);
-            });
+        // $productsRelevants = DB::table('products')
+        //     ->whereNotIn('id', [$productsTarget->id])
+        // ->where(function (Builder $query) use ($productsTarget) {
+        //     $query->where('mark', '=' , $productsTarget->mark);
+        // })
+        // ->where(function (Builder $query) use ($productsTarget) {
 
-        })
-        ->where(function (Builder $query) use ($productsTarget) {
+        //     $query->where('year', '=' , $productsTarget->year)
+        //     ->orWhere(function (Builder $query) use ($productsTarget) {
+        //         $query->whereBetween('year', [$productsTarget->year - 8, $productsTarget->year + 8]);
+        //     });
 
-            $query->whereBetween('price', [$productsTarget->price - 2000000, $productsTarget->price + 2000000])
-            ->orWhere(function (Builder $query) use ($productsTarget) {
-                $query->whereBetween('price', [0, $productsTarget->price + 8000000]);
-            });
+        // })
+        // ->where(function (Builder $query) use ($productsTarget) {
 
-        })->get(); 
+        //     $query->whereBetween('price', [$productsTarget->price - 2000000, $productsTarget->price + 2000000])
+        //     ->orWhere(function (Builder $query) use ($productsTarget) {
+        //         $query->whereBetween('price', [0, $productsTarget->price + 8000000]);
+        //     });
+
+        // })->get(); 
 
 
 
@@ -98,41 +99,37 @@ class IndexController extends Controller
         ->get();
 
         $productRelevanceResult = $productsRelevants->merge($ProductsAll);
-        // $data = [];
-        // foreach($productRelevanceResult as $product){
-        //     $data[] = $product;
-        // }
-
-        // dd($data);
 
         return $productRelevanceResult;
 
+        
+        #region comment Info
+            // использование case для OrderBy
+            // "CASE 
+            // WHEN mark = '{$productsTarget->mark}' THEN 1 
+            // WHEN price = '{$productsTarget->price}' THEN 1
+            // Else 100 END ASC  
+        
 
-        // "CASE 
-        // WHEN mark = '{$productsTarget->mark}' THEN 1 
-        // WHEN price = '{$productsTarget->price}' THEN 1
-        // Else 100 END ASC  
-    
+            //Получить по релевантности потом остальные (нужно соединять массивы)
+            // $productRelevants = DB::table('products')->select('id')
+            // ->whereRaw("mark = '{$productsTarget->mark}'");
 
-        //Получить по релевантности потом остальные (нужно соединять массивы)
-        // $productRelevants = DB::table('products')->select('id')
-        // ->whereRaw("mark = '{$productsTarget->mark}'");
-
-        // $test = DB::table('products')
-        // ->whereNotIn('id', $productRelevants)
-        // ->get()->dd();
+            // $test = DB::table('products')
+            // ->whereNotIn('id', $productRelevants)
+            // ->get()->dd();
 
 
-        //по марке
-        // $ProdyctsRelevants = Product::where('mark', '=' , $productsTarget->mark)->get()->dd();\
+            //по марке
+            // $ProdyctsRelevants = Product::where('mark', '=' , $productsTarget->mark)->get()->dd();\
 
-        //год
-        // $ProdyctsRelevants = Product::where('year', '=' , $productsTarget->year)->get()->dd();
-        // $ProdyctsRelevants = Product::whereBetween('year', [$productsTarget->year - 5, $productsTarget->year + 5])->get()->dd();
+            //год
+            // $ProdyctsRelevants = Product::where('year', '=' , $productsTarget->year)->get()->dd();
+            // $ProdyctsRelevants = Product::whereBetween('year', [$productsTarget->year - 5, $productsTarget->year + 5])->get()->dd();
 
-        // цена
-        // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 1000000, $productsTarget->price + 1000000])->get()->dd();
-        // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 5000000, $productsTarget->price + 5000000])->get()->dd();
-
+            // цена
+            // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 1000000, $productsTarget->price + 1000000])->get()->dd();
+            // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 5000000, $productsTarget->price + 5000000])->get()->dd();
+        #endregion
     }
 }
