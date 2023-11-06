@@ -8,7 +8,9 @@ use App\Models\Items_menu;
 use App\Models\Menu;
 use App\Models\Product;
 use GuzzleHttp\Handler\Proxy;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -51,5 +53,86 @@ class IndexController extends Controller
 
     public function productItems(){
         return Product::all();
+    }
+
+    public function relevanceProduct(Request $request){
+        $productsTarget = Product::find($request->id);
+
+        //id 3
+        $productsRelevants = DB::table('products')
+            ->whereNotIn('id', [$productsTarget->id])
+        ->where(function (Builder $query) use ($productsTarget) {
+            $query->where('mark', '=' , $productsTarget->mark);
+        })
+        ->where(function (Builder $query) use ($productsTarget) {
+
+            $query->where('year', '=' , $productsTarget->year)
+            ->orWhere(function (Builder $query) use ($productsTarget) {
+                $query->whereBetween('year', [$productsTarget->year - 8, $productsTarget->year + 8]);
+            });
+
+        })
+        ->where(function (Builder $query) use ($productsTarget) {
+
+            $query->whereBetween('price', [$productsTarget->price - 2000000, $productsTarget->price + 2000000])
+            ->orWhere(function (Builder $query) use ($productsTarget) {
+                $query->whereBetween('price', [0, $productsTarget->price + 8000000]);
+            });
+
+        })->get(); 
+
+
+
+
+        $ProductsAll = DB::table('products')
+        ->whereNotIn('id', $productsRelevants->map(function ($item) {   
+            return $item->id;
+        }))
+        ->whereNotIn('id', [$productsTarget->id])
+        ->orderByRaw(
+            "CASE 
+                WHEN mark = '{$productsTarget->mark}' THEN 1 
+                Else 100 END ASC  
+            "
+        )
+        ->get();
+
+        $productRelevanceResult = $productsRelevants->merge($ProductsAll);
+        // $data = [];
+        // foreach($productRelevanceResult as $product){
+        //     $data[] = $product;
+        // }
+
+        // dd($data);
+
+        return $productRelevanceResult;
+
+
+        // "CASE 
+        // WHEN mark = '{$productsTarget->mark}' THEN 1 
+        // WHEN price = '{$productsTarget->price}' THEN 1
+        // Else 100 END ASC  
+    
+
+        //Получить по релевантности потом остальные (нужно соединять массивы)
+        // $productRelevants = DB::table('products')->select('id')
+        // ->whereRaw("mark = '{$productsTarget->mark}'");
+
+        // $test = DB::table('products')
+        // ->whereNotIn('id', $productRelevants)
+        // ->get()->dd();
+
+
+        //по марке
+        // $ProdyctsRelevants = Product::where('mark', '=' , $productsTarget->mark)->get()->dd();\
+
+        //год
+        // $ProdyctsRelevants = Product::where('year', '=' , $productsTarget->year)->get()->dd();
+        // $ProdyctsRelevants = Product::whereBetween('year', [$productsTarget->year - 5, $productsTarget->year + 5])->get()->dd();
+
+        // цена
+        // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 1000000, $productsTarget->price + 1000000])->get()->dd();
+        // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 5000000, $productsTarget->price + 5000000])->get()->dd();
+
     }
 }

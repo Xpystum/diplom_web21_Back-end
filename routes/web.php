@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/relevance-product/{id}', [IndexController::class, 'relevanceProduct'])->name('relevance');
