@@ -524,7 +524,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "203500",
                 'status' => "1",
-                'img_src' => '/storage/images/products/porshe5.jpg',
+                'img_src' => 'products/porshe5.jpg',
                 'engine' => "бензин, 4.5 л",
                 'power' => "340",
                 'transmission' => "АКПП",
