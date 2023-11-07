@@ -25,7 +25,7 @@ class Product extends Model
     /**
     * этот метотд выдаёт коллекцию реливантных и всех остальных продуктов
     *
-    * @param Product $productsTarget ключевой продукт от которого строится
+    * @param Product $productsTarget ключевой продукт от которого строится запрос
     *
     * @return SupportCollection
     */
@@ -54,8 +54,8 @@ class Product extends Model
 
         })->get(); 
 
-        $this->productAllMergeRelevants($productsRelevants, $productsTarget);
-        return $productsRelevants;
+        $productRelevanceResult = $this->productAllMergeRelevants($productsRelevants, $productsTarget);
+        return $productRelevanceResult;
     }
 
     /**
@@ -85,7 +85,7 @@ class Product extends Model
 
         //merge collection реливантных продуктов и всех остальных
         $productRelevanceResult = $productsRelevants->merge($ProductsAll);
-
+ 
         return $productRelevanceResult;
     }
 }
