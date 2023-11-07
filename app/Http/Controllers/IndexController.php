@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Action\FilterModel;
+use App\Models\Brands;
 use App\Models\CategoryProducts;
 use App\Models\Items_menu;
 use App\Models\Menu;
@@ -53,6 +54,9 @@ class IndexController extends Controller
 
     public function productItems(){
         return Product::all();
+    }
+    public function brands(){
+        return Brands::all();
     }
 
     public function relevanceProduct(Request $request){
