@@ -22,8 +22,16 @@ class Product extends Model
     }
 
     // как объявить и функцию и фасад?
-    public static function productsRelevants(Product $productsTarget): SupportCollection
-    {
+    /**
+    * этот метотд выдаёт коллекцию реливантных и всех остальных продуктов
+    *
+    * @param Product $productsTarget ключевой продукт от которого строится
+    *
+    * @return SupportCollection
+    */
+    public function productsRelevants(Product $productsTarget): SupportCollection
+    {   
+        //лоигка поиска реливантного товара
         $productsRelevants = DB::table('products')
         ->whereNotIn('id', [$productsTarget->id])
         ->where(function (Builder $query) use ($productsTarget) {
@@ -46,6 +54,38 @@ class Product extends Model
 
         })->get(); 
 
+        $this->productAllMergeRelevants($productsRelevants, $productsTarget);
         return $productsRelevants;
+    }
+
+    /**
+        * этот метотд выдаёт коллекцию реливантных и всех остальных продуктов
+        *
+        * @param SupportCollection $productsRelevants передаём реливантные продукты 
+        * @param Product $productsTarget передаём ключевой продукт от которого строится поиск
+        *
+        * @return SupportCollection
+        */
+    private function productAllMergeRelevants(SupportCollection $productsRelevants, Product $productsTarget): SupportCollection
+    {   
+        // этот алгоритм выдаёт все остальные продукты кроме (ключевого и реливантных).
+        $ProductsAll = DB::table('products')
+        ->whereNotIn('id', $productsRelevants->map(function ($item) {   
+            return $item->id;
+        }))
+        ->whereNotIn('id', [$productsTarget->id])
+        ->limit(30 - $productsRelevants->count())
+        ->orderByRaw(
+            "CASE 
+                WHEN mark = '{$productsTarget->mark}' THEN 1 
+                Else 100 END ASC  
+            "
+        )
+        ->get();
+
+        //merge collection реливантных продуктов и всех остальных
+        $productRelevanceResult = $productsRelevants->merge($ProductsAll);
+
+        return $productRelevanceResult;
     }
 }
