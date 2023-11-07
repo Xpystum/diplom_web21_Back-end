@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string("img_light")->nullable();
             $table->string("img_dark")->nullable();
             $table->string("name");
-            $table->string("alias")->nullable();
-            $table->boolean('popular');
-            $table->float('type')->comment("1-легковой, 2-и тот и другой, 3-грузовой")->nullable();
+            $table->string("link_passenger")->comment("ссылкалегковые")->nullable();
+            $table->boolean('popular_passenger');
+            $table->string("link_cargo")->comment("грузовые")->nullable();
+            $table->boolean('popular_cargo');
+            $table->float('type')->comment("1-легковой, 2-и тот и другой, 3-грузовой");
         });
     }
 

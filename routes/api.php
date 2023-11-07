@@ -32,5 +32,6 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/items-menu', 'menuItems');
     Route::post('/category-products', 'categoryProducts');
     Route::get('/items-product', 'productItems');
+    Route::post('/brands', 'brands');
 });
 
