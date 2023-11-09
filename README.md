@@ -6,6 +6,7 @@ git pull --all
 ===================================================
 обновить все сиды (удалит миграции, накатит заново и заново заполнит сиды)
 php artisan migrate:refresh --seed
+php artisan migrate:fresh --seed
 
 git@github.com:Xpystum/diplom_web21_Back-end.git
 ===================================================
