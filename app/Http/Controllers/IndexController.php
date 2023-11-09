@@ -30,14 +30,29 @@ class IndexController extends Controller
 
         return $data;
     }
-
+    public function allItems(Request $request)
+    {
+        
+        if($request->alias == null){
+            return Product::get();
+        }
+    
+        $data = Product::with('brand', 'model', 'category')
+            ->whereHas('category', function ($query) use ($request) {
+                $query->where('alias', $request->alias);
+            })
+            ->orderBy('id')
+            ->get();
+    
+        return $data;
+    }
     public function categoryProducts(Request $request){
-
         if($request->alias == null){
             return Product::get();
         }
 
         $products = Product::all()->filter(function (Product $product)  use ($request){
+            
             return $product->category->alias == $request->alias;
         })->map(function (Product $product) {
             return $product;
@@ -47,7 +62,7 @@ class IndexController extends Controller
         foreach($products as $product){
             $data[] = $product;
         }
-
+        
         return $data;
         
     }
@@ -58,11 +73,28 @@ class IndexController extends Controller
     public function brands(){
         return Brands::all();
     }
+    
+    public function itemsModels(Request $request)
+    {
+        
+        $models = Product::all()->filter(function (Product $model) use ($request) {
+            return $model->model->model_id == $request->id;
+            
+        })->map(function (Product $model) {
+            
+            return $model;
+        })->sortBy('id')->toArray();
 
+        $data = [];
+        foreach($models as $model){
+            $data[] = $model;
+            
+        }
+        return $data;
+    }
     public function relevanceProduct(Request $request){
         // получаем ключевой товар
         $productsTarget = Product::find($request->id);
-
         $productsRelevants = (new Product)->productsRelevants($productsTarget);
         return $productsRelevants;
 

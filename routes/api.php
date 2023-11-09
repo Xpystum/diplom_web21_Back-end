@@ -31,7 +31,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(IndexController::class)->group(function () {
     Route::post('/items-menu', 'menuItems');
     Route::post('/category-products', 'categoryProducts');
-    Route::get('/items-product', 'productItems');
+    Route::post('/items-product', 'productItems');
+    Route::post('/brands-product', 'brandsItems');
+    Route::post('/all-items', 'allItems');
     Route::post('/relevance-product', 'relevanceProduct');
     Route::post('/brands', 'brands');
 

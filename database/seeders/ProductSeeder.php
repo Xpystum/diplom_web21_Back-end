@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\Withoutmodel_idEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
+use App\model_ids\Product;
 use Illuminate\Support\Facades\DB;
 
 class ProductSeeder extends Seeder
@@ -50,8 +50,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 1,
-                'model' => 'X6',
-                'mark' => 'BMW',
+                'model_id' => 6,
+                'brand_id' => 16,
                 'year' => "2017",
                 'price' => "4150000",
                 'old_price' => null,
@@ -103,8 +103,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 2,
-                'model' => 'X7',
-                'mark' => 'BMW',
+                'model_id' => 7,
+                'brand_id' => 16,
                 'year' => "2023",
                 'price' => "17500000",
                 'old_price' => null,
@@ -167,8 +167,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 3,
-                'model' => 'Z4',
-                'mark' => 'BMW',
+                'model_id' => 8,
+                'brand_id' => 16,
                 'year' => "2020",
                 'price' => "4150000",
                 'old_price' => null,
@@ -207,8 +207,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 4,
-                'model' => 'Macan',
-                'mark' => 'Porsche',
+                'model_id' => 11,
+                'brand_id' => 110,
                 'year' => "2015",
                 'price' => "3299000",
                 'old_price' => null,
@@ -330,8 +330,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 5,
-                'model' => 'Panamera',
-                'mark' => 'Porsche',
+                'model_id' => 9,
+                'brand_id' => 110,
                 'year' => "2020 ",
                 'price' => "24399000",
                 'old_price' => null,
@@ -407,8 +407,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 6,
-                'model' => 'Panamera',
-                'mark' => 'Porsche',
+                'model_id' => 9,
+                'brand_id' => 110,
                 'year' => "2013",
                 'price' => "4199999",
                 'old_price' => null,
@@ -450,8 +450,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 7,
-                'model' => 'Panamera',
-                'mark'  => 'Porsche',
+                'model_id' => 9,
+                'brand_id'  => 110,
                 'year' => "2013",
                 'price' => "12517000",
                 'old_price' => null,
@@ -517,8 +517,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 8,
-                'model' => 'Cayenne',
-                'mark' => 'Porsche',
+                'model_id' => 10,
+                'brand_id' => 110,
                 'year' => "2013",
                 'price' => "940000",
                 'old_price' => null,
@@ -558,8 +558,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 9,
-                'model' => '3151',
-                'mark' => 'УАЗ',
+                'model_id' => 13,
+                'brand_id' => 163,
                 'year' => "2013",
                 'price' => "369000",
                 'old_price' => null,
@@ -591,8 +591,8 @@ class ProductSeeder extends Seeder
 
             [
                 'id'=> 10,
-                'model' => 'Патриот',
-                'mark' => 'УАЗ',
+                'model_id' => 12,
+                'brand_id' => 163,
                 'year' => "2006",
                 'price' => "550000",
                 'old_price' => null,
@@ -630,8 +630,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id'=> 11,
-                'model' => 'Патриот',
-                'mark' => 'УАЗ',
+                'model_id' => 13,
+                'brand_id' => 163,
                 'year' => "2012",
                 'price' => "660000",
                 'old_price' => null,
@@ -682,8 +682,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id'=> 12,
-                'model' => 'Ивановец',
-                'mark' => 'Урал',
+                'model_id' => 14,
+                'brand_id' => 218,
                 'year' => "2020",
                 'price' => "13200000",
                 'old_price' => null,

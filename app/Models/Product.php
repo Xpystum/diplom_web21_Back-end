@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,7 +18,21 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(CategoryProducts::class, 'category_id');
+
     }
+
+    
+    public function brand()
+    {
+        return $this->belongsTo(Brands::class, 'brand_id');
+    }
+    public function model(): BelongsTo
+    {
+        return $this->belongsTo(Models::class, 'model_id');
+    }
+
+
+
 
     // как объявить и функцию и фасад?
     /**
