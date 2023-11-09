@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\IndexController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-
+use function Laravel\Prompts\password;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,44 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/items-product', 'productItems');
     Route::post('/relevance-product', 'relevanceProduct');
     Route::post('/brands', 'brands');
-
 });
+
+
+// Route::get('/token', function(){
+
+//     $user = App\Models\User::where('email', 'test@example.com')->first();
+//     $token = $user->createToken('my_token');
+//     dd($token);
+
+//     /*
+//     $user->password = Hash::make('123');
+//     $user->save();*/
+// });
+
+Route::post('/auth', function(Request $request){
+
+    $user = App\Models\User::where('email', $request->email)->first();
+    if(!$user){
+        return false;
+    }
+    if(Hash::check($request->password, $user->password)){
+        return $user->createToken('my_token');
+    }
+    return false;
+});
+
+Route::post('/token', function(Request $request){
+    $token = \Laravel\Sanctum\PersonalAccessToken::findToken($request->token);
+
+    if(!$token)
+        return false;
+    
+    if(!$token->tokenable)
+        return false;
+
+    $user = $token->tokenable;
+    return true;
+});
+
+
 
