@@ -37,7 +37,7 @@ class IndexController extends Controller
             return Product::get();
         }
     
-        $data = Product::with('brand', 'model', 'category')
+        $data = Product::with('brand', 'model', 'category','color')
             ->whereHas('category', function ($query) use ($request) {
                 $query->where('alias', $request->alias);
             })

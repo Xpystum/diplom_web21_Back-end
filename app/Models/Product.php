@@ -30,6 +30,10 @@ class Product extends Model
     {
         return $this->belongsTo(Models::class, 'model_id');
     }
+    public function color(): BelongsTo
+    {
+        return $this->belongsTo(Color::class, 'color_id');
+    }
 
 
 
