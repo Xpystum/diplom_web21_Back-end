@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
-{
+{   
     public function menuItems(Request $request)
     {
         $items = Items_menu::all()->filter(function (Items_menu $item) use ($request) {
@@ -92,6 +92,7 @@ class IndexController extends Controller
         }
         return $data;
     }
+
     public function relevanceProduct(Request $request){
         // получаем ключевой товар
         $productsTarget = Product::find($request->id);
@@ -128,4 +129,5 @@ class IndexController extends Controller
             // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 5000000, $productsTarget->price + 5000000])->get()->dd();
         #endregion
     }
+
 }

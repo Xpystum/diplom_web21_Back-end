@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,6 @@ use function Laravel\Prompts\password;
 
 
 
-
 Route::controller(IndexController::class)->group(function () {
     Route::post('/items-menu', 'menuItems');
     Route::post('/category-products', 'categoryProducts');
@@ -39,6 +39,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/brands', 'brands');
 });
 
+Route::post('/register', [AuthController::class, 'registerUser'])->name('register');
 
 // Route::get('/token', function(){
 
@@ -50,6 +51,7 @@ Route::controller(IndexController::class)->group(function () {
 //     $user->password = Hash::make('123');
 //     $user->save();*/
 // });
+
 
 Route::post('/auth', function(Request $request){
 
@@ -75,6 +77,8 @@ Route::post('/token', function(Request $request){
     $user = $token->tokenable;
     return true;
 });
+
+
 
 
 
