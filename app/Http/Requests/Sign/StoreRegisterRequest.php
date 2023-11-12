@@ -15,6 +15,14 @@ class StoreRegisterRequest extends FormRequest
         return true;
     }
 
+    public function messages(): array
+    {
+    return [
+            'title.required' => 'A title is required',
+            'body.required' => 'A message is required',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

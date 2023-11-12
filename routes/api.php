@@ -39,7 +39,14 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/brands', 'brands');
 });
 
-Route::post('/register', [AuthController::class, 'registerUser'])->name('register');
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/register', 'registerUser')->name('auth.RegisterUser');
+    Route::post('/auth', 'authUser')->name('auth.LoginUser');
+    Route::post('/token', 'tokenUser')->name('auth.TokenUser');
+});
+
+
 
 // Route::get('/token', function(){
 
@@ -53,30 +60,7 @@ Route::post('/register', [AuthController::class, 'registerUser'])->name('registe
 // });
 
 
-Route::post('/auth', function(Request $request){
 
-    $user = App\Models\User::where('email', $request->email)->first();
-    if(!$user){
-        return false;
-    }
-    if(Hash::check($request->password, $user->password)){
-        return $user->createToken('my_token');
-    }
-    return false;
-});
-
-Route::post('/token', function(Request $request){
-    $token = \Laravel\Sanctum\PersonalAccessToken::findToken($request->token);
-
-    if(!$token)
-        return false;
-    
-    if(!$token->tokenable)
-        return false;
-
-    $user = $token->tokenable;
-    return true;
-});
 
 
 
