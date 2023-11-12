@@ -48,11 +48,15 @@ class Product extends Model
     */
     public function productsRelevants(Product $productsTarget): SupportCollection
     {   
+        // dd($productsTarget->id);
         //лоигка поиска реливантного товара
         $productsRelevants = DB::table('products')
-        ->whereNotIn('id', [$productsTarget->id])
+        ->select('products.*','brands.name as brand_name','models.name as model_name')->from('products')
+        ->join('brands', 'products.brand_id', '=', 'brands.id')
+        ->join('models', 'products.model_id', '=', 'models.id')
+        ->whereNotIn('products.id', [$productsTarget->id])
         ->where(function (Builder $query) use ($productsTarget) {
-            $query->where('mark', '=' , $productsTarget->mark);
+            $query->where('brands.name', '=' , $productsTarget->brand->name);
         })
         ->where(function (Builder $query) use ($productsTarget) {
 
@@ -87,14 +91,17 @@ class Product extends Model
     {   
         // этот алгоритм выдаёт все остальные продукты кроме (ключевого и реливантных).
         $ProductsAll = DB::table('products')
-        ->whereNotIn('id', $productsRelevants->map(function ($item) {   
+        ->select('products.*','brands.name as brand_name','models.name as model_name')->from('products')
+        ->join('brands', 'products.brand_id', '=', 'brands.id')
+        ->join('models', 'products.model_id', '=', 'models.id')
+        ->whereNotIn('products.id', $productsRelevants->map(function ($item) { 
             return $item->id;
         }))
-        ->whereNotIn('id', [$productsTarget->id])
+        ->whereNotIn('products.id', [$productsTarget->id])
         ->limit(30 - $productsRelevants->count())
         ->orderByRaw(
             "CASE 
-                WHEN mark = '{$productsTarget->mark}' THEN 1 
+                WHEN brands.name = '{$productsTarget->mark}' THEN 1 
                 Else 100 END ASC  
             "
         )
