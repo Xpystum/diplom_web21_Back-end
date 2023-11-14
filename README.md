@@ -15,3 +15,8 @@ git@github.com:Xpystum/diplom_web21_Back-end.git
                     php artisan storage:link 
 
 для доступа к папке storage
+
+
+user
+test@example.com
+password

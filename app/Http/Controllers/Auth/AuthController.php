@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-
+use App\Helpers\StatusRequestHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sign\StoreRegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
+
 use Whoops\Handler\PlainTextHandler;
 
 class AuthController extends Controller
@@ -30,17 +31,16 @@ class AuthController extends Controller
     {       
         $user = User::where('email', $request->email)->first();
 
-        if(!$user){
-            return 'false';
-        }
-
-        if(Hash::check($request->password, $user->password)){
-
+        if($user && Hash::check($request->password, $user->password)){
             $token = $user->createToken('my_token');
-            return ['token' => $token->plainTextToken, 'Илья' => 'Косепор'];
+            return [
+                'token' => $token->plainTextToken, 
+                'code' => StatusRequestHelper::code('success'),
+                'token_name' => 'my_token'
+            ];
         }
 
-        return 'false';
+        return ['code' => StatusRequestHelper::code('access_denied')];
     }
 
     public function tokenUser(Request $request)
