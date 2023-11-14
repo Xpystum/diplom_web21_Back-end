@@ -47,6 +47,11 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
+Route::post('/ads', function(){
+    return "data";
+});
+
+
 
 // Route::get('/token', function(){
 
