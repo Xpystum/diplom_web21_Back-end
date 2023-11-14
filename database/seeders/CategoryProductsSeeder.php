@@ -15,7 +15,7 @@ class CategoryProductsSeeder extends Seeder
     {
 
         $category = [
-            ['id' => 1, 'name' => 1, 'name' => 'Автомобили', 'alias' => 'auto'],
+            ['id' => 1, 'name' => 'Автомобили', 'alias' => 'auto'],
             ['id' => 2, 'name' => 'Спецтехника', 'alias' => 'special-equipment'],
             ['id' => 3, 'name' => 'Запчасти', 'alias' => 'spare-parts'],
             ['id' => 4, 'name' => 'Шины', 'alias' => 'tires'],
