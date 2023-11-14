@@ -37,7 +37,6 @@ class Product extends Model
 
 
 
-
     // как объявить и функцию и фасад?
     /**
     * этот метотд выдаёт коллекцию реливантных и всех остальных продуктов
@@ -48,7 +47,7 @@ class Product extends Model
     */
     public function productsRelevants(Product $productsTarget): SupportCollection
     {   
-        // dd($productsTarget->id);
+
         //лоигка поиска реливантного товара
         $productsRelevants = DB::table('products')
         ->select('products.*','brands.name as brand_name','models.name as model_name')->from('products')
@@ -62,18 +61,14 @@ class Product extends Model
 
             $query->where('year', '=' , $productsTarget->year)
             ->orWhere(function (Builder $query) use ($productsTarget) {
-                $query->whereBetween('year', [$productsTarget->year - 8, $productsTarget->year + 8]);
-            });
-
+                $query->whereBetween('year', [$productsTarget->year - ($productsTarget->year - $query->min('year')), 
+                $productsTarget->year + ($query->max('year') - $productsTarget->year)]); });
         })
         ->where(function (Builder $query) use ($productsTarget) {
 
-            $query->whereBetween('price', [$productsTarget->price - 2000000, $productsTarget->price + 2000000])
-            ->orWhere(function (Builder $query) use ($productsTarget) {
-                $query->whereBetween('price', [0, $productsTarget->price + 8000000]);
-            });
+            $query->whereBetween('price', [$productsTarget->price - ($productsTarget->price - $query->min('price')), $productsTarget->price +  ($query->max('price') - $productsTarget->price)]);
 
-        })->get(); 
+        })->get();
 
         $productRelevanceResult = $this->productAllMergeRelevants($productsRelevants, $productsTarget);
         return $productRelevanceResult;
