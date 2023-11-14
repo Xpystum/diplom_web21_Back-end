@@ -99,6 +99,7 @@ class ProductSeeder extends Seeder
                 'additional' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => 1,
             ],
 
             [
@@ -163,6 +164,7 @@ class ProductSeeder extends Seeder
                 'additional' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -203,6 +205,7 @@ class ProductSeeder extends Seeder
                 'additional' => 'Более 200 проверенных автомобилей с пробегом',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -326,6 +329,7 @@ class ProductSeeder extends Seeder
                 'additional' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -403,6 +407,7 @@ class ProductSeeder extends Seeder
                 Порше Центр Минеральные Воды — ваша гарантия безопасной сделки.',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -445,6 +450,7 @@ class ProductSeeder extends Seeder
                 Центр Минеральные Воды — ваша гарантия безопасной сделки.',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
                 
             ],
 
@@ -513,6 +519,7 @@ class ProductSeeder extends Seeder
                 'additional' => 'Модель: Macan',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -554,6 +561,7 @@ class ProductSeeder extends Seeder
                 'additional' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -587,6 +595,7 @@ class ProductSeeder extends Seeder
                 'additional' => 'В рапторе, едет как танк, техника в отличном тех состоянии. Интересует обмен',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
 
             [
@@ -627,6 +636,7 @@ class ProductSeeder extends Seeder
                 на японский автомобиль',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
             [
                 'id'=> 11,
@@ -679,6 +689,7 @@ class ProductSeeder extends Seeder
                 на японский автомобиль',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
             ],
             [
                 'id'=> 12,
@@ -720,6 +731,8 @@ class ProductSeeder extends Seeder
                 'additional' => '',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'organisation_id' => null,
+
             ],
 
         ];

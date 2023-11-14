@@ -34,6 +34,10 @@ class Product extends Model
     {
         return $this->belongsTo(Color::class, 'color_id');
     }
+    public function organisation(): BelongsTo
+    {
+        return $this->belongsTo(Organisation::class, 'organisation_id');
+    }
 
 
 
