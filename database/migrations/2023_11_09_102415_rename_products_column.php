@@ -12,10 +12,12 @@ return new class extends Migration
         Schema::table('products', function(Blueprint $table) {
             $table->dropColumn('mark');
             $table->dropColumn('model');
+            $table->dropColumn('color');
         });
         Schema::table('products', function(Blueprint $table) {
             $table->foreignId('brand_id');
             $table->foreignId('model_id');
+            $table->foreignId('color_id');
         });
     }
 

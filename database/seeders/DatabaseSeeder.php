@@ -25,9 +25,16 @@ class DatabaseSeeder extends Seeder
             MenuitemsSeeder::class,
             CategoryProductsSeeder::class,
             ProductSeeder::class,
+
             BrandsSeeder::class,
             ModelsSeeder::class,
             OrganisationSeeder::class,
+            FuelSeeder::class,
+            TransmissionSeeder::class,
+            DriveUnitSeeder::class,
+            BodyTypeSeeder::class,
+            ColorSeeder::class,
+
         ]);
     }
 }
