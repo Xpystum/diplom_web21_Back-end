@@ -94,9 +94,6 @@ class IndexController extends Controller
         return $productsRelevants;
 
 
-
-
-
         
         #region comment Info
             // использование case для OrderBy
