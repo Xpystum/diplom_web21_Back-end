@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
+use App\Http\Middleware\AuthToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,7 @@ Route::controller(IndexController::class)->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name('auth.RegisterUser');
     Route::post('/auth', 'authUser')->name('auth.LoginUser');
-    Route::post('/token', 'tokenUser')->name('auth.TokenUser');
+    Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
 });
 
 
