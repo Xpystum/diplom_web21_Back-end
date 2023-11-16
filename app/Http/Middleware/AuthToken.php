@@ -23,7 +23,7 @@ class AuthToken
         if($token)
             return $next($request);
     
-        return Response("000", 202);
+        return Response(false, 202);
         
     }
 }

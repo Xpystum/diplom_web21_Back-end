@@ -48,9 +48,9 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-Route::post('/ads', function(){
-    return "data";
-});
+Route::post('/ads', function(Request $request){
+    return $request->x;
+})->middleware(AuthToken::class);
 
 
 
