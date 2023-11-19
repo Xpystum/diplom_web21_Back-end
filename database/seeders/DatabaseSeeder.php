@@ -24,9 +24,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             MenuitemsSeeder::class,
             CategoryProductsSeeder::class,
-            ProductSeeder::class,
-            ProductImgSeeder::class,
-            
+    
             BrandsSeeder::class,
             ModelsSeeder::class,
             OrganisationSeeder::class,
@@ -35,6 +33,9 @@ class DatabaseSeeder extends Seeder
             DriveUnitSeeder::class,
             BodyTypeSeeder::class,
             ColorSeeder::class,
+            
+            ProductSeeder::class,
+            ProductImgSeeder::class,
 
         ]);
     }
