@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('brand_id')->comment('id Бренда')->references('id')->on('brands');
-            $table->foreignId('model_id')->comment('id Модели')->references('id')->on('models');
-            $table->foreignId('color_id')->comment('id Цвета')->references('id')->on('color');
-            $table->foreignId('fuel_id')->comment('id Топлива')->references('id')->on('fuel');
-            $table->foreignId('body_type_id')->comment('id Кузова')->nullable()->references('id')->on('body_type');
-            $table->foreignId('transmission_id')->comment('id Коробки Передач')->nullable()->references('id')->on('transmission');
-            $table->foreignId('drive_unit_id')->comment('id Привода')->nullable()->references('id')->on('drive_unit'); 
-            $table->foreignId('category_id')->comment('id категории')->nullable()->references('id')->on('category_products');
-            $table->foreignId('organisation_id')->comment('id Организации (Собственик, Салон)')->nullable()->references('id')->on('organisation');
+            $table->unsignedBigInteger('brand_id')->comment('id Бренда');
+            $table->unsignedBigInteger('model_id')->comment('id Модели');
+            $table->unsignedBigInteger('color_id')->comment('id Цвета');
+            $table->unsignedBigInteger('fuel_id')->comment('id Топлива');
+            $table->unsignedBigInteger('body_type_id')->comment('id Кузова')->nullable();
+            $table->unsignedBigInteger('transmission_id')->comment('id Коробки Передач')->nullable();
+            $table->unsignedBigInteger('drive_unit_id')->comment('id Привода')->nullable(); 
+            $table->unsignedBigInteger('category_id')->comment('id категории')->nullable();
+            $table->unsignedBigInteger('organisation_id')->comment('id Организации (Собственик, Салон)')->nullable();
+
+            
 
             $table->string('equipment')->comment('Комлектация')->nullable();
             $table->string('generation')->comment('Поколение')->nullable();
@@ -57,6 +59,23 @@ return new class extends Migration
             $table->timestamps();
 
             $table->text('desription')->comment('описание');
+            
+            
+            
+            
+            
+            
+            
+            
+            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('model_id')->references('id')->on('models');
+            $table->foreign('color_id')->references('id')->on('color');
+            $table->foreign('fuel_id')->references('id')->on('fuel');
+            $table->foreign('body_type_id')->references('id')->on('body_type');
+            $table->foreign('transmission_id')->references('id')->on('transmission');
+            $table->foreign('drive_unit_id')->references('id')->on('drive_unit'); 
+            $table->foreign('category_id')->references('id')->on('category_products');
+            $table->foreign('organisation_id')->references('id')->on('organisation');
         });
     }
 

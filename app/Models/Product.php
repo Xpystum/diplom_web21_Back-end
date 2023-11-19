@@ -57,10 +57,10 @@ class Product extends Model
     }
 
 
-    // public function imgCollection(): HasMany
-    // {
-    //     return $this->hasMany(Comment::class, );
-    // }
+    public function imgCollection(): HasMany
+    {
+        return $this->hasMany(ImgCollection::class, 'id');
+    }
 
 
     // как объявить и функцию и фасад?
