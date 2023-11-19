@@ -32,7 +32,7 @@ class IndexController extends Controller
     }
     public function allItems(Request $request)
     {  
-        $data = Product::with('brand', 'model', 'category','color', 'organisation')
+        $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type')
             ->whereHas('category', function ($query) use ($request) {
                 $query->where('alias', $request->alias);
             })
