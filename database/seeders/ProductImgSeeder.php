@@ -18,6 +18,10 @@ class ProductImgSeeder extends Seeder
             ['id'=> 2, 'product_id' => 1, 'resource'=> "product/bmw1_3.jpg"],
             ['id'=> 3, 'product_id' => 1, 'resource'=> "product/bmw1_4.jpg"],
             ['id'=> 4, 'product_id' => 1, 'resource'=> "product/bmw1_5.jpg"],
+            ['id'=> 5, 'product_id' => 2, 'resource'=> "product/bmw2_2.jpg"],
+            ['id'=> 6, 'product_id' => 2, 'resource'=> "product/bmw2_3.jpg"],
+            ['id'=> 7, 'product_id' => 2, 'resource'=> "product/bmw2_4.jpg"],
+            ['id'=> 8, 'product_id' => 2, 'resource'=> "product/bmw2_5.jpg"],
 
             
         ];

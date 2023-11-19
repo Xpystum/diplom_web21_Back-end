@@ -67,15 +67,15 @@ return new class extends Migration
             
             
             
-            $table->foreign('brand_id')->references('id')->on('brands');
-            $table->foreign('model_id')->references('id')->on('models');
-            $table->foreign('color_id')->references('id')->on('color');
-            $table->foreign('fuel_id')->references('id')->on('fuel');
-            $table->foreign('body_type_id')->references('id')->on('body_type');
-            $table->foreign('transmission_id')->references('id')->on('transmission');
-            $table->foreign('drive_unit_id')->references('id')->on('drive_unit'); 
-            $table->foreign('category_id')->references('id')->on('category_products');
-            $table->foreign('organisation_id')->references('id')->on('organisation');
+            // $table->foreign('brand_id')->references('id')->on('brands');
+            // $table->foreign('model_id')->references('id')->on('models');
+            // $table->foreign('color_id')->references('id')->on('color');
+            // $table->foreign('fuel_id')->references('id')->on('fuel');
+            // $table->foreign('body_type_id')->references('id')->on('body_type');
+            // $table->foreign('transmission_id')->references('id')->on('transmission');
+            // $table->foreign('drive_unit_id')->references('id')->on('drive_unit'); 
+            // $table->foreign('category_id')->references('id')->on('category_products');
+            // $table->foreign('organisation_id')->references('id')->on('organisation');
         });
     }
 

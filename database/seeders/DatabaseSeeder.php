@@ -34,8 +34,9 @@ class DatabaseSeeder extends Seeder
             BodyTypeSeeder::class,
             ColorSeeder::class,
             
-            ProductSeeder::class,
             ProductImgSeeder::class,
+            ProductSeeder::class,
+            
 
         ]);
     }

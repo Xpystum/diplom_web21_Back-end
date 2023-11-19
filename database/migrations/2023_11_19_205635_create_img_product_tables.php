@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('img_products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+
+            $table->foreignId('product_id');
 
             $table->string('resource')->comment('путь до картинки');
         });
