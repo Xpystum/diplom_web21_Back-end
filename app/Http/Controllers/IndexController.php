@@ -63,6 +63,20 @@ class IndexController extends Controller
     public function productItems(){
         return Product::all();
     }
+
+    public function product(Request $request){
+        //return Product::where('id', $request->id)->first();
+
+        $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            ->whereHas('category', function ($query) use ($request) {
+                //$query->where('alias', 'auto');
+            })
+            ->where('id', $request->id)
+            ->first();
+    
+        return $data;
+    }
+
     public function brands(){
         return Brands::all();
     }
