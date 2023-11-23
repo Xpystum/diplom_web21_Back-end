@@ -33,7 +33,7 @@ class IndexController extends Controller
     }
     public function allInfoProducts(Request $request)
     {  
-        $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type')
+        $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
             ->whereHas('category', function ($query) use ($request) {})
             ->orderBy('id')
             ->get();

@@ -133,4 +133,9 @@ class Product extends Model
  
         return $productRelevanceResult;
     }
+
+    public function Favorites(): HasMany
+    {
+        return $this->hasMany(Favorites::class, 'product_id');
+    }
 }
