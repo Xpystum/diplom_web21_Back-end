@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\AuthToken;
@@ -33,11 +34,15 @@ use function Laravel\Prompts\password;
 Route::controller(IndexController::class)->group(function () {
     Route::post('/items-menu', 'menuItems');
     Route::post('/category-products', 'categoryProducts');
-    Route::post('/products', 'products');
     Route::post('/brands-product', 'brandsItems');
     Route::post('/all-info-products', 'allInfoProducts');
     Route::post('/relevance-product', 'relevanceProduct');
+
+    Route::post('/products', 'products');
     Route::post('/brands', 'brands');
+    Route::post('/users', 'users');
+    
+    Route::post('/user', 'user');
     Route::post('/product', 'product');
 });
 
@@ -48,8 +53,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
 });
 Route::controller(AdminController::class)->group(function () {
-    Route::post('/admin', 'authAdmin')->name('auth.LoginAdmin');
-    Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
+    Route::post('/admin', 'authAdmin')->name('auth.LoginAdmin')->name('auth.LoginAdmin');
 });
 
 Route::post('/ads', function(Request $request){

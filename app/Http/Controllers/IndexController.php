@@ -8,6 +8,7 @@ use App\Models\CategoryProducts;
 use App\Models\Items_menu;
 use App\Models\Menu;
 use App\Models\Product;
+use App\Models\User;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -57,15 +58,19 @@ class IndexController extends Controller
         }
         return $data;
     }
-
+    public function users(){
+        return User::all();
+    }
+    public function user(Request $request){
+        return User::where('id', $request->id)->first();
+    }
     public function products(){
         return Product::all();
     }
-
     public function product(Request $request){
         //return Product::where('id', $request->id)->first();
 
-        $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+        $data = Product::with('brand','model','category','color','organisation','drive_unit','transmission','fuel','body_type','imgCollection')
             ->whereHas('category', function ($query) use ($request) {})
             ->where('id', $request->id)
             ->first();
