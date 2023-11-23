@@ -30,12 +30,10 @@ class IndexController extends Controller
 
         return $data;
     }
-    public function allItems(Request $request)
+    public function allInfoProducts(Request $request)
     {  
         $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type')
-            ->whereHas('category', function ($query) use ($request) {
-                $query->where('alias', $request->alias);
-            })
+            ->whereHas('category', function ($query) use ($request) {})
             ->orderBy('id')
             ->get();
     
@@ -60,7 +58,7 @@ class IndexController extends Controller
         return $data;
     }
 
-    public function productItems(){
+    public function products(){
         return Product::all();
     }
 
@@ -68,9 +66,7 @@ class IndexController extends Controller
         //return Product::where('id', $request->id)->first();
 
         $data = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
-            ->whereHas('category', function ($query) use ($request) {
-                //$query->where('alias', 'auto');
-            })
+            ->whereHas('category', function ($query) use ($request) {})
             ->where('id', $request->id)
             ->first();
     
