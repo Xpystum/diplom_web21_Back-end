@@ -38,6 +38,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/all-items', 'allItems');
     Route::post('/relevance-product', 'relevanceProduct');
     Route::post('/brands', 'brands');
+    Route::post('/product', 'product');
 });
 
 
