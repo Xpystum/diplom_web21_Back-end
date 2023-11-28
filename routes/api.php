@@ -44,6 +44,8 @@ Route::controller(IndexController::class)->group(function () {
     
     Route::post('/user', 'user');
     Route::post('/product', 'product');
+
+    
 });
 
 
@@ -51,11 +53,20 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name('auth.RegisterUser');
     Route::post('/auth', 'authUser')->name('auth.LoginUser');
     Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
+
+
+
+    Route::middleware(AuthToken::class)->group(function () {
+        Route::post('/add-favorite', 'addFavorite')->name('add-favorite');
+        Route::post('/favorites-user', 'favoritesUser')->name('favorites-user');
+    });
 });
 
 Route::post('/ads', function(Request $request){
     return $request->x;
 })->middleware(AuthToken::class);
+
+
 
 
 

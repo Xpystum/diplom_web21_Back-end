@@ -6,6 +6,7 @@ use App\Helpers\StatusRequestHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sign\StoreRegisterRequest;
+use App\Models\Favorites;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -56,4 +57,29 @@ class AuthController extends Controller
         $user = $token->tokenable;
         return true;
     }
+
+    public function addFavorite(Request $request){
+        return $request->product_id;
+    }
+
+    public function favoritesUser(Request $request){
+        $token = \Laravel\Sanctum\PersonalAccessToken::findToken($request->token);
+
+        if(!$token)
+            return false;
+        
+        if(!$token->tokenable)
+            return false;
+
+        $user = $token->tokenable;
+
+        return Favorites::with('users', 'products')
+        ->where('user_id', $user->id)
+        ->get();
+        
+        
+        
+        //Favorites::where('user_id', $user->id)->get();
+    }
+    
 }
