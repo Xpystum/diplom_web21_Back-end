@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::controller(AdminController::class)->group(function () {
 
-Route::get('/relevance-product/{id}', [IndexController::class, 'relevanceProduct'])->name('relevance');
+    Route::get('/login', 'login')->name('login');
+    Route::get('/home', 'home')->name('home');
+
+    Route::get('/token', 'token')->name('token')->middleware('authToken');
+
+});
+// ->middleware(AuthToken::class)
+// ->middleware('authToken')

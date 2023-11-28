@@ -52,9 +52,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/auth', 'authUser')->name('auth.LoginUser');
     Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
 });
-Route::controller(AdminController::class)->group(function () {
-    Route::post('/admin', 'authAdmin')->name('auth.LoginAdmin')->name('auth.LoginAdmin');
-});
 
 Route::post('/ads', function(Request $request){
     return $request->x;
