@@ -58,6 +58,7 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::middleware(AuthToken::class)->group(function () {
         Route::post('/add-favorite', 'addFavorite')->name('add-favorite');
+        Route::post('/remove-favorite', 'removeFavorite')->name('remove-favorite');
         Route::post('/favorites-user', 'favoritesUser')->name('favorites-user');
     });
 });
