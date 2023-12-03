@@ -60,6 +60,7 @@ Route::controller(AuthController::class)->group(function () {
         Route::post('/add-favorite', 'addFavorite')->name('add-favorite');
         Route::post('/remove-favorite', 'removeFavorite')->name('remove-favorite');
         Route::post('/favorites-user', 'favoritesUser')->name('favorites-user');
+        Route::post('/favorites-sinc', 'favoritesSinc')->name('favorites-sinc');
     });
 });
 
