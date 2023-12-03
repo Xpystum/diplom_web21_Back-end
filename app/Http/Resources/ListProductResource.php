@@ -48,6 +48,7 @@ class ProductResource extends JsonResource
             'weight' => $this->weight,
             'wheel_formula' => $this->wheel_formula,
 
+            'category_id' => $this-> category_id,
             'created_at' => $this->created_at,
         ];
     }
