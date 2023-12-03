@@ -76,8 +76,6 @@ class AuthController extends Controller
     public function favoritesUser(Request $request){
         $token = \Laravel\Sanctum\PersonalAccessToken::findToken($request->token);
 
-        
-
         if(!$token)
             return false;
         
@@ -102,5 +100,13 @@ class AuthController extends Controller
 
         //Favorites::where('user_id', $user->id)->get();
     }
+
+    public function favoritesSinc(Request $request){
+
+        // TODO нужно сделать синхрон данных с фронта и базы
+        return "123";
+    }
+
+
     
 }
