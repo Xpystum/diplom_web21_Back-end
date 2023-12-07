@@ -25,7 +25,6 @@ class AuthController extends Controller
             'password' => $request->input('pass'),
         ]);
 
-        // return $user->createToken('my_token');
         return ($user) ? true : false;
     }
 
@@ -84,11 +83,6 @@ class AuthController extends Controller
 
         $user = $token->tokenable;
 
-        // return Favorites::with('users', 'products')
-        // ->where('user_id', $user->id)
-        // ->get();
-        
-        //return new UserResource(User::findOrFail($id));
         $favoritesData = [];
         $favorites = Favorites::with('users', 'products')->where('user_id', $user->id)->get();
         foreach ($favorites as $favorite){
@@ -97,8 +91,6 @@ class AuthController extends Controller
        
         return response()->json($favoritesData, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
         JSON_UNESCAPED_UNICODE);
-
-        //Favorites::where('user_id', $user->id)->get();
     }
 
     public function favoritesSinc(Request $request){
