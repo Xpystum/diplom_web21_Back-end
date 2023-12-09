@@ -1,0 +1,133 @@
+*
+    padding: 0
+    margin: 0
+html
+    height: 100%
+    font-size: 10px
+    font-family: Arial, Helvetica, sans-serif
+body
+    background: #1d222e
+    color: #fff
+    margin: 0
+    padding: 0
+    min-height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.wrap
+    display: flex
+    flex-grow: 1
+.wrap-content
+    flex-grow: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+.navbar
+    box-shadow: 0px 0px 10px #0d121e
+    background: #252b3b
+    z-index: 1
+    & .logo
+        // justify-content: center
+        display: flex
+        align-items: center
+        margin: 5px
+        &__img
+            height: 40px
+            margin: 0 5px
+        &__text
+            font-family: Copperplate Gothic
+            font-size: 1.6rem
+            font-weight: bold
+            color: #D8001C
+            margin: 0 5px 0 2px
+        &__red
+            color: rgba(233, 244, 255, 1)
+            text-transform: uppercase
+    & nav
+        min-width: 50px
+        min-height: 100%
+        z-index: 1 
+        & img
+            height: 40px
+            margin: 0 5px
+            & .logo-text
+                font-family: Copperplate Gothic
+                font-size: 1.6rem
+                font-weight: bold
+                
+                color: #D8001C
+                & .red
+                    color: rgba(233, 244, 255, 1)
+                    text-transform: uppercase
+        & ul
+            text-align: left
+            padding: 0
+            padding-top: 10px
+            display: flex
+            height: 100%
+            flex-direction: column
+            & li
+                font-size: 1.6rem
+                padding: 10px
+                margin: 5px 0
+                list-style: none
+                & a
+                    font-weight: bold
+                    color: rgba(133, 144, 165, 0.5)
+                    transition: 0.1s ease
+                    padding: 10px
+                    & i
+                       width: 15px 
+                       height: 15px
+
+                    &.active
+                        border-radius: 50px
+                        box-shadow: 0 0 5px #0d121e
+                        
+                    &:hover,
+                    &.active
+                        color: rgba(133, 144, 165, 1)
+                        transition: 0.1s ease
+.text-menu
+    display: inline
+    display: none
+header
+    height: 50px
+    background: #2b3244
+    box-shadow: 0px 0px 10px #0d121e
+    z-index: 0
+    display: flex
+    align-items: center
+    & .button-bar
+        margin-left: 10px
+        background: transparent
+        border: none
+        color: rgba(133, 144, 165, 0.5)
+        font-size: 2.4rem
+        transition: 0.1s ease
+        
+        & i
+            display: none
+            &.active
+                display: block
+        &:hover
+            color: rgba(133, 144, 165, 1)
+            transition: 0.1s ease
+            
+main
+    flex-grow: 1
+    display: flex
+    justify-content: space-between
+    z-index: 1
+    & .content
+        padding: 10px
+a
+    text-decoration: none
+    
+
+footer
+    min-height: 50px
+    background: #141414
+    box-shadow: 0px 0px 10px #000 
+    z-index: 1
