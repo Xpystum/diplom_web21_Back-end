@@ -6,16 +6,29 @@ use App\Helpers\StatusRequestHelper;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    
-    public function login(Request $request){   
-        return view('login');
+    protected $layout = 'default';
+
+    public function login(){
+
+        // $data = DB::select('select * from posts');
+
+        $layout = 'login';
+        // $widget = view('widgets.vertical-wrapper',  compact('layout'));
+
+        // if(Auth::check()){
+        //     $user = Auth::user();
+        // }
+        return view('pages.login', compact('layout'));
     }
-    public function home(Request $request){   
-        return view('home');
+    public function home(){
+        $layout=$this->layout;
+        return view('pages.home', compact('layout'));
     }
     public function token(Request $request)  {       
         $user = User::where('email', $request->email)->first();
