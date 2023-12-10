@@ -99,6 +99,7 @@ body {
 .navbar nav ul li a i {
   width: 15px;
   height: 15px;
+  transition: 0.4s ease;
 }
 .navbar nav ul li a.active {
   border-radius: 50px;
@@ -110,8 +111,10 @@ body {
 }
 
 .text-menu {
-  display: inline;
   display: none;
+}
+.text-menu.active {
+  display: inline;
 }
 
 header {
