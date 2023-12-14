@@ -1,7 +1,7 @@
   @extends("layouts.{$layout}")
-  @section('title', 'Home')
+  @section('title', 'widgets')
   @section('content')
   
-    <h1>HOME</h1>
-    
+    <h1>WIDGETS</h1>
+
   @endsection

@@ -1,7 +1,7 @@
   @extends("layouts.{$layout}")
-  @section('title', 'Home')
+  @section('title', 'database')
   @section('content')
   
-    <h1>HOME</h1>
-    
+    <h1>DB</h1>
+
   @endsection

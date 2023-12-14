@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(AdminController::class)->group(function () {
 
-    Route::get('/login', 'login')->name('login');
-    Route::get('/home', 'home')->name('home');
+    Route::get('/', 'auth')->name('auth');
 
-    Route::get('/token', 'token')->name('token')->middleware('authToken');
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::get('/home', 'home')->name('home');
+    Route::get('/widgets', 'widgets')->name('widgets');
+    Route::get('/database', 'database')->name('database');
+    Route::get('/products', 'products')->name('products');
+
+
+    Route::get('/test', 'test')->name('test');
+
+
+
+
+
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout')->name('logout');
+    Route::post('/check-user', 'checkUser')->name('checkUser');
 
 });
 // ->middleware(AuthToken::class)

@@ -5,9 +5,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    background-color: #181818;
-}
 .background{
     width: 430px;
     height: 520px;
@@ -73,27 +70,42 @@ form h3{
     font-weight: 500;
     line-height: 42px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 label{
     display: block;
-    margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
+    width: 30px;
+    height: 100%;
+    text-align: center;
+}
+label i{
+    height: 20px;
+    margin: 0 auto;
+    
 }
 input{
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
-    border-radius: 3px;
+    background-color: rgba(150,150,150,.2);
     padding: 0 10px;
-    margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
 }
 ::placeholder{
-    color: #e5e5e5;
+    font-weight: bold;
+    color: rgba(255,255,255, .5);
+}
+.input_wrap{
+    overflow: hidden;
+    background: #1d222e;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
 }
 button{
     margin-top: 50px;
@@ -106,33 +118,15 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-.social{
-margin-top: 30px;
-display: flex;
-}
-.social div{
-background: red;
-width: 150px;
-border-radius: 3px;
-padding: 5px 10px 10px 5px;
-background-color: rgba(255,255,255,0.27);
-color: #eaf0fb;
-text-align: center;
-}
-.social div:hover{
-background-color: rgba(255,255,255,0.47);
-}
-.social .fb{
-margin-left: 25px;
-}
-.social i{
-margin-right: 4px;
-}
+
 .error{
+    font-size: 1.2rem;
+    display: block;
     margin: 0;
     padding: 0;
     color: #f00;
     text-align: center;
-    background: rgba(255,0,0,0.07);
-
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255,0,0,0.07);
+    /* rgba(255,0,0,0.07) */
 }

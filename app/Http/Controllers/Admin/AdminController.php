@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\StatusRequestHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,34 +15,112 @@ class AdminController extends Controller
 {
     protected $layout = 'default';
 
-    public function login(){
-
-        // $data = DB::select('select * from posts');
-
-        $layout = 'login';
-        // $widget = view('widgets.vertical-wrapper',  compact('layout'));
-
-        // if(Auth::check()){
-        //     $user = Auth::user();
-        // }
-        return view('pages.login', compact('layout'));
+    public function auth(){
+        if(!Auth::check()){
+            $layout = 'auth';
+            return view('pages.auth', compact('layout'));
+        }
+        else{
+            return redirect()->route('home');
+        }
     }
     public function home(){
-        $layout=$this->layout;
-        return view('pages.home', compact('layout'));
-    }
-    public function token(Request $request)  {       
-        $user = User::where('email', $request->email)->first();
-
-        if($user && Hash::check($request->password, $user->password)){
-            $token = $user->createToken('my_token');
-            return [
-                'token' => $token->plainTextToken, 
-                'code' => StatusRequestHelper::code('success'),
-                'token_name' => 'my_token'
-            ];
+        if(Auth::check()){
+            $user = Auth::user();
+            $layout = $this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+    
+            return view('pages.home', compact('layout', 'user', 'menuHeader'));
         }
-
-        return ['code' => StatusRequestHelper::code('access_denied')];
+        else{
+            return redirect()->route('auth');
+        }
     }
+    public function widgets(){
+        if(Auth::check()){
+            $user = Auth::user();
+
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.widgets', compact('layout', 'user', 'menuHeader'));
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function products(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $products = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            ->orderBy('id')
+            ->get();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.products', compact('layout', 'user', 'menuHeader', 'products'));
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function database(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.database', compact('layout', 'user', 'menuHeader'));
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function test(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.test', compact('layout', 'user', 'menuHeader'));
+            
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:4',
+        ]);
+
+        $credentials = [
+            'email' => $validatedData['email'],
+            'password' =>$validatedData['password'],
+            'status' => 'admin',
+        ];
+
+        if (auth()->attempt($credentials)) {
+            // Аутентификация прошла успешно, перенаправление на домашнюю страницу
+            return redirect()->route('home');
+        } else {
+            // Неверные учетные данные, перенаправление обратно на страницу входа
+            return redirect()->route('auth')->withErrors(['email' => 'Неверный адрес электронной почты или пароль']);
+        }
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect()->route('auth');
+    }
+    
 }
