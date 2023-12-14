@@ -20,3 +20,9 @@ php artisan storage:link
 user
 test@example.com
 password
+
+
+=========================================
+пример админки
+
+http://nazox-v-light.angular.themesdesign.in/
