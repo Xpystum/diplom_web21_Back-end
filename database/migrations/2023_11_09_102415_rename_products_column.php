@@ -9,15 +9,37 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::table('products', function(Blueprint $table) {
-            $table->dropColumn('mark');
-            $table->dropColumn('model');
-            $table->dropColumn('color');
+        $nameTable = 'products';
+        // Schema::table($nameTable, function(Blueprint $table, string $nameTable) {
+        //     if (
+        //         Schema::hasColumn($nameTable, 'mark') &&
+        //         Schema::hasColumn($nameTable, 'model') &&
+        //         Schema::hasColumn($nameTable, 'color') 
+        //     ){
+        //         $table->dropColumn('mark');
+        //         $table->dropColumn('model');
+        //         $table->dropColumn('color');
+        //     }
+        // });
+
+         Schema::table('products', function(Blueprint $table) {
+            if (Schema::hasColumn('products', 'mark')){
+                $table->dropColumn('mark');
+            }
+
+            if(Schema::hasColumn('products', 'model')){
+                $table->dropColumn('model');
+            }
+
+            if(Schema::hasColumn('products', 'color')){
+                $table->dropColumn('color');
+            }
         });
+
         Schema::table('products', function(Blueprint $table) {
             $table->foreignId('brand_id')->after('id');
-            $table->foreignId('model_id')->after('brand_id');
-            $table->foreignId('color_id')->after('color_id');
+            $table->foreignId('model_id');
+            $table->foreignId('color_id');
         });
     }
 
