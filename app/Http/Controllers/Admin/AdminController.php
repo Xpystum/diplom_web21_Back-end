@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\StatusRequestHelper;
 use App\Http\Controllers\Controller;
+use App\Jobs\ProductsJob;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -76,13 +77,41 @@ class AdminController extends Controller
             return redirect()->route('auth');
         }  
     }
-    public function test(){
+    public function null(){
         if(Auth::check()){
             $user = Auth::user();
             $layout=$this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
 
             return view('pages.test', compact('layout', 'user', 'menuHeader'));
+            
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function productQueue(){
+        
+        $products = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            ->orderBy('id')
+            ->get();
+
+        foreach ($products as $product) {
+            // Создание экземпляра задачи ProductsJob для каждого продукта
+            $job = new ProductsJob($product);
+
+            // Размещение задачи в очередь
+            dispatch($job)->onQueue(queue:'product');
+        }
+    }
+    public function user(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $dbUsers = User::all();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'dbUsers'));
+
+            return view('pages.user', compact('layout', 'user', 'menuHeader', 'dbUsers'));
             
         }
         else{

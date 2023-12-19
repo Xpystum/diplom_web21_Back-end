@@ -177,8 +177,102 @@ footer.full {
 
 table {
   border-collapse: collapse;
+  margin: 0 auto;
+  margin-top: 30px;
   font-size: 1.6rem;
 }
-table td {
-  border: 1px solid #0a0;
+table thead td {
+  background: #0d121e;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5px;
+  border-left: 1px solid #2b3244;
+  border-right: 1px solid #2b3244;
+}
+table tbody tr:nth-child(2n) {
+  background: #005f73;
+}
+table tbody tr:nth-child(2n+1) {
+  background: #023047;
+}
+table tbody td {
+  text-align: center;
+  padding: 5px 10px;
+}
+table tbody td button {
+  background: #ccc;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  transition: 0.1s ease;
+}
+table tbody td button:hover {
+  transition: 0.1s ease;
+}
+table tbody td button.change {
+  background: #aa0;
+  color: rgba(0, 0, 0, 0.7);
+}
+table tbody td button.change:hover {
+  background: #ff0;
+  color: #000;
+}
+table tbody td button.change:active {
+  background: #660;
+  color: rgba(0, 0, 0, 0.3);
+}
+table tbody td button.remove {
+  background: #a00;
+  color: rgba(255, 255, 255, 0.7);
+}
+table tbody td button.remove:hover {
+  background: #f00;
+  color: #fff;
+}
+table tbody td button.remove:active {
+  background: #600;
+  color: rgba(255, 255, 255, 0.3);
+}
+table tbody td > div {
+  overflow: hidden;
+  height: 100px;
+  width: 120px;
+}
+table tbody td .product__img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+table tbody td .product__no-img {
+  line-height: 100px;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(#000 10%, transparent 70%);
+}
+table tbody td select {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+table tbody td select.user, table tbody td select.in_review {
+  background: #aa0;
+  box-shadow: inset 0px 0px 10px #ff0;
+}
+table tbody td select.admin, table tbody td select.approved {
+  background: #0a0;
+  box-shadow: inset 0px 0px 10px #0f0;
+}
+table tbody td select.ban, table tbody td select.rejected {
+  background: #a00;
+  box-shadow: inset 0px 0px 10px #f00;
+}
+table tbody td select option {
+  background: #0d121e;
+  color: #fff;
+  font-weight: bold;
 }/*# sourceMappingURL=style.css.map */

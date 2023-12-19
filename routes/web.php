@@ -25,18 +25,16 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/widgets', 'widgets')->name('widgets');
     Route::get('/database', 'database')->name('database');
     Route::get('/products', 'products')->name('products');
+    Route::get('/user', 'user')->name('user');
 
+    Route::get('/null', 'null')->name('null');
 
-    Route::get('/test', 'test')->name('test');
-
-
-
-
-
+    
+    
+    
+    Route::post('/product-queue', 'productQueue')->name('productQueue');
     Route::post('/login', 'login');
     Route::post('/logout', 'logout')->name('logout');
     Route::post('/check-user', 'checkUser')->name('checkUser');
 
 });
-// ->middleware(AuthToken::class)
-// ->middleware('authToken')

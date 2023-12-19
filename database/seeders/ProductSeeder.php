@@ -56,6 +56,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "98000",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/bmw1_1.jpg',
                 'fuel_id' => 2,
                 'engine_capacity' => 3.0,
@@ -99,6 +100,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "10",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/bmw2_1.jpg',
                 'fuel_id' => 2,
                 'engine_capacity' => 3.0,
@@ -167,6 +169,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "34000",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/bmw3_1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 2.0,
@@ -211,6 +214,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "134007",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/porshe2_1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 3.6,
@@ -338,6 +342,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "35000",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/porshe1_1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 4.0,
@@ -359,49 +364,49 @@ class ProductSeeder extends Seeder
                 'body_volume' => null,
                 'weight' => null,
                 'desription' => "Мы предлагаем:
-                • Гарантию на автомобиль на 1, 2 или 3 года
-                • Индивидуальное ценовое и финансовое предложение
-                • Гарантию лучшей цены на автомобили в России
-                • Обмен по программе трейд-ин
-                • Привлекательные кредитные программы: (более 10 банков партнеров), оформление всего по двум документам и без ПВ
-                • Доставим ваш автомобиль на крытом эвакуаторе в любую точку России
-                Если вы не нашли интересующий автомобиль, позвоните нам – мы подберем автомобиль исходя из Ваших предпочтений.
+                <br/>• Гарантию на автомобиль на 1, 2 или 3 года
+                <br/>• Индивидуальное ценовое и финансовое предложение
+                <br/>• Гарантию лучшей цены на автомобили в России
+                <br/>• Обмен по программе трейд-ин
+                <br/>• Привлекательные кредитные программы: (более 10 банков партнеров), оформление всего по двум документам и без ПВ
+                <br/>• Доставим ваш автомобиль на крытом эвакуаторе в любую точку России
+                <br/>Если вы не нашли интересующий автомобиль, позвоните нам – мы подберем автомобиль исходя из Ваших предпочтений.
                 Мы ценим наших клиентов и обеспечиваем внимание и заботу с первого обращения.
-                • Цвет кузова: Серый металлик (Volcano Grey)
-                • Цвет салона: Серый кожаный салон (Agate Grey) в комбинации с другими материалами
-                • Пакет Sport Design с боковыми юбками Sport Design
-                • Зеркала заднего вида окрашены в цвет кузова
-                • Рамки боковых стекол окрашены в черный цвет (глянец)
-                • Верхняя часть дверных ручек окрашена в цвет кузова
-                • Крышка бензобака Exclusive Design
-                • 8-ступенчатая КПП Porsche Doppelkupplung (PDK)
-                • Спортивная выхлопная система c серебристыми насадками выхлопных труб
-                21-дюймовые диски Panamera SportDesign, окрашенные в серый цвет (Satin Platinum)
-                • Матричные светодиодные фары, включая систему динамического освещения Porsche (PDLS Plus)
-                • Стекла с тепло- и звукоизоляцией и тонированным остеклением Privacy
-                • Датчики системы помощи при парковке спереди и сзади, включая камеру кругового обзора
-                • Адаптивный круиз-контроль
-                • Функция ночного видения Night Assist
-                • Система помощи водителю при смене полосы движения (Lane Change Assist (LCA))
-                • Дополнительное освещение салона, включая пакет освещения сзади
-                • Рычаг КПП Exclusive Design
-                • 18-позиционные адаптивные спортивные сиденья с функцией памяти
-                • Комфортные 8-позиционные задние сиденья с функцией памяти (в соч. с адаптивными спортивными сиденьями)
-                • Вентиляция передних сидений
-                • Спортивное GT многофункциональное рулевое колесо с отделкой кожей и с подогревом
-                • Съемная крышка багажника
-                • Автоматически поднимающиеся шторки на задние двери и на заднее окно
-                • Отделка элементов передней панели кожей. Серый (Agate Grey)
-                • Индивидуальный напольный коврик в багажном отделении с кожаной окантовкой
-                • Пластины воздуховодов с отделкой кожей
-                • Отделка рулевой колонки и приборной панели кожей. Серый (Agate Grey)
-                • Консоли сидений спереди и сзади в коже. Серый (Agate Grey)
-                • Съемная крышка багажника с отделкой кожей. Серый (Agate Grey)
-                • Индивидуальные напольные коврики с кожаной окантовкой (высокий ворс). Серый (Agate Grey)
-                • Внутренние накладки на пороги с отделкой гладкой кожей. Серый (Agate Grey)
-                • Пакет отделки элементов салона карбоном
-                • Накладки на пороги с отделкой карбоном, вкл. внутренние кожаные накладки на пороги
-                • USB интерфейс для задних пассажиров",
+                <br/>• Цвет кузова: Серый металлик (Volcano Grey)
+                <br/>• Цвет салона: Серый кожаный салон (Agate Grey) в комбинации с другими материалами
+                <br/>• Пакет Sport Design с боковыми юбками Sport Design
+                <br/>• Зеркала заднего вида окрашены в цвет кузова
+                <br/>• Рамки боковых стекол окрашены в черный цвет (глянец)
+                <br/>• Верхняя часть дверных ручек окрашена в цвет кузова
+                <br/>• Крышка бензобака Exclusive Design
+                <br/>• 8-ступенчатая КПП Porsche Doppelkupplung (PDK)
+                <br/>v• Спортивная выхлопная система c серебристыми насадками выхлопных труб
+                <br/>21-дюймовые диски Panamera SportDesign, окрашенные в серый цвет (Satin Platinum)
+                <br/>• Матричные светодиодные фары, включая систему динамического освещения Porsche (PDLS Plus)
+                <br/>• Стекла с тепло- и звукоизоляцией и тонированным остеклением Privacy
+                <br/>• Датчики системы помощи при парковке спереди и сзади, включая камеру кругового обзора
+                <br/>• Адаптивный круиз-контроль
+                <br/>• Функция ночного видения Night Assist
+                <br/>• Система помощи водителю при смене полосы движения (Lane Change Assist (LCA))
+                <br/>• Дополнительное освещение салона, включая пакет освещения сзади
+                <br/>• Рычаг КПП Exclusive Design
+                <br/>• 18-позиционные адаптивные спортивные сиденья с функцией памяти
+                <br/>• Комфортные 8-позиционные задние сиденья с функцией памяти (в соч. с адаптивными спортивными сиденьями)
+                <br/>• Вентиляция передних сидений
+                <br/>• Спортивное GT многофункциональное рулевое колесо с отделкой кожей и с подогревом
+                <br/>• Съемная крышка багажника
+                <br/>• Автоматически поднимающиеся шторки на задние двери и на заднее окно
+                <br/>• Отделка элементов передней панели кожей. Серый (Agate Grey)
+                <br/>• Индивидуальный напольный коврик в багажном отделении с кожаной окантовкой
+                <br/>• Пластины воздуховодов с отделкой кожей
+                <br/>• Отделка рулевой колонки и приборной панели кожей. Серый (Agate Grey)
+                <br/>• Консоли сидений спереди и сзади в коже. Серый (Agate Grey)
+                <br/>• Съемная крышка багажника с отделкой кожей. Серый (Agate Grey)
+                <br/>• Индивидуальные напольные коврики с кожаной окантовкой (высокий ворс). Серый (Agate Grey)
+                <br/>• Внутренние накладки на пороги с отделкой гладкой кожей. Серый (Agate Grey)
+                <br/>• Пакет отделки элементов салона карбоном
+                <br/>• Накладки на пороги с отделкой карбоном, вкл. внутренние кожаные накладки на пороги
+                <br/>• USB интерфейс для задних пассажиров",
                 'additional' => ' Покупка автомобиля у официального дилера 
                 Порше Центр Минеральные Воды — ваша гарантия безопасной сделки.',
                 'created_at' => now(),
@@ -419,6 +424,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "53436",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/porshe3_1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 4.8,
@@ -466,6 +472,7 @@ class ProductSeeder extends Seeder
                 'old_price' => "23995000",
                 'mileage' => "10",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/porshe4_1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 4.0,
@@ -511,6 +518,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "203500",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/porshe5_1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 4.5,
@@ -556,6 +564,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "350000",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/yaz2.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 2.9,
@@ -593,6 +602,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "208000",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' =>'products/yaz1.jpg',
                 'fuel_id' => 1,
                 'engine_capacity' => 2.7,
@@ -636,6 +646,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "79687",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => null,
                 'fuel_id' => 1,
                 'engine_capacity' => 2.7,
@@ -692,6 +703,7 @@ class ProductSeeder extends Seeder
                 'old_price' => null,
                 'mileage' => "79687",
                 'status' => true,
+                'moderation_status' => 'approved',
                 'main_img' => 'products/yral1.jpg',
                 'fuel_id' => 2,
                 'engine_capacity' => null,
@@ -728,6 +740,92 @@ class ProductSeeder extends Seeder
                 'body_type_id' => null,
                 'organisation_id' => null,
 
+            ],
+            [
+                'id'=> 13,
+                'model_id' => 6,
+                'brand_id' => 16,
+                'year' => "2019",
+                'price' => "5800000",
+                'old_price' => null,
+                'mileage' => "98000",
+                'status' => true,
+                'moderation_status' => 'rejected',
+                'main_img' => 'products/bmw1_1.jpg',
+                'fuel_id' => 2,
+                'engine_capacity' => 3.0,
+                'power' => "249",
+                'transmission_id' => 1,
+                'drive_unit_id' => 1,
+                'color_id' => 1,
+                'steering_wheel' => "левый",
+                'generation' => "",
+                'equipment' => null,
+                'vin' => "WBA**************",
+                'city' => "Новосибирск",
+                'category_id' => "1",
+                'wheel_formula' => "",
+                'load_capacity' => null,
+                'vin_body' => "",
+                'body_length' => null,
+                'body_volume' => null,
+                'weight' => null,
+                'desription' => "Продам BMW X6
+                !!! ДИЛЕРСКИЙ !!!
+                Продажа от собственника
+                Родной пробег
+                Машина полностью обслужена
+                Последнее ТО тысячу км назад ,
+                2 комплекта резины на дисках
+                Лето на 20 , зима на 19",
+                'additional' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'body_type_id' => 5,
+                'organisation_id' => 1,
+            ],
+            [
+                'id'=> 14,
+                'model_id' => 6,
+                'brand_id' => 16,
+                'year' => "2019",
+                'price' => "5800000",
+                'old_price' => null,
+                'mileage' => "98000",
+                'status' => true,
+                'moderation_status' => 'in_review',
+                'main_img' => 'products/bmw1_1.jpg',
+                'fuel_id' => 2,
+                'engine_capacity' => 3.0,
+                'power' => "249",
+                'transmission_id' => 1,
+                'drive_unit_id' => 1,
+                'color_id' => 1,
+                'steering_wheel' => "левый",
+                'generation' => "",
+                'equipment' => null,
+                'vin' => "WBA**************",
+                'city' => "Новосибирск",
+                'category_id' => "1",
+                'wheel_formula' => "",
+                'load_capacity' => null,
+                'vin_body' => "",
+                'body_length' => null,
+                'body_volume' => null,
+                'weight' => null,
+                'desription' => "Продам BMW X6
+                !!! ДИЛЕРСКИЙ !!!
+                Продажа от собственника
+                Родной пробег
+                Машина полностью обслужена
+                Последнее ТО тысячу км назад ,
+                2 комплекта резины на дисках
+                Лето на 20 , зима на 19",
+                'additional' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'body_type_id' => 5,
+                'organisation_id' => 1,
             ],
 
         ];
