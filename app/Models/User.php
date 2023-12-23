@@ -47,6 +47,7 @@ class User extends Authenticatable
 
     public function Favorites(): HasMany
     {
-        return $this->hasMany(Favorites::class, 'user_id');
+        return $this->hasMany(Favorites::class, 'user_id', Review::class, 'id');
     }
+    
 }

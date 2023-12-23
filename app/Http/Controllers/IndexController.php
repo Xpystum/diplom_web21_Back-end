@@ -8,6 +8,7 @@ use App\Models\CategoryProducts;
 use App\Models\Items_menu;
 use App\Models\Menu;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\User;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
@@ -101,6 +102,7 @@ class IndexController extends Controller
         }
         return $data;
     }
+    
 
     public function relevanceProduct(Request $request){
 
@@ -140,5 +142,48 @@ class IndexController extends Controller
             // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 5000000, $productsTarget->price + 5000000])->get()->dd();
         #endregion
     }
+
+    public function reviews(){
+        return Review::all();
+    }
+
+   /* public function review_holder(){
+        $user_id = DB::table('users')
+        ->select('id')
+        ->get();
+
+        $user_name = DB::table('users')
+        ->select('name')
+        ->get();
+
+        $review_user_id = DB::table('reviews')
+        ->select('user_id')
+        ->get();
+        $user_name = $user_id;
+
+        return $user_name;
+    }*/
+
+    public function allInfoReviews(Request $request){
+
+        $data =  Review::with(
+            // 'user', при добавлении возникает ошибка(вытаскивать имя)
+
+            'brand',
+            'model',
+            'body_type', 
+            'fuel',
+            'transmission',
+            'drive_unit',
+            'review_img_collection',
+            )
+            ->orderBy('id')
+            ->get();
+
+    
+         return $data; 
+         
+    }
+
 }
 

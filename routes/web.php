@@ -25,7 +25,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/widgets', 'widgets')->name('widgets');
     Route::get('/database', 'database')->name('database');
     Route::get('/products', 'products')->name('products');
-
+    Route::get('/reviews', 'reviews')->name('reviews');
 
     Route::get('/test', 'test')->name('test');
 

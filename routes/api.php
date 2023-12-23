@@ -37,6 +37,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/brands-product', 'brandsItems');
     Route::post('/all-info-products', 'allInfoProducts');
     Route::post('/relevance-product', 'relevanceProduct');
+    
 
     Route::post('/products', 'products');
     Route::post('/brands', 'brands');
@@ -44,10 +45,11 @@ Route::controller(IndexController::class)->group(function () {
     
     Route::post('/user', 'user');
     Route::post('/product', 'product');
-
     
+    Route::post('/reviews', 'reviews');
+    Route::post('/review', 'review');
+    Route::post('/all-info-reviews', 'allInfoReviews');
 });
-
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name('auth.RegisterUser');

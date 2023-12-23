@@ -15,6 +15,7 @@ class BodyType extends Model
 
     public function items(): HasMany
     {
-        return $this->hasMany(Product::class, 'id');
+        return $this->hasMany(Product::class, 'id', Review::class, 'id');
     }
+
 }

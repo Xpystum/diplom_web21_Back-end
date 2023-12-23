@@ -28,6 +28,14 @@ class ModelsSeeder extends Seeder
             ['id'=> 12, 'brand_id' => 3, 'name'=> "3151"],
             ['id'=> 13, 'brand_id' => 3, 'name'=> "Патриот"],
             ['id'=> 14, 'brand_id' => 4, 'name'=> "Ивановец"],
+            ['id'=> 15, 'brand_id' => 10, 'name'=> "A1"],
+            ['id'=> 16, 'brand_id' => 10, 'name'=> "A2"],
+            ['id'=> 17, 'brand_id' => 10, 'name'=> "A3"],
+            ['id'=> 18, 'brand_id' => 10, 'name'=> "A4"],
+            ['id'=> 19, 'brand_id' => 10, 'name'=> "A5"],
+            ['id'=> 20, 'brand_id' => 10, 'name'=> "A6"],
+            ['id'=> 21, 'brand_id' => 10, 'name'=> "A7"],
+            ['id'=> 22, 'brand_id' => 10, 'name'=> "A8"],
         ];
         DB::table('models')->insert($models);
     }
