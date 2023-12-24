@@ -37,7 +37,8 @@ class AuthController extends Controller
             return [
                 'token' => $token->plainTextToken, 
                 'code' => StatusRequestHelper::code('success'),
-                'token_name' => 'my_token'
+                'token_name' => 'my_token',
+                'uid'=> $user->id,
             ];
         }
 

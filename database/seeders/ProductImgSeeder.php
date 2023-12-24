@@ -53,6 +53,21 @@ class ProductImgSeeder extends Seeder
             ['id'=> 30, 'product_id' => 4, 'resource'=> "products/porshe1_3.jpg"],
             ['id'=> 31, 'product_id' => 4, 'resource'=> "products/porshe1_4.jpg"],
             ['id'=> 32, 'product_id' => 4, 'resource'=> "products/porshe1_5.jpg"],
+
+            ['id'=> 33, 'product_id' => 15, 'resource'=> "products/bmw4_2.jpg"],
+            ['id'=> 34, 'product_id' => 15, 'resource'=> "products/bmw4_3.jpg"],
+            ['id'=> 35, 'product_id' => 15, 'resource'=> "products/bmw4_4.jpg"],
+            ['id'=> 36, 'product_id' => 15, 'resource'=> "products/bmw4_5.jpg"],
+
+            ['id'=> 37, 'product_id' => 16, 'resource'=> "products/bmw5_2.jpg"],
+            ['id'=> 38, 'product_id' => 16, 'resource'=> "products/bmw5_3.jpg"],
+            ['id'=> 39, 'product_id' => 16, 'resource'=> "products/bmw5_4.jpg"],
+            ['id'=> 40, 'product_id' => 16, 'resource'=> "products/bmw5_5.jpg"],
+
+            ['id'=> 41, 'product_id' => 17, 'resource'=> "products/bmw6_2.jpg"],
+            ['id'=> 42, 'product_id' => 17, 'resource'=> "products/bmw6_3.jpg"],
+            ['id'=> 43, 'product_id' => 17, 'resource'=> "products/bmw6_4.jpg"],
+            ['id'=> 44, 'product_id' => 17, 'resource'=> "products/bmw6_5.jpg"],
             
         ];
         DB::table('img_products')->insert($img_products);

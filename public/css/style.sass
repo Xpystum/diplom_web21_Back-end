@@ -25,7 +25,7 @@ body
     justify-content: space-between
 
 
-.navbar
+.my-navbar
     box-shadow: 0px 0px 10px #0d121e
     background: #252b3b
     z-index: 1
@@ -147,27 +147,39 @@ footer
     z-index: 0
     &.full
         display: none
-
+.table-wrap
+    margin-top: 30px
+    border: 1px solid #2d3448
+    background: #252b3b
+    border-radius: 10px
+    overflow: hidden
+    padding: 5px
+    margin-right: auto 
+    margin-left: auto
 table
     border-collapse: collapse
-    margin: 0 auto
-    margin-top: 30px
+    
+    
+    
     font-size: 1.6rem
     & thead
         & td
-            background: #0d121e
             font-weight: bold
             text-align: center
-            text-transform: uppercase
+            text-transform: capitalize
             padding: 5px
-            border-left: 1px solid #2b3244
-            border-right: 1px solid #2b3244
+
+            border-left: 1px solid 
+            border-right: 1px solid 
+            border-bottom: 2px solid
+            border-color: #2d3448
     & tbody
         & tr
-            &:nth-child(2n)
-                background: #005f73
-            &:nth-child(2n+1)
-                background: #023047
+            border-bottom: 2px solid #2d3448
+            // &:nth-child(2n)
+            //     background: #005f73
+            // &:nth-child(2n+1)
+            //     background: #023047
                 
         & td
             text-align: center
@@ -201,39 +213,74 @@ table
                         background: #600
                         color: rgba(255, 255, 255, 0.3)
             & > div
+                position: relative
                 overflow: hidden
                 height: 100px
                 width: 120px
 
             & .product__img
-                height: 100%
-                width: 100%
-                object-fit: contain
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+                max-width: 100%
+                max-height: none
+                width: auto
+                height: auto
+                object-fit: cover
             & .product__no-img
                 line-height: 100px
-                font-weight: bold
                 height: 100%
                 width: 100%
                 background: radial-gradient(#000 10%, transparent 70%)
             & select
                 color: rgba(0, 0, 0, 0.7)
-                font-weight: bold
                 padding: 2px 5px
                 border-radius: 4px
+                
+                
+                text-transform: capitalize
+                
+                &.form-select
+                    padding: 2px 5px
+                    font-size: 1.4rem
+                    border: none
+                    outline: none
+                    &:focus
+                        box-shadow: none
                 &.user,
-                &.in_review
-                    background: #aa0
-                    box-shadow: inset 0px 0px 10px #ff0
+                &.in_review,
+                & option[value="in_review"],
+                & option[value="user"]
+                    
+                    background: #654a12
+                    color: rgba(252, 185, 44, 1)
                 &.admin,
-                &.approved
-                    background: #0a0
-                    box-shadow: inset 0px 0px 10px #0f0
+                &.approved,
+                & option[value="admin"],
+                & option[value="approved"]
+                    background: #0b4b38
+                    color: rgba(28, 187, 140, 1)
                 &.ban,
-                &.rejected
-                    background: #a00
-                    box-shadow: inset 0px 0px 10px #f00
+                &.rejected,
+                & option[value="ban"],
+                & option[value="rejected"]
+                    background: #661826
+                    color: rgba(255, 61, 96, 1)
                 & option
+                    text-align: center
+                    
                     background: #0d121e
                     color: #fff
-                    font-weight: bold
+                    border-radius: 10px
+::selection
+  background: rgba(255, 255, 255, 0.5)
+  color: #000
+
+::-moz-selection 
+  background: rgba(255, 255, 255, 0.5)
+  color: #000               
+                    
+                    
+
                     
