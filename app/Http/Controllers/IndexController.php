@@ -155,7 +155,6 @@ class IndexController extends Controller
     }
 
     public function allInfoReviews(){
-
         $data =  Review::with(
             'brand',
             'model',
