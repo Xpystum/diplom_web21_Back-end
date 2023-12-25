@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('mileage')->comment('пробег');
 
             $table->text('review')->comment('Отзыв');
-            $table->timestamps();
+            $table->timestampsTz();
         });
     }
 
