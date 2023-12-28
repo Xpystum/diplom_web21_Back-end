@@ -13,7 +13,7 @@ class ImgCollection extends Model
     protected $table = 'img_products';
 
 
-    public function items(): BelongsTo
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class, 'product_id');
     }

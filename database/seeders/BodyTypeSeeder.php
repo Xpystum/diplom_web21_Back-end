@@ -25,6 +25,7 @@ class BodyTypeSeeder extends Seeder
             ['id'=> 9, 'name' => "Пикап"],
             ['id'=> 10, 'name' => "Купе"],
             ['id'=> 11, 'name' => "Открытый"],
+            ['id'=> 12, 'name' => "Другое"],
         ];
         DB::table('body_type')->insert($body_type);
     }

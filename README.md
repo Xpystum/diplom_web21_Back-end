@@ -1,28 +1,34 @@
 # diplom_web21
-git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
-git fetch --all
-git pull --all
+    git@github.com:Xpystum/diplom_web21_Back-end.git
 
-===================================================
-обновить все сиды (удалит миграции, накатит заново и заново заполнит сиды)
-php artisan migrate:refresh --seed
-php artisan migrate:fresh --seed
+## подтянуть все ветки из gitHub
+    git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+    git fetch --all
+    git pull --all
 
-git@github.com:Xpystum/diplom_web21_Back-end.git
-===================================================
-если не подгружаются картинки пропишите 
-
-php artisan storage:link 
-
-для доступа к папке storage
+## обновить все сиды (удалит миграции, накатит заново и заново заполнит сиды)
+    php artisan migrate:refresh --seed
+    php artisan migrate:fresh --seed
 
 
-user
-test@example.com
-password
+## если не подгружаются картинки пропишите 
+    *для доступа к папке storage*
 
+        php artisan storage:link 
 
-=========================================
-пример админки
+## Пользователи:
+
+    status:
+        *user*
+             Логин: test@example.com
+            Пароль: password
+        *admin*
+             Логин: admin@example.com
+            Пароль: admin
+        *ban*
+             Логин: bad_man@example.com
+            Пароль: banMan
+
+## пример админки
 
 http://nazox-v-light.angular.themesdesign.in/

@@ -32,50 +32,50 @@ body {
   justify-content: space-between;
 }
 
-.navbar {
+.my-navbar {
   box-shadow: 0px 0px 10px #0d121e;
   background: #252b3b;
   z-index: 1;
 }
-.navbar .logo {
+.my-navbar .logo {
   display: flex;
   align-items: center;
   margin: 5px;
 }
-.navbar .logo__img {
+.my-navbar .logo__img {
   height: 40px;
   margin: 0 5px;
 }
-.navbar .logo__text {
+.my-navbar .logo__text {
   font-family: Copperplate Gothic;
   font-size: 1.6rem;
   font-weight: bold;
   color: #D8001C;
   margin: 0 5px 0 2px;
 }
-.navbar .logo__white {
+.my-navbar .logo__white {
   color: rgb(233, 244, 255);
   text-transform: uppercase;
 }
-.navbar nav {
+.my-navbar nav {
   min-width: 50px;
   z-index: 1;
 }
-.navbar nav img {
+.my-navbar nav img {
   height: 40px;
   margin: 0 5px;
 }
-.navbar nav img .logo-text {
+.my-navbar nav img .logo-text {
   font-family: Copperplate Gothic;
   font-size: 1.6rem;
   font-weight: bold;
   color: #D8001C;
 }
-.navbar nav img .logo-text .red {
+.my-navbar nav img .logo-text .red {
   color: rgb(233, 244, 255);
   text-transform: uppercase;
 }
-.navbar nav ul {
+.my-navbar nav ul {
   text-align: left;
   padding: 0;
   padding-top: 10px;
@@ -83,28 +83,28 @@ body {
   height: 100%;
   flex-direction: column;
 }
-.navbar nav ul li {
+.my-navbar nav ul li {
   font-size: 1.6rem;
   padding: 10px;
   margin: 5px 0;
   list-style: none;
 }
-.navbar nav ul li a {
+.my-navbar nav ul li a {
   font-weight: bold;
   color: rgba(133, 144, 165, 0.5);
   transition: 0.1s ease;
   padding: 10px;
 }
-.navbar nav ul li a i {
+.my-navbar nav ul li a i {
   width: 15px;
   height: 15px;
   transition: 0.4s ease;
 }
-.navbar nav ul li a.active {
+.my-navbar nav ul li a.active {
   border-radius: 50px;
   box-shadow: 0 0 5px #0d121e;
 }
-.navbar nav ul li a:hover, .navbar nav ul li a.active {
+.my-navbar nav ul li a:hover, .my-navbar nav ul li a.active {
   color: rgb(133, 144, 165);
   transition: 0.1s ease;
 }
@@ -175,10 +175,142 @@ footer.full {
   display: none;
 }
 
+.table-wrap {
+  margin-top: 30px;
+  border: 1px solid #2d3448;
+  background: #252b3b;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 table {
   border-collapse: collapse;
   font-size: 1.6rem;
 }
-table td {
-  border: 1px solid #0a0;
+table thead td {
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 5px;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 2px solid;
+  border-color: #2d3448;
+}
+table tbody tr {
+  border-bottom: 2px solid #2d3448;
+}
+table tbody td {
+  text-align: center;
+  padding: 5px 10px;
+}
+table tbody td button {
+  background: #ccc;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  transition: 0.1s ease;
+}
+table tbody td button:hover {
+  transition: 0.1s ease;
+}
+table tbody td button.change {
+  background: #aa0;
+  color: rgba(0, 0, 0, 0.7);
+}
+table tbody td button.change:hover {
+  background: #ff0;
+  color: #000;
+}
+table tbody td button.change:active {
+  background: #660;
+  color: rgba(0, 0, 0, 0.3);
+}
+table tbody td button.remove {
+  background: #a00;
+  color: rgba(255, 255, 255, 0.7);
+}
+table tbody td button.remove:hover {
+  background: #f00;
+  color: #fff;
+}
+table tbody td button.remove:active {
+  background: #600;
+  color: rgba(255, 255, 255, 0.3);
+}
+table tbody td > div {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  width: 120px;
+}
+table tbody td .product__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: none;
+  width: auto;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+table tbody td .product__no-img {
+  line-height: 100px;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(#000 10%, transparent 70%);
+}
+table tbody td select {
+  color: rgba(0, 0, 0, 0.7);
+  padding: 2px 5px;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+table tbody td select.form-select {
+  padding: 2px 5px;
+  font-size: 1.4rem;
+  border: none;
+  outline: none;
+}
+table tbody td select.form-select:focus {
+  box-shadow: none;
+}
+table tbody td select.user, table tbody td select.in_review, table tbody td select option[value=in_review], table tbody td select option[value=user] {
+  background: #654a12;
+  color: rgb(252, 185, 44);
+}
+table tbody td select.admin, table tbody td select.approved, table tbody td select option[value=admin], table tbody td select option[value=approved] {
+  background: #0b4b38;
+  color: rgb(28, 187, 140);
+}
+table tbody td select.ban, table tbody td select.rejected, table tbody td select option[value=ban], table tbody td select option[value=rejected] {
+  background: #661826;
+  color: rgb(255, 61, 96);
+}
+table tbody td select option {
+  text-align: center;
+  background: #0d121e;
+  color: #fff;
+  border-radius: 10px;
+}
+
+::-moz-selection {
+  background: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+::-moz-selection {
+  background: rgba(255, 255, 255, 0.5);
+  color: #000;
 }/*# sourceMappingURL=style.css.map */
