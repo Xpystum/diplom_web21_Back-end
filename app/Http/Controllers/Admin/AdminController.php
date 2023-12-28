@@ -54,7 +54,7 @@ class AdminController extends Controller
         if(Auth::check()){
             $user = Auth::user();
             $products = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
-            ->orderBy('id')
+            ->orderByDesc('moderation_status')
             ->get();
             $layout=$this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
@@ -107,7 +107,7 @@ class AdminController extends Controller
     public function user(){
         if(Auth::check()){
             $user = Auth::user();
-            $dbUsers = User::all();
+            $dbUsers = User::all()->sortBy('id');
             $layout=$this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'dbUsers'));
 
@@ -121,6 +121,45 @@ class AdminController extends Controller
     public function showLoginForm()
     {
         return view('auth.login');
+    }
+    public function productCars($id)
+    {
+        if(Auth::check()){
+            $user = Auth::user();
+            $dbUsers = User::all();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'dbUsers'));
+            $product = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            ->find($id);
+
+            return view('pages.productCars', compact('layout', 'user', 'menuHeader', 'dbUsers', 'product'));
+            
+        }
+        else{
+            return redirect()->route('auth');
+        }
+    }
+    public function updateProductStatus(Request $request, $id)
+    {
+
+        $product = Product::findOrFail($id);
+        $product->moderation_status = $request->input('status');
+        $product->save();
+
+        return redirect()->back()->with('success', 'Статус успешно обновлен');
+
+
+    }
+    public function updateUserStatus(Request $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+        $user->status = $request->input('status');
+        $user->save();
+
+        return redirect()->back()->with('success', 'Статус успешно обновлен');
+
+
     }
 
     public function login(Request $request)
