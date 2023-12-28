@@ -24,14 +24,19 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/home', 'home')->name('home');
     Route::get('/widgets', 'widgets')->name('widgets');
     Route::get('/database', 'database')->name('database');
+    Route::get('/product/{id}', 'productCars')->name('product');
     Route::get('/products', 'products')->name('products');
     Route::get('/user', 'user')->name('user');
+
     Route::get('/reviews', 'reviews')->name('reviews');
+
     Route::get('/null', 'null')->name('null');
     Route::get('/test', 'test')->name('test');
     
     
-    
+    Route::put('/product/{id}/update-status', 'updateProductStatus')->name('update-product-status');
+    Route::put('/user/{id}/update-user-status', 'updateUserStatus')->name('update-user-status');
+
     Route::post('/product-queue', 'productQueue')->name('productQueue');
     Route::post('/login', 'login');
     Route::post('/logout', 'logout')->name('logout');
