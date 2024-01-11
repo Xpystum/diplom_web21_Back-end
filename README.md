@@ -20,7 +20,7 @@
 
     status:
         *user*
-             Логин: test@example.com
+            Логин: test@example.com
             Пароль: password
         *admin*
              Логин: admin@example.com

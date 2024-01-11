@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Actions\CheckTokenUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,6 +50,16 @@ class User extends Authenticatable
     public function Favorites(): HasMany
     {
         return $this->hasMany(Favorites::class, 'user_id', Review::class, 'id');
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(ChatMessages::class);
+    }
+
+    public function checkTokenUser(CheckTokenUser $checkTokenUser): User
+    {
+        
     }
     
 }

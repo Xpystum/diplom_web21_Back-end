@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\AuthToken;
 use Illuminate\Http\Request;
@@ -70,6 +71,18 @@ Route::post('/ads', function(Request $request){
     return $request->x;
 })->middleware(AuthToken::class);
 
+
+
+// Chat
+Route::controller(ChatController::class)->group(function(){
+
+    Route::get('/chat', 'index');
+
+    Route::get('/chat/messages', 'messages');
+
+    Route::post('/chat/send', 'send');
+
+});
 
 
 
