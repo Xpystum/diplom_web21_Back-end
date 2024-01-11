@@ -163,9 +163,10 @@ footer
         position: absolute
         top: 15px
         left: 0
-table
-    border-collapse: collapse
-    
+.table
+    --bs-table-color: #fff
+    --bs-table-bg: transparent
+    margin-bottom: 0px
     
     
     font-size: 1.6rem
@@ -180,13 +181,16 @@ table
             border-right: 1px solid 
             border-bottom: 2px solid
             border-color: #2d3448
+            &:first-child
+                border-left: none 
+            &:last-child
+                border-right: none 
     & tbody
         & tr
             border-bottom: 2px solid #2d3448
-            // &:nth-child(2n)
-            //     background: #005f73
-            // &:nth-child(2n+1)
-            //     background: #023047
+            &:last-child
+                border-color: #252b3b
+            
                 
         & td
             text-align: center
@@ -229,7 +233,12 @@ table
                 overflow: hidden
                 height: 100px
                 width: 120px
-
+                transition: 0.1s ease
+                margin: 0 auto
+                &:hover
+                    transform: scale(2)
+                    z-index: 10
+                    transition: 0.1s ease
             & .product__img
                 position: absolute
                 top: 50%
@@ -240,6 +249,7 @@ table
                 width: auto
                 height: auto
                 object-fit: cover
+                
             & .product__no-img
                 line-height: 100px
                 height: 100%
@@ -249,8 +259,7 @@ form
     &.form
         &__status
             display: flex
-            min-width: 250px
-            // width: auto
+            justify-content: center
             & select
                 width: 150px
                 margin-right: 10px
@@ -279,15 +288,17 @@ select
         color: rgba(252, 185, 44, 1)
     &.admin,
     &.approved,
+    &.included,
     & option[value="admin"],
     & option[value="approved"]
-        background: #0b4b38
+        background: rgba(0, 200, 0, 0.3)
         color: rgba(28, 187, 140, 1)
     &.ban,
     &.rejected,
+    &.turned_off,
     & option[value="ban"],
     & option[value="rejected"]
-        background: #661826
+        background: rgba(200, 0, 0, 0.3)
         color: rgba(255, 61, 96, 1)
     & option
         text-align: center
@@ -300,10 +311,7 @@ main
 .flex
     display: flex
     & .card
-        &__img
-            // background: rgba(255,0,0,0.3)
         &__info
-            // background: rgba(0,255,0,0.3)
             margin-left: 10px 
 .carousel-inner
     width: 450px
@@ -370,3 +378,29 @@ main
     option[value="rejected"]
         background: #661826
         color: rgba(255, 61, 96, 1)
+
+.accordion
+    background: transparent
+    &-item
+        background: transparent
+        border: none
+    &-button
+        background: transparent
+        color: rgba(133, 144, 165, 0.5)
+        font-size: 1.6rem
+        &::after
+            content: '\f107'
+            font-weight: 900
+            font-family: 'Font Awesome 6 Free'
+        &:not(.collapsed)
+            color: rgba(133, 144, 165, 1)
+            background: transparent
+            box-shadow: none
+        &.active
+            color: rgba(133, 144, 165, 1)
+            background: transparent
+            box-shadow: none
+            border-radius: 50px
+            box-shadow: 0 0 5px #0d121e
+            &::after
+                // transform: rotate(180deg)

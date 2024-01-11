@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           @foreach ($dbUsers as $dbUser)
-            @if($dbUser->status == 'user')
+            @if($dbUser->status == 'ban')
               <tr>
                 <td>{{ $dbUser->id }}</td>
                 <td>{{ $dbUser->name }}</td>

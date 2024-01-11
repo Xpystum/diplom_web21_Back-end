@@ -195,11 +195,13 @@ footer.full {
   left: 0;
 }
 
-table {
-  border-collapse: collapse;
+.table {
+  --bs-table-color: #fff;
+  --bs-table-bg: transparent;
+  margin-bottom: 0px;
   font-size: 1.6rem;
 }
-table thead td {
+.table thead td {
   font-weight: bold;
   text-align: center;
   text-transform: capitalize;
@@ -209,14 +211,23 @@ table thead td {
   border-bottom: 2px solid;
   border-color: #2d3448;
 }
-table tbody tr {
+.table thead td:first-child {
+  border-left: none;
+}
+.table thead td:last-child {
+  border-right: none;
+}
+.table tbody tr {
   border-bottom: 2px solid #2d3448;
 }
-table tbody td {
+.table tbody tr:last-child {
+  border-color: #252b3b;
+}
+.table tbody td {
   text-align: center;
   padding: 5px 10px;
 }
-table tbody td button, table tbody td a {
+.table tbody td button, .table tbody td a {
   display: inline-block;
   background: transparent;
   border: none;
@@ -226,44 +237,51 @@ table tbody td button, table tbody td a {
   border-radius: 2px;
   transition: 0.1s ease;
 }
-table tbody td button:hover, table tbody td a:hover {
+.table tbody td button:hover, .table tbody td a:hover {
   transform: scale(1.1);
   transition: 0.1s ease;
 }
-table tbody td button.revise, table tbody td a.revise {
+.table tbody td button.revise, .table tbody td a.revise {
   color: #0aa;
 }
-table tbody td button.revise:hover, table tbody td a.revise:hover {
+.table tbody td button.revise:hover, .table tbody td a.revise:hover {
   color: #0ff;
 }
-table tbody td button.revise:active, table tbody td a.revise:active {
+.table tbody td button.revise:active, .table tbody td a.revise:active {
   color: #066;
 }
-table tbody td button.change, table tbody td a.change {
+.table tbody td button.change, .table tbody td a.change {
   color: #aa0;
 }
-table tbody td button.change:hover, table tbody td a.change:hover {
+.table tbody td button.change:hover, .table tbody td a.change:hover {
   color: #ff0;
 }
-table tbody td button.change:active, table tbody td a.change:active {
+.table tbody td button.change:active, .table tbody td a.change:active {
   color: #660;
 }
-table tbody td button.remove, table tbody td a.remove {
+.table tbody td button.remove, .table tbody td a.remove {
   color: #a00;
 }
-table tbody td button.remove:hover, table tbody td a.remove:hover {
+.table tbody td button.remove:hover, .table tbody td a.remove:hover {
   color: #f00;
 }
-table tbody td button.remove:active, table tbody td a.remove:active {
+.table tbody td button.remove:active, .table tbody td a.remove:active {
   color: #600;
 }
-table tbody td > div {
+.table tbody td > div {
   position: relative;
   overflow: hidden;
   height: 100px;
   width: 120px;
+  transition: 0.1s ease;
+  margin: 0 auto;
 }
-table tbody td .product__img {
+.table tbody td > div:hover {
+  transform: scale(2);
+  z-index: 10;
+  transition: 0.1s ease;
+}
+.table tbody td .product__img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -275,7 +293,7 @@ table tbody td .product__img {
   -o-object-fit: cover;
      object-fit: cover;
 }
-table tbody td .product__no-img {
+.table tbody td .product__no-img {
   line-height: 100px;
   height: 100%;
   width: 100%;
@@ -284,7 +302,7 @@ table tbody td .product__no-img {
 
 form.form__status {
   display: flex;
-  min-width: 250px;
+  justify-content: center;
 }
 form.form__status select {
   width: 150px;
@@ -313,12 +331,12 @@ select.user, select.in_review, select option[value=in_review], select option[val
   background: #654a12;
   color: rgb(252, 185, 44);
 }
-select.admin, select.approved, select option[value=admin], select option[value=approved] {
-  background: #0b4b38;
+select.admin, select.approved, select.included, select option[value=admin], select option[value=approved] {
+  background: rgba(0, 200, 0, 0.3);
   color: rgb(28, 187, 140);
 }
-select.ban, select.rejected, select option[value=ban], select option[value=rejected] {
-  background: #661826;
+select.ban, select.rejected, select.turned_off, select option[value=ban], select option[value=rejected] {
+  background: rgba(200, 0, 0, 0.3);
   color: rgb(255, 61, 96);
 }
 select option {
@@ -419,4 +437,34 @@ main {
 .status option[value=rejected] {
   background: #661826;
   color: rgb(255, 61, 96);
+}
+
+.accordion {
+  background: transparent;
+}
+.accordion-item {
+  background: transparent;
+  border: none;
+}
+.accordion-button {
+  background: transparent;
+  color: rgba(133, 144, 165, 0.5);
+  font-size: 1.6rem;
+}
+.accordion-button::after {
+  content: "\f107";
+  font-weight: 900;
+  font-family: "Font Awesome 6 Free";
+}
+.accordion-button:not(.collapsed) {
+  color: rgb(133, 144, 165);
+  background: transparent;
+  box-shadow: none;
+}
+.accordion-button.active {
+  color: rgb(133, 144, 165);
+  background: transparent;
+  box-shadow: none;
+  border-radius: 50px;
+  box-shadow: 0 0 5px #0d121e;
 }/*# sourceMappingURL=style.css.map */

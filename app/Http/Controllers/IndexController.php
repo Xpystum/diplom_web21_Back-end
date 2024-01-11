@@ -10,6 +10,7 @@ use App\Models\Menu;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Widgets;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -64,6 +65,10 @@ class IndexController extends Controller
     public function users(){
         return User::all();
     }
+    public function widgets(){
+        return Widgets::all();
+    }
+
     public function user(Request $request){
         return User::where('id', $request->id)->first();
     }

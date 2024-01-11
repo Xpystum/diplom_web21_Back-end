@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminWidgetsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\AuthToken;
@@ -42,7 +42,8 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/products', 'products');
     Route::post('/brands', 'brands');
     Route::post('/users', 'users');
-    
+    Route::get('/widgets', 'widgets');
+
     Route::post('/user', 'user');
     Route::post('/product', 'product');
     
@@ -71,19 +72,12 @@ Route::post('/ads', function(Request $request){
 })->middleware(AuthToken::class);
 
 
+Route::controller(AdminWidgetsController::class)->group(function () {
+    Route::post('/widgets', 'index'); // API для получения списка виджетов
+    Route::put('/widgets/{id}', 'update'); // API для обновления позиции виджета
+});
 
 
-
-// Route::get('/token', function(){
-
-//     $user = App\Models\User::where('email', 'test@example.com')->first();
-//     $token = $user->createToken('my_token');
-//     dd($token);
-
-//     /*
-//     $user->password = Hash::make('123');
-//     $user->save();*/
-// });
 
 
 

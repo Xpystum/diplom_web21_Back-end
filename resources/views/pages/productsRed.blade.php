@@ -4,6 +4,17 @@
   
     <h1>PRODUCTS</h1>
     <div class="table-wrap">
+      @php
+          // Отсортируем коллекцию $products по статусу
+          $products = $products->sort(function($a, $b) {
+            $statusOrder = ['in_review', 'approved', 'rejected'];
+            $statusA = array_search($a->moderation_status, $statusOrder);
+            $statusB = array_search($b->moderation_status, $statusOrder);
+            return $statusA - $statusB;
+          });
+      @endphp
+
+
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item {{ $previousPageUrl ? '' : 'disabled' }}">
@@ -25,7 +36,7 @@
             <td>Модель</td>
             <td>Год</td>
             <td>Цена</td>
-            <td>Статус</td>
+            <td><a href="#" class="sort-link" data-sort="status">Статус</a></td>
             <td>Действие</td>        
           </tr> 
         </thead>
@@ -84,7 +95,7 @@
                     <button href="#" class='remove' title="Удалить"><i class="fa-solid fa-x"></i></button>
                 </td>
               </tr>
-          @endforeach  
+          @endforeach
         </tbody>
         
       </table>
