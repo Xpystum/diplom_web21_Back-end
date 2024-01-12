@@ -14,7 +14,8 @@ class ChatMessageFormRequest extends FormRequest
     public function authorize(CheckTokenUser $checkTokenUser): bool
     {      
         $token = $this->bearerToken();
-        return $checkTokenUser->handler('1|CFwAEz99ZEPf7Buoy0ni9u5NLdOIn7cd2KAYoW3cf3b23a7f');
+        // dd($token);
+        return $checkTokenUser->handler($token);
         // получать токен авторизации из реакта
         // return CheckTokenUser::tokenUser('1|CFwAEz99ZEPf7Buoy0ni9u5NLdOIn7cd2KAYoW3cf3b23a7f');
 

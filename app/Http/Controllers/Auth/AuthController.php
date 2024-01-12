@@ -72,7 +72,7 @@ class AuthController extends Controller
 
     public function favoritesUser(Request $request){
         $token = \Laravel\Sanctum\PersonalAccessToken::findToken($request->token);
-
+        
         if(!$token)
             return false;
         

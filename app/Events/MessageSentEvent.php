@@ -6,6 +6,7 @@ use App\Http\Resources\ChatMessageResponseResource;
 use App\Models\ChatMessages;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -17,6 +18,8 @@ class MessageSentEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    use InteractsWithBroadcasting;
+
     public $user;
 
     public $message;
@@ -26,6 +29,7 @@ class MessageSentEvent implements ShouldBroadcast
      */
     public function __construct(User $user, ChatMessages $message)
     {
+        $this->broadcastVia('pusher');
         $this->user = $user;
         $this->message = $message;
     }

@@ -26,7 +26,7 @@ class AdminController extends Controller
         }
     }
     public function home(){
-        if(Auth::check()){
+        if(Auth::check()){  
             $user = Auth::user();
             $layout = $this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user'));

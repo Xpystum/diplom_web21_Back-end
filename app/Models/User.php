@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Actions\CheckTokenUser;
+use App\Actions\FindUserByToken;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,9 +58,9 @@ class User extends Authenticatable
         return $this->hasMany(ChatMessages::class);
     }
 
-    public function checkTokenUser(CheckTokenUser $checkTokenUser): User
-    {
-        
-    }
+    // public function checkTokenUser($token, ?FindUserByToken $findUserByToken): ?User
+    // {
+    //     return $findUserByToken->handler($token);
+    // }
     
 }
