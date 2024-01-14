@@ -42,11 +42,9 @@ class AdminPagesController extends Controller
     public function products(){
         if (Auth::check()) {
             $user = Auth::user();
-            $query = Product::with('brand', 'model', 'category', 'color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            $products = Product::with('brand', 'model', 'category', 'color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
             ->where('moderation_status', 'in_review')
-            ->orderBy('id');
-            
-            $products = $query->paginate(10);
+            ->orderBy('id')->paginate(10);
             $layout = $this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
             
@@ -60,11 +58,10 @@ class AdminPagesController extends Controller
     public function productsGreen(){
         if (Auth::check()) {
             $user = Auth::user();
-            $query = Product::with('brand', 'model', 'category', 'color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            $products = Product::with('brand', 'model', 'category', 'color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
             ->where('moderation_status', 'approved')
-            ->orderBy('id');
-            
-            $products = $query->paginate(10);
+            ->orderBy('id')->paginate(10);
+
             $layout = $this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
             
@@ -78,11 +75,10 @@ class AdminPagesController extends Controller
     public function productsRed(){
         if (Auth::check()) {
             $user = Auth::user();
-            $query = Product::with('brand', 'model', 'category', 'color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            $products = Product::with('brand', 'model', 'category', 'color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
             ->where('moderation_status', 'rejected')
-            ->orderBy('id');
-            
-            $products = $query->paginate(10);
+            ->orderBy('id')->paginate(10);
+
             $layout = $this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
             
@@ -121,7 +117,7 @@ class AdminPagesController extends Controller
     public function user(){
         if(Auth::check()){
             $user = Auth::user();
-            $dbUsers = User::all()->sortBy('id');
+            $dbUsers = User::orderBy('id')->where('status', 'user')->paginate(10);
             $layout=$this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'dbUsers'));
 
@@ -135,7 +131,7 @@ class AdminPagesController extends Controller
     public function userBan(){
         if(Auth::check()){
             $user = Auth::user();
-            $dbUsers = User::all()->sortBy('id');
+            $dbUsers = User::all()->where('status', 'ban')->sortBy('id');
             $layout=$this->layout;
             $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'dbUsers'));
 

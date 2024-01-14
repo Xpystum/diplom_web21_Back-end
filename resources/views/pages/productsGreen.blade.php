@@ -2,20 +2,9 @@
   @section('title', 'products')
   @section('content')
   
-    <h1>PRODUCTS</h1>
+  <h1><i class="fa-solid fa-circle-check"></i> Список товаров | Одобренные</h1>
     <div class="table-wrap">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item {{ $previousPageUrl ? '' : 'disabled' }}">
-            <a class="page-link" href="{{ $previousPageUrl }}"><i class="fa-solid fa-angle-left"></i></a>
-          </li>
-          {{-- {{ $products->links() }} --}}
-          <li class="page-item {{ $nextPageUrl ? '' : 'disabled' }}">
-            <a class="page-link" href="{{ $nextPageUrl }}"><i class="fa-solid fa-angle-right"></i></a>
-          </li>
-        </ul>
-      </nav>
-      Кол-во: {{ count($products) }}
+      {{ $products->links('vendor.pagination.bootstrap-5') }}
       <table class="table">
         <thead class="col-12">
           <tr>
@@ -66,7 +55,7 @@
                 <td>
                   <span class="{{ $product->moderation_status }} status">
                     @if($product->moderation_status == 'approved')
-                    Отоброжен
+                      Одобрен
                     @endif
                     @if($product->moderation_status == 'rejected')
                       Отклонен
@@ -88,17 +77,7 @@
         </tbody>
         
       </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item {{ $previousPageUrl ? '' : 'disabled' }}">
-            <a class="page-link" href="{{ $previousPageUrl }}"><i class="fa-solid fa-angle-left"></i></a>
-          </li>
-          {{-- {{ $products->links() }} --}}
-          <li class="page-item {{ $nextPageUrl ? '' : 'disabled' }}">
-            <a class="page-link" href="{{ $nextPageUrl }}"><i class="fa-solid fa-angle-right"></i></a>
-          </li>
-        </ul>
-      </nav>
+      {{ $products->links('vendor.pagination.bootstrap-5') }}
     </div>
     
     

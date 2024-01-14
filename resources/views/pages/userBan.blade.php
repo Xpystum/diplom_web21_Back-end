@@ -2,7 +2,7 @@
   @section('title', 'users')
   @section('content')
   
-    <h1>User</h1>
+    <h1><i class="fa-solid fa-person-circle-xmark"></i> Пользователи в Бане</h1>
     <div class="table-wrap">
       <table class="table">
         <thead>

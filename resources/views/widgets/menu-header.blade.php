@@ -21,7 +21,7 @@
         <li class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed @if(Request::url() == route('products') || Request::url() == route('productsGreen') || Request::url() == route('productsRed')) active @endif" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-box"></i><span class="text-menu">Товары</span>
+                    <i class="fa-solid fa-cart-flatbed"></i><span class="text-menu">Товары</span>
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse @if(Request::url() == route('products') || Request::url() == route('productsGreen') || Request::url() == route('productsRed')) show @endif" data-bs-parent="#accordion">
@@ -40,9 +40,9 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse  @if(Request::url() == route('user') || Request::url() == route('userAdmin') || Request::url() == route('userBan'))show @endif" data-bs-parent="#accordion">
             <ul class="accordion-body">
-                <li><a href="{{ route('userAdmin') }}" class="@if(Request::url() == route('userAdmin')) active @endif"><i class="fa-solid fa-user-tie"></i><span class="text-menu">Админы</span></a></li>
-                <li><a href="{{ route('user') }}" class="@if(Request::url() == route('user')) active @endif"><i class="fa-solid fa-user"></i><span class="text-menu">Клиенты</span></a></li>
-                <li><a href="{{ route('userBan') }}" class="@if(Request::url() == route('userBan')) active @endif"><i class="fa-solid fa-user-slash"></i><span class="text-menu">Баны</span></a></li>
+                <li><a href="{{ route('userAdmin') }}" class="@if(Request::url() == route('userAdmin')) active @endif"><i class="fa-solid fa-users-gear"></i><span class="text-menu">Админы</span></a></li>
+                <li><a href="{{ route('user') }}" class="@if(Request::url() == route('user')) active @endif"><i class="fa-solid fa-users"></i><span class="text-menu">Клиенты</span></a></li>
+                <li><a href="{{ route('userBan') }}" class="@if(Request::url() == route('userBan')) active @endif"><i class="fa-solid fa-users-slash"></i><span class="text-menu">Баны</span></a></li>
             </ul>
             </div>
         </li>

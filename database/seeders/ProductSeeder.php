@@ -88,6 +88,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => 1,
             ],
 
@@ -157,6 +159,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -202,6 +206,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -330,6 +336,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -364,54 +372,56 @@ class ProductSeeder extends Seeder
                 'body_volume' => null,
                 'weight' => null,
                 'desription' => "Мы предлагаем:
-                \n• Гарантию на автомобиль на 1, 2 или 3 года
-                \n• Индивидуальное ценовое и финансовое предложение
-                \n• Гарантию лучшей цены на автомобили в России
-                \n• Обмен по программе трейд-ин
-                \n• Привлекательные кредитные программы: (более 10 банков партнеров), оформление всего по двум документам и без ПВ
-                \n• Доставим ваш автомобиль на крытом эвакуаторе в любую точку России
-                \nЕсли вы не нашли интересующий автомобиль, позвоните нам – мы подберем автомобиль исходя из Ваших предпочтений.
+                <span>• Гарантию на автомобиль на 1, 2 или 3 года
+                </span><span>• Индивидуальное ценовое и финансовое предложение
+                </span><span>• Гарантию лучшей цены на автомобили в России
+                </span><span>• Обмен по программе трейд-ин
+                </span><span>• Привлекательные кредитные программы: (более 10 банков партнеров), оформление всего по двум документам и без ПВ
+                </span><span>• Доставим ваш автомобиль на крытом эвакуаторе в любую точку России
+                </span><span>Если вы не нашли интересующий автомобиль, позвоните нам – мы подберем автомобиль исходя из Ваших предпочтений.
                 Мы ценим наших клиентов и обеспечиваем внимание и заботу с первого обращения.
-                \n• Цвет кузова: Серый металлик (Volcano Grey)
-                \n• Цвет салона: Серый кожаный салон (Agate Grey) в комбинации с другими материалами
-                \n• Пакет Sport Design с боковыми юбками Sport Design
-                \n• Зеркала заднего вида окрашены в цвет кузова
-                \n• Рамки боковых стекол окрашены в черный цвет (глянец)
-                \n• Верхняя часть дверных ручек окрашена в цвет кузова
-                \n• Крышка бензобака Exclusive Design
-                \n• 8-ступенчатая КПП Porsche Doppelkupplung (PDK)
-                \nv• Спортивная выхлопная система c серебристыми насадками выхлопных труб
-                \n21-дюймовые диски Panamera SportDesign, окрашенные в серый цвет (Satin Platinum)
-                \n• Матричные светодиодные фары, включая систему динамического освещения Porsche (PDLS Plus)
-                \n• Стекла с тепло- и звукоизоляцией и тонированным остеклением Privacy
-                \n• Датчики системы помощи при парковке спереди и сзади, включая камеру кругового обзора
-                \n• Адаптивный круиз-контроль
-                \n• Функция ночного видения Night Assist
-                \n• Система помощи водителю при смене полосы движения (Lane Change Assist (LCA))
-                \n• Дополнительное освещение салона, включая пакет освещения сзади
-                \n• Рычаг КПП Exclusive Design
-                \n• 18-позиционные адаптивные спортивные сиденья с функцией памяти
-                \n• Комфортные 8-позиционные задние сиденья с функцией памяти (в соч. с адаптивными спортивными сиденьями)
-                \n• Вентиляция передних сидений
-                \n• Спортивное GT многофункциональное рулевое колесо с отделкой кожей и с подогревом
-                \n• Съемная крышка багажника
-                \n• Автоматически поднимающиеся шторки на задние двери и на заднее окно
-                \n• Отделка элементов передней панели кожей. Серый (Agate Grey)
-                \n• Индивидуальный напольный коврик в багажном отделении с кожаной окантовкой
-                \n• Пластины воздуховодов с отделкой кожей
-                \n• Отделка рулевой колонки и приборной панели кожей. Серый (Agate Grey)
-                \n• Консоли сидений спереди и сзади в коже. Серый (Agate Grey)
-                \n• Съемная крышка багажника с отделкой кожей. Серый (Agate Grey)
-                \n• Индивидуальные напольные коврики с кожаной окантовкой (высокий ворс). Серый (Agate Grey)
-                \n• Внутренние накладки на пороги с отделкой гладкой кожей. Серый (Agate Grey)
-                \n• Пакет отделки элементов салона карбоном
-                \n• Накладки на пороги с отделкой карбоном, вкл. внутренние кожаные накладки на пороги
-                \n• USB интерфейс для задних пассажиров",
+                </span><span>• Цвет кузова: Серый металлик (Volcano Grey)
+                </span><span>• Цвет салона: Серый кожаный салон (Agate Grey) в комбинации с другими материалами
+                </span><span>• Пакет Sport Design с боковыми юбками Sport Design
+                </span><span>• Зеркала заднего вида окрашены в цвет кузова
+                </span><span>• Рамки боковых стекол окрашены в черный цвет (глянец)
+                </span><span>• Верхняя часть дверных ручек окрашена в цвет кузова
+                </span><span>• Крышка бензобака Exclusive Design
+                </span><span>• 8-ступенчатая КПП Porsche Doppelkupplung (PDK)
+                </span><span>v• Спортивная выхлопная система c серебристыми насадками выхлопных труб
+                </span><span>21-дюймовые диски Panamera SportDesign, окрашенные в серый цвет (Satin Platinum)
+                </span><span>• Матричные светодиодные фары, включая систему динамического освещения Porsche (PDLS Plus)
+                </span><span>• Стекла с тепло- и звукоизоляцией и тонированным остеклением Privacy
+                </span><span>• Датчики системы помощи при парковке спереди и сзади, включая камеру кругового обзора
+                </span><span>• Адаптивный круиз-контроль
+                </span><span>• Функция ночного видения Night Assist
+                </span><span>• Система помощи водителю при смене полосы движения (Lane Change Assist (LCA))
+                </span><span>• Дополнительное освещение салона, включая пакет освещения сзади
+                </span><span>• Рычаг КПП Exclusive Design
+                </span><span>• 18-позиционные адаптивные спортивные сиденья с функцией памяти
+                </span><span>• Комфортные 8-позиционные задние сиденья с функцией памяти (в соч. с адаптивными спортивными сиденьями)
+                </span><span>• Вентиляция передних сидений
+                </span><span>• Спортивное GT многофункциональное рулевое колесо с отделкой кожей и с подогревом
+                </span><span>• Съемная крышка багажника
+                </span><span>• Автоматически поднимающиеся шторки на задние двери и на заднее окно
+                </span><span>• Отделка элементов передней панели кожей. Серый (Agate Grey)
+                </span><span>• Индивидуальный напольный коврик в багажном отделении с кожаной окантовкой
+                </span><span>• Пластины воздуховодов с отделкой кожей
+                </span><span>• Отделка рулевой колонки и приборной панели кожей. Серый (Agate Grey)
+                </span><span>• Консоли сидений спереди и сзади в коже. Серый (Agate Grey)
+                </span><span>• Съемная крышка багажника с отделкой кожей. Серый (Agate Grey)
+                </span><span>• Индивидуальные напольные коврики с кожаной окантовкой (высокий ворс). Серый (Agate Grey)
+                </span><span>• Внутренние накладки на пороги с отделкой гладкой кожей. Серый (Agate Grey)
+                </span><span>• Пакет отделки элементов салона карбоном
+                </span><span>• Накладки на пороги с отделкой карбоном, вкл. внутренние кожаные накладки на пороги
+                </span><span>• USB интерфейс для задних пассажиров</span>",
                 'additional' => ' Покупка автомобиля у официального дилера 
                 Порше Центр Минеральные Воды — ваша гарантия безопасной сделки.',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -459,6 +469,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
                 
             ],
@@ -506,6 +518,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -552,6 +566,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -590,6 +606,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
 
@@ -635,6 +653,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
             [
@@ -692,6 +712,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
             ],
             [
@@ -738,6 +760,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => null,
 
             ],
@@ -782,6 +806,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => 1,
             ],
             [
@@ -825,6 +851,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => 1,
             ],
             [
@@ -863,6 +891,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => 2,
             ],
             [
@@ -901,6 +931,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => 1,
             ],
             [
@@ -937,6 +969,8 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 12,
+                'user_id' => 1,
+                'looked' => 0,
                 'organisation_id' => 1,
             ],
 

@@ -2,8 +2,9 @@
   @section('title', 'users')
   @section('content')
   
-    <h1>User</h1>
+    <h1><i class="fa-solid fa-person"></i> Пользователи</h1>
     <div class="table-wrap">
+      {{ $dbUsers->links('vendor.pagination.bootstrap-5') }}
       <table class="table">
         <thead>
           <tr>
