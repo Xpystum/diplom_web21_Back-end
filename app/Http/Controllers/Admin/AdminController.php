@@ -17,13 +17,8 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function auth(){
-        if(!Auth::check()){
-            $layout = 'auth';
-            return view('pages.auth', compact('layout'));
-        }
-        else{
-            return redirect()->route('home');
-        }
+        $layout = 'auth';
+        return view('pages.auth', compact('layout'));
     }
     public function productQueue(){
         
@@ -42,7 +37,7 @@ class AdminController extends Controller
     
     public function showLoginForm()
     {
-        return view('auth.login');
+        return redirect()->route('auth');
     }
     
     public function updateProductStatus(Request $request, $id)

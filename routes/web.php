@@ -34,24 +34,26 @@ Route::controller(AdminController::class)->group(function () {
 });
 
 Route::controller(AdminPagesController::class)->group(function () {
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/home', 'home')->name('home');
+        Route::get('/widgets', 'widgets')->name('widgets');
+        Route::get('/database', 'database')->name('database');
+
+        Route::get('/products/in_review', 'products')->name('products');
+        Route::get('/products/approved', 'productsGreen')->name('productsGreen');
+        Route::get('/products/rejected', 'productsRed')->name('productsRed');
+        Route::get('/product/{id}', 'productCars')->name('product');
     
-    Route::get('/home', 'home')->name('home');
-    Route::get('/widgets', 'widgets')->name('widgets');
-    Route::get('/database', 'database')->name('database');
+        Route::get('/user', 'user')->name('user');
+        Route::get('/user/admin', 'userAdmin')->name('userAdmin');
+        Route::get('/user/ban', 'userBan')->name('userBan');
 
-    Route::get('/products/in_review', 'products')->name('products');
-    Route::get('/products/approved', 'productsGreen')->name('productsGreen');
-    Route::get('/products/rejected', 'productsRed')->name('productsRed');
-    Route::get('/product/{id}', 'productCars')->name('product');
-  
-    Route::get('/user', 'user')->name('user');
-    Route::get('/user/admin', 'userAdmin')->name('userAdmin');
-    Route::get('/user/ban', 'userBan')->name('userBan');
+        Route::get('/reviews', 'reviews')->name('reviews');
 
-    Route::get('/reviews', 'reviews')->name('reviews');
-
-    Route::get('/null', 'null')->name('null');
-    Route::get('/test', 'test')->name('test');
+        Route::get('/null', 'null')->name('null');
+        Route::get('/test', 'test')->name('test');    
+    });
+    
 });
 
 Route::controller(AdminWidgetsController::class)->group(function () {

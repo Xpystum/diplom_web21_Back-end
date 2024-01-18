@@ -12,7 +12,7 @@
             <td>Статус</td>  
             <td>Почта</td>
             <td>Дата создание</td>
-            <td><i class="fa-solid fa-pen-to-square"></i> | <i class="fa-solid fa-x"></i></td>
+            {{-- <td><i class="fa-solid fa-pen-to-square"></i> | <i class="fa-solid fa-x"></i></td> --}}
 
           </tr>
         </thead>
@@ -35,7 +35,7 @@
                 </td>
                 <td>{{ $dbUser->email }}</td>
                 <td>{{ $dbUser->created_at }}</td>
-                <td><button class="change"><i class="fa-solid fa-pen-to-square"></i></button> | <button class="remove"><i class="fa-solid fa-x"></i></button></td>
+                {{-- <td><button class="change"><i class="fa-solid fa-pen-to-square"></i></button> | <button class="remove"><i class="fa-solid fa-x"></i></button></td> --}}
 
               </tr>
               @endif

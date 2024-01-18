@@ -11,6 +11,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
+
     <div class="wrap">
         <div class="my-navbar">
             <div class="logo">
@@ -26,8 +27,13 @@
                     <i class="fa-solid fa-bars-staggered bar active"></i>
                     <i class="fa-solid fa-arrow-left arrow"></i>
                 </button>
+
                 <div class="account">
-                        <p>{{ $user-> name }}</p>
+                    <a href="{{ route('products') }}" class="bell" >
+                        <i class="fa-solid fa-bell @if($productCount) fa-beat @endif"></i>@if($productCount)<span><p>{{ $productCount }}</p></span>@endif
+                    </a>
+                    
+                    <p class="name">{{ $user-> name }}</p>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button class="button-bar" type="submit"><i class="fa-solid fa-arrow-right-from-bracket active"></i></button>
@@ -121,5 +127,13 @@
     </script>
     <script src="{{ asset('js/moment.js') }}"></script>
     <script src="{{ asset('js/menubar.js') }}"></script>
+    <script>
+        function goBack() {
+            window.history.go(-1); // Вернуться на предыдущую страницу в истории навигации
+            setTimeout(function() {
+                location.reload(); // Обновить страницу после возврата
+            }, 1000); // Задержка в миллисекундах перед обновлением страницы
+        }
+    </script>
 </body>
 </html>

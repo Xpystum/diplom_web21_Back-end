@@ -1,8 +1,8 @@
   @extends("layouts.{$layout}")
   @section('title', 'test')
   @section('content')
-  
-    <span><a href="javascript:history.back()" class="back"><i class="fa-solid fa-chevron-left"></i></a> ID: {{$product->id}}</span> 
+
+    <span><a href="#" class="back" onclick="goBack()"><i class="fa-solid fa-chevron-left"></i></a> ID: {{$product->id}}</span> 
     <div class="status">
       <form action="{{ route('update-product-status', $product->id) }}" class="form__status" method="POST">
         @csrf
@@ -74,7 +74,8 @@
       </div>
     </div>
     
-    
-
-    
   @endsection
+{{-- 
+  TODO  проблема с обновлением страницы переходя от сюда в список
+  
+  --}}

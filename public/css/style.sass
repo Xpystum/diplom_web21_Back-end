@@ -402,5 +402,81 @@ main
             box-shadow: none
             border-radius: 50px
             box-shadow: 0 0 5px #0d121e
-            &::after
-                // transform: rotate(180deg)
+.pagination
+    border: 1px solid #4d5974
+    border-radius: 10px 
+    overflow: hidden
+    --bs-pagination-bg: transparent
+    --bs-pagination-active-bg: #1d222e
+    --bs-pagination-active-border-color: #2b3244
+    --bs-pagination-disabled-bg: #1d222e
+    --bs-pagination-disabled-border-color: #2b3244
+    --bs-pagination-disabled-color: rgba(255,255,255,0.1)
+    --bs-pagination-border-color: #4d5974
+    --bs-pagination-hover-bg: rgba(106, 118, 150, 0.4)
+    --bs-pagination-focus-box-shadow: transparent
+    & .page-item
+        user-select: none
+        &:first-child > .page-link
+            border-left: none
+        &:last-child > .page-link
+            border-right: none
+        & .page-link
+            border: none
+            border-left: 1px solid #4d5974
+            border-right: 1px solid #4d5974
+
+            font-size: 1.2rem
+            
+        & span.page-link
+            color: #4d5974
+        & a.page-link
+            color: #fff
+.name
+    margin: 0
+.bell
+    color: #fff
+    position: relative
+    font-size: 2rem
+    margin-right: 20px 
+    & span
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        top: -0.6rem
+        right: -1rem
+        min-width: 2.1rem
+        height: 2.1rem
+        border-radius: 50%
+        background: #f00
+        font-size: 1rem
+        & p
+            margin: 0
+
+.line
+    background: rgba(255, 255, 255, .1)
+    display: flex
+    height: 250px
+    width: 100px
+    padding: 0 10px
+    align-items: flex-end
+    & a
+        display: block
+        position: relative
+        text-align: center
+        color: #fff
+        width: 200px
+        & span
+            position: absolute
+            top: -2.4rem
+            left: 0
+            width: 100%
+      
+    & .green
+        background: #009933
+    & .yellow
+        background: #FF9900
+    & .red
+        background:#FF0000 
+      
