@@ -72,11 +72,6 @@ Route::post('/ads', function(Request $request){
 })->middleware(AuthToken::class);
 
 
-Route::controller(AdminWidgetsController::class)->group(function () {
-    Route::post('/widgets', 'index'); // API для получения списка виджетов
-    Route::put('/widgets/{id}', 'update'); // API для обновления позиции виджета
-});
-
 
 
 
