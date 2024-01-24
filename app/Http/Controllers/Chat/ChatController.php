@@ -6,6 +6,7 @@ use App\Actions\FindUserByToken;
 use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 use App\Events\MessageSentEvent;
+use App\Events\ReturnMessageAllEvent;
 use App\Http\Requests\ChatMessageFormRequest;
 use App\Http\Resources\ChatMessageResponse;
 use App\Http\Resources\ChatMessageResponseResource;
@@ -24,21 +25,19 @@ class ChatController extends Controller
     }
 
     public function messages(){
-        return [];
-        // return ChatMessages::query()
-        // ->with('user')
-        // ->get();
+        // broadcast(new ReturnMessageAllEvent());
+        return ChatMessages::all();
     }
 
     public function send(ChatMessageFormRequest $request, FindUserByToken $findUserByToken){
+
         $data = $request->validated();
         $message = ChatMessages::create([
             'user_id' => $data['user_id'],
             'message' => $data['message'],
         ]);
 
-        $user = $findUserByToken->handler($request->bearerToken());;
-
+        $user = $findUserByToken->handler($request->bearerToken());
         broadcast(new MessageSentEvent($user, $message));
 
         return ChatMessageResponseResource::make($message)->resolve();

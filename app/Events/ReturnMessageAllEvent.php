@@ -2,9 +2,7 @@
 
 namespace App\Events;
 
-use App\Http\Resources\ChatMessageResponseResource;
 use App\Models\ChatMessages;
-use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithBroadcasting;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -14,21 +12,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageSentEvent implements ShouldBroadcast
+class ReturnMessageAllEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    
     use InteractsWithBroadcasting;
 
-    //проверить private
-    private $user;
-    private $message;
+    public $messages;
 
-    public function __construct(User $user, ChatMessages $message)
+    /**
+     * Create a new event instance.
+     */
+    public function __construct()
     {
         $this->broadcastVia('pusher');
-        $this->user = $user;
-        $this->message = $message;
+        // $mess = ChatMessages::all();
+        $this->messages = 1;
     }
 
     /**
@@ -39,28 +38,13 @@ class MessageSentEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'),
+            new Channel('chatMessages'),
         ];
     }
 
     public function broadcastAs(): string
     {
-       return 'message';
+       return 'messages';
     }
 
-    // /**
-    // * Get the data to broadcast.
-    // *
-    // * @return array<string, mixed>
-    // */
-
-    // public function broadcastWith(): array
-    // {
-    //     return [
-
-    //         'user_id' => $this->user->id,
-    //         'message' => ChatMessageResponseResource::make($this->message)->resolve(),
-
-    //     ];
-    // }
 }
