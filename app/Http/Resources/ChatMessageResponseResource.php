@@ -15,11 +15,10 @@ class ChatMessageResponseResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-
             'id' => $this->id,
             'message' => $this->message,
-            'time' => $this->created_at->diffForHumans(),
-            
+            // 'realTime' => $this->created_at->diffForHumans(),
+            'time' => $this->created_at->format('d.m.Y'),
         ];
     }
 }

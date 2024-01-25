@@ -12,21 +12,26 @@ use App\Http\Resources\ChatMessageResponse;
 use App\Http\Resources\ChatMessageResponseResource;
 use App\Models\ChatMessages;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         //брать последнии 100
-        $messages = ChatMessages::all();
+        return $request->bearerToken();
+        // return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
+        // $messages = ChatMessages::all();
         // $messages = ChatMessageResponse::collection($messages)->resolve();
-        return $messages;
+        // return $messages;
     }
 
-    public function messages(){
+    public function messages()
+    {
         // broadcast(new ReturnMessageAllEvent());
-        return ChatMessages::all();
+        return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
+        // return ChatMessageResponseResource::collection(ChatMessages::all());
     }
 
     public function send(ChatMessageFormRequest $request, FindUserByToken $findUserByToken){
