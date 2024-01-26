@@ -2,14 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Avatar;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResourceChat extends JsonResource
+class AvatarResource extends JsonResource
 {
-    public $collects = User::class;
     /**
      * Transform the resource into an array.
      *
@@ -17,12 +14,8 @@ class UserResourceChat extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'pathAvatar' => (new AvatarResource(Avatar::findOrFail($this->avatar_id)))->resolve(),
+            'path' => $this->resource
         ];
-
     }
 }

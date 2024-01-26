@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'status' => 'admin',
+            'avatar_id' => '1',
             'password' => Hash::make('admin'),
         ]);
         \App\Models\User::factory(3)->create();
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Bad Man',
             'email' => 'bad_man@example.com',
             'status' => 'ban',
+            'avatar_id' => '6',
             'password' => Hash::make('banMan'),
         ]);
 
@@ -54,6 +56,7 @@ class DatabaseSeeder extends Seeder
             ReviewAudiSeeder::class,
             ReviewSeeder::class,    
             AvatarSeeder::class,
+            ChatMessageSeeder::class,
         ]);
     }
 }
