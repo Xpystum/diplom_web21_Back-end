@@ -10,6 +10,7 @@ use App\Events\ReturnMessageAllEvent;
 use App\Http\Requests\ChatMessageFormRequest;
 use App\Http\Resources\ChatMessageResponse;
 use App\Http\Resources\ChatMessageResponseResource;
+use App\Http\Resources\UserResourceChat;
 use App\Models\ChatMessages;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,11 +21,9 @@ class ChatController extends Controller
 {
     public function index(Request $request){
         //брать последнии 100
-        return $request->bearerToken();
-        // return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
-        // $messages = ChatMessages::all();
-        // $messages = ChatMessageResponse::collection($messages)->resolve();
-        // return $messages;
+        // return $request->bearerToken();
+        // return new UserResourceChat(User::findOrFail(2));
+        return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
     }
 
     public function messages()
