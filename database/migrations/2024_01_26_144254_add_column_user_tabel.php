@@ -6,15 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public $timestamps = false;
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('avatar', function (Blueprint $table) {
-            $table->id();
-            $table->string('resource', 100)->comment('путь до аватара');    
+        Schema::table('users', function (Blueprint $table) {
+            $table->bigInteger('avatar_id')->after('status')->unsigned()->default(7);
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avatar');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('avatar_id');
+        });
     }
 };
