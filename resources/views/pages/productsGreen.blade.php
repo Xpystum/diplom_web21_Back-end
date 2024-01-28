@@ -53,15 +53,24 @@
                   </span>
                 </td>
                 <td>
-                  <span class="{{ $product->moderation_status }} status">
-                    @if($product->moderation_status == 'approved')
-                      Одобрен
+                  <span class="status status-{{ $product->moderation_status_id }} ">
+                    @if($product->moderation_status_id == 1)
+                      <i class="fa-solid fa-check"></i> идут показы
                     @endif
-                    @if($product->moderation_status == 'rejected')
-                      Отклонен
+                    @if($product->moderation_status_id == 2)
+                      <i class="fa-solid fa-xmark"></i> не прошло модерацию
                     @endif
-                    @if($product->moderation_status == 'in_review')
-                      Ожидает...
+                    @if($product->moderation_status_id == 3)
+                      <i class="fa-solid fa-circle-info"></i> на модерации
+                    @endif
+                    @if($product->moderation_status_id == 4)
+                      <i class="fa-solid fa-money-bill"></i> продано
+                    @endif
+                    @if($product->moderation_status_id == 5)
+                      <i class="fa-brands fa-creative-commons-nc"></i> снято с продажи
+                    @endif
+                    @if($product->moderation_status_id == 6)
+                      <i class="fa-solid fa-calendar-xmark"></i> срок размещения истек
                     @endif
                   </span>
                 </td>
@@ -69,8 +78,8 @@
 
                 <td>
                     <a href="{{ route('product', ['id' => $product->id]) }}" class='revise' title="Просмотреть"><i class="fa-solid fa-eye"></i></a>
-                    <button href="#" class='change' title="Изменить"><i class="fa-solid fa-up-right-from-square"></i></button>
-                    <button href="#" class='remove' title="Удалить"><i class="fa-solid fa-x"></i></button>
+                    {{-- <button href="#" class='change' title="Изменить"><i class="fa-solid fa-up-right-from-square"></i></button>
+                    <button href="#" class='remove' title="Удалить"><i class="fa-solid fa-x"></i></button> --}}
                 </td>
               </tr>
           @endforeach  

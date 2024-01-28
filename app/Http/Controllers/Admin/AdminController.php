@@ -44,7 +44,7 @@ class AdminController extends Controller
     {
 
         $product = Product::findOrFail($id);
-        $product->moderation_status = $request->input('status');
+        $product->moderation_status_id = $request->input('status');
         $product->save();
 
         return redirect()->back();

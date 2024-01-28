@@ -3,14 +3,17 @@
   @section('content')
 
     <span><a href="#" class="back" onclick="goBack()"><i class="fa-solid fa-chevron-left"></i></a> ID: {{$product->id}}</span> 
-    <div class="status">
+    <div class="status-wrap">
       <form action="{{ route('update-product-status', $product->id) }}" class="form__status" method="POST">
         @csrf
         @method('PUT')
-          <select name="status"  id="statusSelect" class="{{ $product->moderation_status }} status form-select form-select-lg " aria-label="Default select">
-              <option value="in_review" {{ $product->moderation_status == 'in_review' ? 'selected' : '' }}>Ожидает...</option>
-              <option value="approved" {{ $product->moderation_status == 'approved' ? 'selected' : '' }}>Отоброжен</option>
-              <option value="rejected" {{ $product->moderation_status == 'rejected' ? 'selected' : '' }}>Отклонен</option>
+          <select name="status"  id="statusSelect" class="status-{{ $product->moderation_status_id }} status form-select form-select-lg " aria-label="Default select">
+            <option value="1" {{ $product->moderation_status_id == 1 ? 'selected' : '' }}> идут показы</option>
+            <option value="2" {{ $product->moderation_status_id == 2 ? 'selected' : '' }}> не прошло модерацию</option>
+            <option value="3" {{ $product->moderation_status_id == 3 ? 'selected' : '' }}> на модерации</option>
+            <option value="4" {{ $product->moderation_status_id == 4 ? 'selected' : '' }}> продано</option>
+            <option value="5" {{ $product->moderation_status_id == 5 ? 'selected' : '' }}> снято с продажи</option>
+            <option value="6" {{ $product->moderation_status_id == 6 ? 'selected' : '' }}> срок размещения истек</option>
           </select>
       </form>
     </div>  

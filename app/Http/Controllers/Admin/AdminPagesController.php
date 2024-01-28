@@ -22,9 +22,9 @@ class AdminPagesController extends Controller
             $adminCount = User::where('status', 'admin')->count();
             $userCount = User::where('status', 'user')->count();
             $banCount = User::where('status', 'ban')->count();
-            $productGreenCount = Product::where('moderation_status', 'approved')->count();
-            $productRedCount = Product::where('moderation_status', 'rejected')->count();
-            $productCount = Product::where('moderation_status', 'in_review')->count();
+            $productGreenCount = Product::where('moderation_status_id', 1)->count();
+            $productRedCount = Product::where('moderation_status_id', 2)->count();
+            $productCount = Product::where('moderation_status_id', 3)->count();
 
 
             $menuHeader = view('widgets.menu-header', compact(
@@ -46,7 +46,7 @@ class AdminPagesController extends Controller
     }
     public function widgets(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $widgets = Widgets::all();
         $layout=$this->layout;
         $menuHeader = view('widgets.menu-header', 
@@ -64,7 +64,7 @@ class AdminPagesController extends Controller
     }
     public function products(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $products = Product::with([
             'brand', 
             'model', 
@@ -77,7 +77,7 @@ class AdminPagesController extends Controller
             'body_type', 
             'imgCollection'
         ])
-        ->where('moderation_status', 'in_review')
+        ->where('moderation_status_id', 3)
         ->orderBy('id')
         ->paginate(10);
         
@@ -90,7 +90,7 @@ class AdminPagesController extends Controller
     }
     public function productsGreen(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status', 3)->count();
         $products = Product::with([
             'brand', 
             'model', 
@@ -103,7 +103,7 @@ class AdminPagesController extends Controller
             'body_type', 
             'imgCollection'
         ])
-        ->where('moderation_status', 'approved')
+        ->where('moderation_status_id', 1)
         ->orderBy('id')
         ->paginate(10);
 
@@ -124,7 +124,7 @@ class AdminPagesController extends Controller
     }
     public function productsRed(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
 
         $products = Product::with([
             'brand', 
@@ -138,7 +138,7 @@ class AdminPagesController extends Controller
             'body_type', 
             'imgCollection'
         ])
-        ->where('moderation_status', 'rejected')
+        ->where('moderation_status_id', 2)
         ->orderBy('id')
         ->paginate(10);
 
@@ -160,7 +160,7 @@ class AdminPagesController extends Controller
 
     public function database(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $layout=$this->layout;
         $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
 
@@ -178,7 +178,7 @@ class AdminPagesController extends Controller
     public function user(){
 
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $dbUsers = User::orderBy('id')->where('status', 'user')->paginate(10);
         $layout=$this->layout;
         $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
@@ -188,7 +188,7 @@ class AdminPagesController extends Controller
 
     public function userBan(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $dbUsers = User::orderBy('id')->where('status', 'ban')->paginate(10);
         $layout=$this->layout;
         $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
@@ -197,7 +197,7 @@ class AdminPagesController extends Controller
     }
     public function userAdmin(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $dbUsers = User::orderBy('id')->where('status', 'admin')->paginate(10);
         $layout=$this->layout;
         $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
@@ -207,7 +207,7 @@ class AdminPagesController extends Controller
     
     public function productCars($id){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status', 'in_review')->count();
+        $productCount = Product::where('moderation_status_id', 3)->count();
         $dbUsers = User::all();
 
         $layout=$this->layout;
