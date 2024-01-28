@@ -21,7 +21,8 @@ class ChatMessageResponseResource extends JsonResource
             'message' => $this->message,
             // 'realTime' => $this->created_at->diffForHumans(),
             'user' => new UserResourceChat(User::findOrFail($this->user_id)),
-            'time' => $this->created_at->format('d.m.Y'),
+            'timeYear' => $this->created_at->format('d.m.Y'),
+            'timeHour' => $this->created_at->format('H:m:s'),
         ];
     }
 }

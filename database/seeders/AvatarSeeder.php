@@ -13,14 +13,6 @@ class AvatarSeeder extends Seeder
      */
     public function run(): void
     {
-        // DB::table('avatar')->insert([
-        //     ['id'=> 1, 'resources' => 'avatar/dje.jpg'],
-        //     ['id'=> 2, 'resources' => 'avatar/girl2.jpg'],
-        //     ['id'=> 3, 'resources' => 'avatar/muhamed.jpg'],
-        //     ['id'=> 4, 'resources' => 'avatar/programmist.jpg'],
-        //     ['id'=> 5, 'resources' => 'avatar/stalin.jpg'],
-        //     ['id'=> 6, 'resources' => 'avatar/troll.jpg'],
-        // ]);
 
         $avatarJpg = [
             ['id'=> 1, 'resource' => 'avatar/dje.jpg'],
@@ -30,6 +22,7 @@ class AvatarSeeder extends Seeder
             ['id'=> 5, 'resource' => 'avatar/stalin.jpg'],
             ['id'=> 6, 'resource' => 'avatar/troll.jpg'],
             ['id'=> 7, 'resource' => 'avatar/stiv.jpg'],
+            ['id'=> 8, 'resource' => 'avatar/ilia.jpg'],
         ];
         DB::table('avatar')->insert($avatarJpg);
     }

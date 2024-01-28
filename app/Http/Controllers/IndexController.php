@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Action\FilterModel;
+use App\Http\Resources\UserResource;
+use App\Models\Avatar;
 use App\Models\Brands;
 use App\Models\CategoryProducts;
 use App\Models\Items_menu;
@@ -14,6 +16,7 @@ use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {   
@@ -65,7 +68,8 @@ class IndexController extends Controller
         return User::all();
     }
     public function user(Request $request){
-        return User::where('id', $request->id)->first();
+        return (new UserResource(User::findOrFail($request->id)))->resolve();
+        
     }
     public function products(){
         return Product::all();
