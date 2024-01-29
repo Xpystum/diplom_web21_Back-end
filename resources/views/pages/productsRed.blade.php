@@ -2,8 +2,9 @@
   @section('title', 'products')
   @section('content')
   
-    <h1>Список товаров | Ожидает подтверждения</h1>
+    <h1>Список товаров | Отклоненые</h1>
     <div class="table-wrap">
+
       {{ $products->links('vendor.pagination.bootstrap-5') }}
       Кол-во: {{ count($products) }}
       <table class="table">
@@ -15,7 +16,7 @@
             <td>Модель</td>
             <td>Год</td>
             <td>Цена</td>
-            <td>Статус</td>
+            <td><a href="#" class="sort-link" data-sort="status">Статус</a></td>
             <td>Действие</td>        
           </tr> 
         </thead>
@@ -74,7 +75,7 @@
                     <button href="#" class='remove' title="Удалить"><i class="fa-solid fa-x"></i></button>
                 </td>
               </tr>
-          @endforeach  
+          @endforeach
         </tbody>
         
       </table>

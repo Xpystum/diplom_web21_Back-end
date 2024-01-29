@@ -156,9 +156,17 @@ footer
     padding: 5px
     margin-right: auto 
     margin-left: auto
-table
-    border-collapse: collapse
-    
+.price
+
+    position: relative
+    & .old_price
+        position: absolute
+        top: 15px
+        left: 0
+.table
+    --bs-table-color: #fff
+    --bs-table-bg: transparent
+    margin-bottom: 0px
     
     
     font-size: 1.6rem
@@ -173,51 +181,64 @@ table
             border-right: 1px solid 
             border-bottom: 2px solid
             border-color: #2d3448
+            &:first-child
+                border-left: none 
+            &:last-child
+                border-right: none 
     & tbody
         & tr
             border-bottom: 2px solid #2d3448
-            // &:nth-child(2n)
-            //     background: #005f73
-            // &:nth-child(2n+1)
-            //     background: #023047
+            &:last-child
+                border-color: #252b3b
+            
                 
         & td
             text-align: center
             padding: 5px 10px
-            & button
-                background: #ccc
+            & button,
+            & a
+                display: inline-block
+                background: transparent
                 border: none
                 width: 20px
                 height: 20px
+                line-height: 20px
                 border-radius: 2px
                 transition: 0.1s ease
+
                 &:hover
+                    transform: scale(1.1)
                     transition: 0.1s ease
-                &.change
-                    background: #aa0
-                    color: rgba(0, 0, 0, 0.7)
+                &.revise
+                    color:#0aa
                     &:hover
-                        background: #ff0
-                        color: #000
+                        color:#0ff
                     &:active
-                        background: #660
-                        color: rgba(0, 0, 0, 0.3)
+                        color: #066
+                &.change
+                    color: #aa0
+                    &:hover
+                        color: #ff0
+                    &:active
+                        color: #660
                         
                 &.remove
-                    background: #a00
-                    color: rgba(255, 255, 255, 0.7)
+                    color: #a00
                     &:hover
-                        background: #f00
-                        color: #fff
+                        color: #f00
                     &:active
-                        background: #600
-                        color: rgba(255, 255, 255, 0.3)
+                        color: #600
             & > div
                 position: relative
                 overflow: hidden
                 height: 100px
                 width: 120px
-
+                transition: 0.1s ease
+                margin: 0 auto
+                &:hover
+                    transform: scale(2)
+                    z-index: 10
+                    transition: 0.1s ease
             & .product__img
                 position: absolute
                 top: 50%
@@ -228,51 +249,103 @@ table
                 width: auto
                 height: auto
                 object-fit: cover
+                
             & .product__no-img
                 line-height: 100px
                 height: 100%
                 width: 100%
                 background: radial-gradient(#000 10%, transparent 70%)
+form
+    &.form
+        &__status
+            display: flex
+            justify-content: center
             & select
-                color: rgba(0, 0, 0, 0.7)
-                padding: 2px 5px
-                border-radius: 4px
-                
-                
-                text-transform: capitalize
-                
-                &.form-select
-                    padding: 2px 5px
-                    font-size: 1.4rem
-                    border: none
-                    outline: none
-                    &:focus
-                        box-shadow: none
-                &.user,
-                &.in_review,
-                & option[value="in_review"],
-                & option[value="user"]
-                    
-                    background: #654a12
-                    color: rgba(252, 185, 44, 1)
-                &.admin,
-                &.approved,
-                & option[value="admin"],
-                & option[value="approved"]
-                    background: #0b4b38
-                    color: rgba(28, 187, 140, 1)
-                &.ban,
-                &.rejected,
-                & option[value="ban"],
-                & option[value="rejected"]
-                    background: #661826
-                    color: rgba(255, 61, 96, 1)
-                & option
-                    text-align: center
-                    
-                    background: #0d121e
-                    color: #fff
-                    border-radius: 10px
+                width: 150px
+                margin-right: 10px
+            & button
+                font-size: 1.6rem
+            
+select
+    color: rgba(0, 0, 0, 0.7)
+    padding: 2px 5px
+    border-radius: 4px
+    text-transform: capitalize
+    
+    &.form-select
+        padding: 2px 5px
+        font-size: 1.4rem
+        border: none
+        outline: none
+        &:focus
+            box-shadow: none
+    &.user,
+    &.in_review,
+    & option[value="in_review"],
+    & option[value="user"]
+        
+        background: #654a12
+        color: rgba(252, 185, 44, 1)
+    &.admin,
+    &.approved,
+    &.included,
+    & option[value="admin"],
+    & option[value="approved"]
+        background: rgba(0, 200, 0, 0.3)
+        color: rgba(28, 187, 140, 1)
+    &.ban,
+    &.rejected,
+    &.turned_off,
+    & option[value="ban"],
+    & option[value="rejected"]
+        background: rgba(200, 0, 0, 0.3)
+        color: rgba(255, 61, 96, 1)
+    & option
+        text-align: center
+        
+        background: #0d121e
+        color: #fff
+        border-radius: 10px
+main
+    font-size: 1.6rem
+.flex
+    display: flex
+    & .card
+        &__info
+            margin-left: 10px 
+.carousel-inner
+    width: 450px
+.carousel-item
+    min-height: 400px
+
+.back
+    color: rgb(133, 144, 165)
+    background: #2b3244
+    padding: 1px 20px 0 10px 
+    border-radius: 30px
+    transition: 0.1s ease
+    &:hover
+        background: #4f5d80
+        transition: 0.1s ease
+    &:active
+        background: #2b3244
+.img
+    width: 100%
+    height: 100%
+    display: block
+    object-fit: cover
+    border-radius: 6px
+    overflow: hidden
+    &__wrap
+        flex-basis: 272px
+        width: 450px
+        height: 400px
+        position: relative
+        overflow: hidden
+        border-radius: 6px
+        
+
+    
 ::selection
   background: rgba(255, 255, 255, 0.5)
   color: #000
@@ -281,6 +354,53 @@ table
   background: rgba(255, 255, 255, 0.5)
   color: #000               
                     
-                    
+.status
+    display: inline-block
+    text-align: center
+    padding: 2px 10px
+    border-radius: 30px
+    width: 150px
+    &.user,
+    &.in_review,
+    option[value="in_review"],
+    option[value="user"]
+        background: #654a12
+        color: rgba(252, 185, 44, 1)
+    &.admin,
+    &.approved,
+    option[value="admin"],
+    option[value="approved"]
+        background: #0b4b38
+        color: rgba(28, 187, 140, 1)
+    &.ban,
+    &.rejected,
+    option[value="ban"],
+    option[value="rejected"]
+        background: #661826
+        color: rgba(255, 61, 96, 1)
 
-                    
+.accordion
+    background: transparent
+    &-item
+        background: transparent
+        border: none
+    &-button
+        background: transparent
+        color: rgba(133, 144, 165, 0.5)
+        font-size: 1.6rem
+        &::after
+            content: '\f107'
+            font-weight: 900
+            font-family: 'Font Awesome 6 Free'
+        &:not(.collapsed)
+            color: rgba(133, 144, 165, 1)
+            background: transparent
+            box-shadow: none
+        &.active
+            color: rgba(133, 144, 165, 1)
+            background: transparent
+            box-shadow: none
+            border-radius: 50px
+            box-shadow: 0 0 5px #0d121e
+            &::after
+                // transform: rotate(180deg)

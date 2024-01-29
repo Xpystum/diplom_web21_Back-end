@@ -16,6 +16,7 @@ use App\Models\Review;
 use App\Models\ReviewImgCollection;
 use App\Models\Transmission;
 use App\Models\User;
+use App\Models\Widgets;
 use App\Models\UserReview;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
@@ -73,6 +74,10 @@ class IndexController extends Controller
     public function users(){
         return User::all();
     }
+    public function widgets(){
+        return Widgets::all();
+    }
+
     public function user(Request $request){
         return User::where('id', $request->id)->first();
     }

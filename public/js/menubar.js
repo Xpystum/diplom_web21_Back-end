@@ -3,8 +3,6 @@ let arrow = document.querySelector('.arrow');
 let btnBar = document.querySelector('.button-bar');
 let textsMenu = document.querySelectorAll('.text-menu');
 
-console.log(textsMenu);
-
 
 btnBar.addEventListener('click', (evt)=>{
     if(bar.classList.contains('active')){

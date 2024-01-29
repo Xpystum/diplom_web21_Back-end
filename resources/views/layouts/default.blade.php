@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN | @yield('title') </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
     <div class="wrap">
@@ -37,7 +36,7 @@
 
             </header>
             <main>
-                <div class="content">
+                <div class="content container">
                     @yield('content')    
                 </div>
             </main>
@@ -48,7 +47,79 @@
            
     </div>
 
+    <script>
+        // Находим все выпадающие списки с классом form-select
+        var selects = document.querySelectorAll('.form-select');
     
+        // Обрабатываем изменение каждого списка
+        selects.forEach(function(select) {
+            select.addEventListener('change', function() {
+                var status = this.value;
+                var userId = this.closest('tr').querySelector('td:first-child').innerText;
+    
+                // Отправляем запрос на сервер для изменения статуса
+                fetch('/user/' + userId + '/update-user-status', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        status: status
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Обновляем класс на выпадающем списке
+                        this.className = status + ' form-select';
+                    }
+                })
+                .catch(error => console.log(error));
+            });
+        });
+    </script>
+    <script>
+        // Находим все формы с классом "form__status"
+        var statusForms = document.querySelectorAll('.form__status');
+    
+        // Обрабатываем отправку каждой формы
+        statusForms.forEach(function(form) {
+            var statusSelect = form.querySelector('select');
+    
+            statusSelect.addEventListener('change', function() {
+                form.submit();
+            });
+        });
+    </script>
+    <script>
+        // Находим все кнопки с классом "remove"
+        var removeButtons = document.querySelectorAll('.remove');
+    
+        // Обрабатываем клик каждой кнопки
+        removeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var userId = this.closest('tr').querySelector('td:first-child').innerText;
+    
+                // Отправляем DELETE-запрос на сервер для удаления пользователя
+                fetch('/users/' + userId + '/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Удаляем строку с таблицы
+                        this.closest('tr').remove();
+                    }
+                })
+                .catch(error => console.log(error));
+            });
+        });
+    </script>
+    <script src="{{ asset('js/moment.js') }}"></script>
     <script src="{{ asset('js/menubar.js') }}"></script>
 </body>
 </html>

@@ -2,9 +2,8 @@
   @section('title', 'users')
   @section('content')
   
-    <h1><i class="fa-solid fa-person"></i> Пользователи</h1>
+    <h1><i class="fa-solid fa-person-circle-xmark"></i> Пользователи в Бане</h1>
     <div class="table-wrap">
-      {{ $dbUsers->links('vendor.pagination.bootstrap-5') }}
       <table class="table">
         <thead>
           <tr>
@@ -19,7 +18,7 @@
         </thead>
         <tbody>
           @foreach ($dbUsers as $dbUser)
-            @if($dbUser->status == 'user')
+            @if($dbUser->status == 'ban')
               <tr>
                 <td>{{ $dbUser->id }}</td>
                 <td>{{ $dbUser->name }}</td>

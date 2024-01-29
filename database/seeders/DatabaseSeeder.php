@@ -18,9 +18,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'status' => 'admin',
             'password' => Hash::make('admin'),
+            'cash' => 1000000,
+            'city' => 'Нижний Новгород',
         ]);
-        \App\Models\User::factory(3)->create();
-
+        \App\Models\User::factory(15)->create([
+            'status' => 'ban',
+            'password' => Hash::make('banMan'),
+        ]);
+        \App\Models\User::factory(150)->create([]);
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -53,6 +58,8 @@ class DatabaseSeeder extends Seeder
             ImgReviewsSeeder::class,
             ReviewAudiSeeder::class,
             ReviewSeeder::class,
+            WidgetsSeeder::class,
+
         ]);
     }
 }

@@ -2,9 +2,8 @@
   @section('title', 'users')
   @section('content')
   
-    <h1><i class="fa-solid fa-person"></i> Пользователи</h1>
+    <h1><i class="fa-solid fa-id-card"></i> Админы</h1>
     <div class="table-wrap">
-      {{ $dbUsers->links('vendor.pagination.bootstrap-5') }}
       <table class="table">
         <thead>
           <tr>
@@ -19,7 +18,7 @@
         </thead>
         <tbody>
           @foreach ($dbUsers as $dbUser)
-            @if($dbUser->status == 'user')
+            @if($dbUser->status == 'admin')
               <tr>
                 <td>{{ $dbUser->id }}</td>
                 <td>{{ $dbUser->name }}</td>
@@ -39,7 +38,7 @@
                 <td><button class="change"><i class="fa-solid fa-pen-to-square"></i></button> | <button class="remove"><i class="fa-solid fa-x"></i></button></td>
 
               </tr>
-            @endif
+              @endif
           @endforeach
         </tbody>
         
