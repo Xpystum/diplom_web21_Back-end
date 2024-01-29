@@ -53,7 +53,6 @@ class DatabaseSeeder extends Seeder
             ImgReviewsSeeder::class,
             ReviewAudiSeeder::class,
             ReviewSeeder::class,
-
         ]);
     }
 }

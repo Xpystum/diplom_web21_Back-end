@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Fuck\FuckController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Review\ReviewController;
 use App\Http\Middleware\AuthToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -45,18 +47,31 @@ Route::controller(IndexController::class)->group(function () {
     
     Route::post('/user', 'user');
     Route::post('/product', 'product');
+
     
+    Route::post('/models', 'models');
+    Route::post('/body-type', 'bodyType');
+    Route::post('/fuel', 'fuel');
+    Route::post('/transmission', 'transmission');
+    Route::post('/drive-unit', 'driveUnit');
+
+
+    
+});
+
+Route::controller(ReviewController::class)->group(function () {
+
     Route::post('/reviews', 'reviews');
     Route::post('/review', 'review');
     Route::post('/all-info-reviews', 'allInfoReviews');
+    Route::post('/add-review', 'addReview');
+    Route::post('/add-review-img', 'addReviewImg');
+    Route::post('/save-img', 'saveImg');
 });
-
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name('auth.RegisterUser');
     Route::post('/auth', 'authUser')->name('auth.LoginUser');
     Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
-
-
 
     Route::middleware(AuthToken::class)->group(function () {
         Route::post('/add-favorite', 'addFavorite')->name('add-favorite');
