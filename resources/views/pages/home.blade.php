@@ -1,9 +1,7 @@
   @extends("layouts.{$layout}")
   @section('title', 'Home')
   @section('content')
-    <style>
-      
-    </style>
+
     @php
      $usersAll = $adminCount + $banCount + $userCount;
      $productsAll = $productGreenCount + $productRedCount + $productCount;
@@ -39,7 +37,7 @@
       </div>
     </div>
     <p>
-
+      
     </p>
     
   @endsection

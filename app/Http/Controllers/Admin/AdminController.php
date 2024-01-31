@@ -62,7 +62,6 @@ class AdminController extends Controller
     }
     public function updateWidgetStatus(Request $request, $id)
     {
-
         $widget = Widgets::find($id);
         $widget->status = $request->status;
         $widget->save();
@@ -96,6 +95,45 @@ class AdminController extends Controller
         auth()->logout();
 
         return redirect()->route('auth');
+    }
+    public function store(Request $request)
+    {
+        // Получение данных о новом объявлении
+        $model = $request->input('model');
+        $brand = $request->input('brand');
+        $year = $request->input('year');
+        $price = $request->input('price');
+        
+        DB::transaction(function () use ($model, $brand, $year, $price) {
+            // Поиск самой высокой цены для подобных машин
+            $maxPrice = Product::where('model', $model)
+                ->where('brand', $brand)
+                ->where('year', $year)
+                ->max('price');
+
+            // Проверка, не превышает ли новое объявление 1.5 раза от самой высокой цены
+            if ($price <= ($maxPrice * 1.5)) {
+                // Прошло проверку
+                Product::create([
+                    'model' => $model,
+                    'brand' => $brand,
+                    'year' => $year,
+                    'price' => $price,
+                    'moderation_status_id' => 3,
+                ]);
+            } else {
+                // Нарушено условие проверки
+                Product::create([
+                    'model' => $model,
+                    'brand' => $brand,
+                    'year' => $year,
+                    'price' => $price,
+                    'moderation_status_id' => 2,
+                ]);
+            }
+        });
+        
+        // Возврат ответа на фронтенд (например, успешное добавление или ошибка)
     }
     
 }

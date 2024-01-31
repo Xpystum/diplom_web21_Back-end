@@ -454,19 +454,19 @@ main {
   min-width: 200px;
   box-shadow: inset 0 0 1px #fff;
 }
-.status-3, .status.in_review,
+.status-3, .status-user,
 .status option[value=in_review],
 .status option[value=user] {
   background: rgba(200, 200, 0, 0.3);
   color: rgb(252, 185, 44);
 }
-.status.admin, .status-1,
+.status-admin, .status-1,
 .status option[value=admin],
 .status option[value=approved] {
   background: rgba(0, 200, 0, 0.3);
   color: rgb(28, 187, 140);
 }
-.status.ban, .status-2,
+.status-ban, .status-2,
 .status option[value=ban],
 .status option[value=rejected] {
   background: rgba(200, 0, 0, 0.3);

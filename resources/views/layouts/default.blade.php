@@ -54,7 +54,6 @@
     </div>
 
     <script>
-        // Находим все выпадающие списки с классом form-select
         var selects = document.querySelectorAll('.form-select');
     
         // Обрабатываем изменение каждого списка
