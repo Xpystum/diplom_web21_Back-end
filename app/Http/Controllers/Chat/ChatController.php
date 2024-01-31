@@ -34,17 +34,16 @@ class ChatController extends Controller
     }
 
     public function send(ChatMessageFormRequest $request, FindUserByToken $findUserByToken){
-
         $data = $request->validated();
         $message = ChatMessages::create([
             'user_id' => $data['user_id'],
             'message' => $data['message'],
         ]);
-
+        
         $user = $findUserByToken->handler($request->bearerToken());
         broadcast(new MessageSentEvent($user, $message));
-
-        return ChatMessageResponseResource::make($message)->resolve();
+        // смысл возврата теряется, если мы получаем возврат через broadcast (возврат только для request)
+        // return ChatMessageResponseResource::make($message);
     }
 
 }

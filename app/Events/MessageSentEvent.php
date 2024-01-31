@@ -21,8 +21,8 @@ class MessageSentEvent implements ShouldBroadcast
     use InteractsWithBroadcasting;
 
     //проверить private
-    private $user;
-    private $message;
+    public $user;
+    public $message;
 
     public function __construct(User $user, ChatMessages $message)
     {
@@ -48,19 +48,14 @@ class MessageSentEvent implements ShouldBroadcast
        return 'message';
     }
 
-    // /**
-    // * Get the data to broadcast.
-    // *
-    // * @return array<string, mixed>
-    // */
+    /**
+    * Get the data to broadcast.
+    *
+    * @return array<string, mixed>
+    */
 
-    // public function broadcastWith(): array
-    // {
-    //     return [
-
-    //         'user_id' => $this->user->id,
-    //         'message' => ChatMessageResponseResource::make($this->message)->resolve(),
-
-    //     ];
-    // }
+    public function broadcastWith(): array
+    {
+        return ChatMessageResponseResource::make($this->message)->resolve();
+    }
 }

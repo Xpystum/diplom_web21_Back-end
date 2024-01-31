@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(AdminController::class)->group(function () {
 
-    Route::get('/', 'auth')->name('auth');
+    Route::get('/admin', 'auth')->name('auth');
 
     Route::get('/login', 'showLoginForm')->name('login');
     Route::get('/home', 'home')->name('home');

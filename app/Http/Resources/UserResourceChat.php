@@ -24,5 +24,5 @@ class UserResourceChat extends JsonResource
             'pathAvatar' => (new AvatarResource(Avatar::findOrFail($this->avatar_id)))->resolve(),
         ];
 
-    }
+    }   
 }
