@@ -29,8 +29,8 @@
                 </button>
 
                 <div class="account">
-                    <a href="{{ route('products') }}" class="bell" >
-                        <i class="fa-solid fa-bell @if($productCount) fa-beat @endif"></i>@if($productCount)<span><p>{{ $productCount }}</p></span>@endif
+                    <a href="{{ route('productsInReview') }}" class="bell" >
+                        <i class="fa-solid fa-bell @if($productsInReviewCount) fa-beat @endif"></i>@if($productsInReviewCount)<span><p>{{ $productsInReviewCount }}</p></span>@endif
                     </a>
                     
                     <p class="name">{{ $user-> name }}</p>

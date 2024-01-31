@@ -40,9 +40,13 @@ Route::controller(AdminPagesController::class)->group(function () {
         Route::get('/widgets', 'widgets')->name('widgets');
         Route::get('/database', 'database')->name('database');
 
-        Route::get('/products/in_review', 'products')->name('products');
-        Route::get('/products/approved', 'productsGreen')->name('productsGreen');
-        Route::get('/products/rejected', 'productsRed')->name('productsRed');
+        Route::get('/products/in_review', 'productsInReview')->name('productsInReview');
+        Route::get('/products/approved', 'productsApproved')->name('productsApproved');
+        Route::get('/products/rejected', 'productsRejected')->name('productsRejected');
+        Route::get('/products/sales', 'productsSales')->name('productsSales');
+        Route::get('/products/withdrawn', 'productsWithdrawn')->name('productsWithdrawn');
+        Route::get('/products/expired', 'productsExpired')->name('productsExpired');
+
         Route::get('/product/{id}', 'productCars')->name('product');
     
         Route::get('/user', 'user')->name('user');

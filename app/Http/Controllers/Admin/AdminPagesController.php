@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminPagesController extends Controller
 {
     protected $layout = 'default';
+
     public function home(){
             $user = Auth::user();
             $layout = $this->layout;
@@ -22,16 +23,15 @@ class AdminPagesController extends Controller
             $adminCount = User::where('status', 'admin')->count();
             $userCount = User::where('status', 'user')->count();
             $banCount = User::where('status', 'ban')->count();
-            $productGreenCount = Product::where('moderation_status_id', 1)->count();
-            $productRedCount = Product::where('moderation_status_id', 2)->count();
-            $productCount = Product::where('moderation_status_id', 3)->count();
+            $productsApprovedCount = Product::where('moderation_status_id', 1)->count();
+            $productsRejectedCount = Product::where('moderation_status_id', 2)->count();
+            $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+            $productsSalesCount = Product::where('moderation_status_id', 4)->count();
+            $productsWithdrawnCount = Product::where('moderation_status_id', 5)->count();
+            $productsExpiredCount = Product::where('moderation_status_id', 6)->count();
 
 
-            $menuHeader = view('widgets.menu-header', compact(
-                                                        'layout', 
-                                                        'user',
-                                                        'productCount'
-                                                    ));
+            $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
     
             return view('pages.home', compact('layout', 
                                             'user',
@@ -39,32 +39,71 @@ class AdminPagesController extends Controller
                                             'adminCount', 
                                             'userCount', 
                                             'banCount', 
-                                            'productGreenCount', 
-                                            'productRedCount', 
-                                            'productCount',
+                                            'productsApprovedCount', 
+                                            'productsRejectedCount', 
+                                            'productsInReviewCount',
+                                            'productsSalesCount',
+                                            'productsWithdrawnCount',
+                                            'productsExpiredCount',
                                         ));
     }
     public function widgets(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
         $widgets = Widgets::all();
         $layout=$this->layout;
-        $menuHeader = view('widgets.menu-header', 
-                        compact('layout', 
-                                'user',
-                                'productCount'
-                            ));
+        $menuHeader = view('widgets.menu-header', compact('user','productsInReviewCount'));
 
         return view('pages.widgets', 
         compact('layout', 
                 'user', 
                 'menuHeader', 
-                'widgets'
+                'widgets',
+                'productsInReviewCount'
             ));
     }
-    public function products(){
+    // .. ТОВАРЫ статусы:
+    // идут показы
+    public function productsApproved(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        
+        $products = Product::with([
+            'brand', 
+            'model', 
+            'category', 
+            'color', 
+            'organisation', 
+            'drive_unit', 
+            'transmission', 
+            'fuel', 
+            'body_type', 
+            'imgCollection'
+        ])
+        ->where('moderation_status_id', 1)
+        ->orderBy('id')
+        ->paginate(10);
+        $tableProduct= view('widgets.table-product', compact('products'));
+        $layout = $this->layout;
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
+            
+        $previousPageUrl = $products->previousPageUrl();
+        $nextPageUrl = $products->nextPageUrl();
+        return view('pages.productsApproved', 
+        compact('layout', 
+                'user', 
+                'menuHeader', 
+                'products', 
+                'previousPageUrl', 
+                'nextPageUrl', 
+                'productsInReviewCount',
+                'tableProduct'
+            ));
+    }
+    // на модерации
+    public function productsInReview(){
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
         $products = Product::with([
             'brand', 
             'model', 
@@ -82,50 +121,20 @@ class AdminPagesController extends Controller
         ->paginate(10);
         
         $layout = $this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+        $tableProduct= view('widgets.table-product', compact('products'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
         
         $previousPageUrl = $products->previousPageUrl();
         $nextPageUrl = $products->nextPageUrl();
-        return view('pages.products', compact('layout', 'user', 'menuHeader', 'products', 'previousPageUrl', 'nextPageUrl', 'productCount'));
+        return view('pages.productsInReview', compact('layout', 'user', 'menuHeader', 'products', 'previousPageUrl', 'nextPageUrl', 'productsInReviewCount', 'tableProduct'));
     }
-    public function productsGreen(){
-        $user = Auth::user();
-        $productCount = Product::where('moderation_status', 3)->count();
-        $products = Product::with([
-            'brand', 
-            'model', 
-            'category', 
-            'color', 
-            'organisation', 
-            'drive_unit', 
-            'transmission', 
-            'fuel', 
-            'body_type', 
-            'imgCollection'
-        ])
-        ->where('moderation_status_id', 1)
-        ->orderBy('id')
-        ->paginate(10);
-
+    // не прошло модерацию
+    public function productsRejected(){
         $layout = $this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
-            
-        $previousPageUrl = $products->previousPageUrl();
-        $nextPageUrl = $products->nextPageUrl();
-        return view('pages.productsGreen', 
-        compact('layout', 
-                'user', 
-                'menuHeader', 
-                'products', 
-                'previousPageUrl', 
-                'nextPageUrl', 
-                'productCount'
-            ));
-    }
-    public function productsRed(){
-        $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
 
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        
         $products = Product::with([
             'brand', 
             'model', 
@@ -142,76 +151,201 @@ class AdminPagesController extends Controller
         ->orderBy('id')
         ->paginate(10);
 
-        $layout = $this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+        $tableProduct= view('widgets.table-product', compact('products'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
         
         $previousPageUrl = $products->previousPageUrl();
         $nextPageUrl = $products->nextPageUrl();
-        return view('pages.productsRed', compact(
+        return view('pages.productsRejected', compact(
                                             'layout', 
                                             'user', 
                                             'menuHeader', 
                                             'products', 
                                             'previousPageUrl', 
                                             'nextPageUrl',
-                                            'productCount'
+                                            'productsInReviewCount',
+                                            'tableProduct'
+                                        ));
+    }
+    // продано
+    public function productsSales(){
+        $layout = $this->layout;
+
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        
+        $products = Product::with([
+            'brand', 
+            'model', 
+            'category', 
+            'color', 
+            'organisation', 
+            'drive_unit', 
+            'transmission', 
+            'fuel', 
+            'body_type', 
+            'imgCollection'
+        ])
+        ->where('moderation_status_id', 4)
+        ->orderBy('id')
+        ->paginate(10);
+        $tableProduct= view('widgets.table-product', compact('products'));
+        
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
+        
+        $previousPageUrl = $products->previousPageUrl();
+        $nextPageUrl = $products->nextPageUrl();
+        return view('pages.productsRejected', compact(
+                                            'layout', 
+                                            'user', 
+                                            'menuHeader', 
+                                            'products', 
+                                            'previousPageUrl', 
+                                            'nextPageUrl',
+                                            'productsInReviewCount',
+                                            'tableProduct'
+                                        ));
+    }
+    // снято с продажи
+    public function productsWithdrawn(){
+        $layout = $this->layout;
+
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        
+        $products = Product::with([
+            'brand', 
+            'model', 
+            'category', 
+            'color', 
+            'organisation', 
+            'drive_unit', 
+            'transmission', 
+            'fuel', 
+            'body_type', 
+            'imgCollection'
+        ])
+        ->where('moderation_status_id', 5)
+        ->orderBy('id')
+        ->paginate(10);
+        $tableProduct= view('widgets.table-product', compact('products'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
+        
+        $previousPageUrl = $products->previousPageUrl();
+        $nextPageUrl = $products->nextPageUrl();
+        return view('pages.productsRejected', compact(
+                                            'layout', 
+                                            'user', 
+                                            'menuHeader', 
+                                            'products', 
+                                            'previousPageUrl', 
+                                            'nextPageUrl',
+                                            'productsInReviewCount',
+                                            'tableProduct'
+                                        ));
+    }
+    // срок истек
+    public function productsExpired(){
+        $layout = $this->layout;
+
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        $products = Product::with([
+            'brand', 
+            'model', 
+            'category', 
+            'color', 
+            'organisation', 
+            'drive_unit', 
+            'transmission', 
+            'fuel', 
+            'body_type', 
+            'imgCollection'
+        ])
+        ->where('moderation_status_id', 6)
+        ->orderBy('id')
+        ->paginate(10);
+        $tableProduct= view('widgets.table-product', compact('products'));
+        
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
+        
+        $previousPageUrl = $products->previousPageUrl();
+        $nextPageUrl = $products->nextPageUrl();
+        return view('pages.productsRejected', compact(
+                                            'layout', 
+                                            'user', 
+                                            'menuHeader', 
+                                            'products', 
+                                            'previousPageUrl', 
+                                            'nextPageUrl',
+                                            'productsInReviewCount',
+                                            'tableProduct'
                                         ));
     }
 
     public function database(){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
         $layout=$this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
 
-        return view('pages.database', compact('layout', 'user', 'menuHeader', 'productCount'));
+        return view('pages.database', compact('layout', 'user', 'menuHeader', 'productsInReviewCount'));
     }
 
     public function null(){
             $user = Auth::user();
             $layout=$this->layout;
-            $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+            $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
 
-            return view('pages.test', compact('layout', 'user', 'menuHeader', 'productCount'));
+            $menuHeader = view('widgets.menu-header', compact( 'user', 'productsInReviewCount'));
+
+            return view('pages.test', compact('layout', 'user', 'menuHeader', 'productsInReviewCount'));
     }
 
     public function user(){
+        $layout=$this->layout;
 
         $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
         $dbUsers = User::orderBy('id')->where('status', 'user')->paginate(10);
-        $layout=$this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+        
+        $tableUser= view('widgets.table-user', compact('dbUsers'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
 
-        return view('pages.user', compact('layout', 'user', 'menuHeader', 'dbUsers', 'productCount'));
+        return view('pages.user', compact('layout', 'user', 'menuHeader', 'dbUsers', 'productsInReviewCount', 'tableUser'));
     }
 
     public function userBan(){
-        $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
-        $dbUsers = User::orderBy('id')->where('status', 'ban')->paginate(10);
         $layout=$this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
 
-        return view('pages.userBan', compact('layout', 'user', 'menuHeader', 'dbUsers', 'productCount')); 
+        $user = Auth::user();
+        $dbUsers = User::orderBy('id')->where('status', 'ban')->paginate(10);
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+
+        $tableUser= view('widgets.table-user', compact('dbUsers'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
+
+        return view('pages.userBan', compact('layout', 'user', 'menuHeader', 'dbUsers', 'productsInReviewCount', 'tableUser')); 
     }
     public function userAdmin(){
-        $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
-        $dbUsers = User::orderBy('id')->where('status', 'admin')->paginate(10);
         $layout=$this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        $dbUsers = User::orderBy('id')->where('status', 'admin')->paginate(10);
 
-        return view('pages.userAdmin', compact('layout', 'user', 'menuHeader', 'dbUsers', 'productCount')); 
+        $tableUser= view('widgets.table-user', compact('dbUsers'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
+
+        return view('pages.userAdmin', compact('layout', 'user', 'menuHeader', 'dbUsers', 'productsInReviewCount', 'tableUser')); 
     }
     
     public function productCars($id){
         $user = Auth::user();
-        $productCount = Product::where('moderation_status_id', 3)->count();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
         $dbUsers = User::all();
 
         $layout=$this->layout;
-        $menuHeader = view('widgets.menu-header', compact('layout', 'user', 'productCount'));
+        $menuHeader = view('widgets.menu-header', compact('user', 'productsInReviewCount'));
         $product = Product::with([
             'brand', 
             'model', 
@@ -226,7 +360,7 @@ class AdminPagesController extends Controller
         ])
         ->find($id);
 
-        return view('pages.productCars', compact('layout', 'user', 'menuHeader', 'dbUsers', 'product', 'productCount'));
+        return view('pages.productCars', compact('layout', 'user', 'menuHeader', 'dbUsers', 'product', 'productsInReviewCount'));
             
     }
 }

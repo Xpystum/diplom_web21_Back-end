@@ -1,5 +1,5 @@
 
-.root 
+:root 
     --status-yellow-background:rgb(101,74,18)
     --status-yellow-background-opacity: rgba(200, 200, 0, 0.3)
     --status-yellow-color: rgba(252, 185, 44, 1)
@@ -519,9 +519,15 @@ main
             width: 100%
       
     & .green
-        background: #009933
+        background: var(--status-green-color)
     & .yellow
-        background: #FF9900
+        background: var(--status-yellow-color)
     & .red
-        background:#FF0000 
+        background: var(--status-red-color)
+    & .blue
+        background: var(--status-blue-color)
+    & .gray
+        background: var(--status-gray-background)
+    & .purple
+        background: var(--status-purple-color)
       

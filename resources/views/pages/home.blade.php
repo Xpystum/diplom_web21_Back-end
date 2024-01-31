@@ -4,15 +4,19 @@
 
     @php
      $usersAll = $adminCount + $banCount + $userCount;
-     $productsAll = $productGreenCount + $productRedCount + $productCount;
+     $productsAll = $productsApprovedCount + $productsRejectedCount + $productsInReviewCount + $productsSalesCount;
 
      $adminProcent= round(($adminCount * 100) / $usersAll, 2);
      $banProcent= round(($banCount * 100) / $usersAll, 2);
      $userProcent= round(($userCount * 100) / $usersAll, 2);
 
-     $productGreenProcent= round(($productGreenCount * 100) / $productsAll, 2);
-     $productRedProcent= round(($productRedCount * 100) / $productsAll, 2);
-     $productProcent= round(($productCount * 100) / $productsAll, 2);
+     $productsApprovedProcent= round(($productsApprovedCount * 100) / $productsAll, 2);
+     $productsRejectedProcent= round(($productsRejectedCount * 100) / $productsAll, 2);
+     $productsInReviewProcent= round(($productsInReviewCount * 100) / $productsAll, 2);
+     $productsSalesProcent= round(($productsSalesCount * 100) / $productsAll, 2);
+     $productsWithdrawnProcent= round(($productsWithdrawnCount * 100) / $productsAll, 2);
+     $productsExpiredProcent= round(($productsExpiredCount * 100) / $productsAll, 2);
+
     @endphp
 
     <h1>HOME</h1>
@@ -29,9 +33,13 @@
           <div class="col">
             <span>Обьявлений: {{ $productsAll }}</span>
             <div class="line">
-              <a href="{{ route('productsGreen') }}" style="height: {{ $productGreenProcent }}%" class="green" title="Опубликовано: {{ $productGreenCount }}"> <span>{{ $productGreenCount }}</span></a>
-              <a href="{{ route('products') }}" style="height: {{ $productProcent }}%" class="yellow" title="На проверке: {{ $productCount }}"> <span>{{ $productCount }}</span></a>
-              <a href="{{ route('productsRed') }}" style="height: {{ $productRedProcent }}%" class="red" title="Скрыто: {{ $productRedCount }}"> <span>{{ $productRedCount }}</span></a>
+              <a href="{{ route('productsApproved') }}" style="height: {{ $productsApprovedProcent }}%" class="green" title="Опубликовано: {{ $productsApprovedCount }}"> <span>{{ $productsApprovedCount }}</span></a>
+              <a href="{{ route('productsInReview') }}" style="height: {{ $productsInReviewProcent }}%" class="yellow" title="На проверке: {{ $productsInReviewCount }}"> <span>{{ $productsInReviewCount }}</span></a>
+              <a href="{{ route('productsRejected') }}" style="height: {{ $productsRejectedProcent }}%" class="red" title="Скрыто: {{ $productsRejectedCount }}"> <span>{{ $productsRejectedCount }}</span></a>
+              <a href="{{ route('productsSales') }}" style="height: {{ $productsSalesProcent }}%" class="blue" title="Продано: {{ $productsSalesCount }}"> <span>{{ $productsSalesCount }}</span></a>
+              <a href="{{ route('null') }}" style="height: {{ $productsWithdrawnProcent }}%" class="gray" title="Cнято с продажи: {{ $productsWithdrawnCount }}"> <span>{{ $productsWithdrawnCount }}</span></a>
+              <a href="{{ route('productsExpired') }}" style="height: {{ $productsExpiredProcent }}%" class="purple" title="Cрок истек: {{ $productsExpiredCount }}"> <span>{{ $productsExpiredCount }}</span></a>
+
             </div>             
           </div>
       </div>
