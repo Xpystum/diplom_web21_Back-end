@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/save-img', [IndexController::class, 'index']);
 
 Route::controller(AdminController::class)->group(function () {
 

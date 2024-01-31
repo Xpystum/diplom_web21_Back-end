@@ -11,7 +11,7 @@ class ReviewImgCollection extends Model
 {
     use HasFactory;
 
-    protected $table = 'img_reviews';
+    public $table = 'img_reviews';
 
 
     public function review_img_collection(): BelongsTo

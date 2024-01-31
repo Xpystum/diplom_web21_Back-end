@@ -3,18 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Action\FilterModel;
+use App\Models\BodyType;
 use App\Models\Brands;
 use App\Models\CategoryProducts;
+use App\Models\DriveUnit;
+use App\Models\Fuel;
 use App\Models\Items_menu;
 use App\Models\Menu;
+use App\Models\Models;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\ReviewImgCollection;
+use App\Models\Transmission;
 use App\Models\User;
 use App\Models\Widgets;
+use App\Models\UserReview;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class IndexController extends Controller
 {   
@@ -147,31 +156,25 @@ class IndexController extends Controller
             // $ProdyctsRelevants = Product::whereBetween('price', [$productsTarget->price - 5000000, $productsTarget->price + 5000000])->get()->dd();
         #endregion
     }
-//ОТЗЫВЫ
-    public function reviews(){
-        return Review::all();
-    }
 
-    public function review(Request $request){
-        $data =  Review::with('brand','model','body_type','fuel','transmission','drive_unit','review_img_collection',)
-            ->where('id', $request->id)
-            ->first();
-         return $data;          
+   
+    public function models(){
+        return Models::all();
     }
+    public function bodyType(){
+        return BodyType::all();
+    }
+    public function fuel(){
+        return Fuel::all();
+    }
+    public function transmission(){
+        return Transmission::all();
+    }
+    public function driveUnit(){
+        return DriveUnit::all();
+    }
+    
 
-    public function allInfoReviews(){
-        $data =  Review::with(
-            'brand',
-            'model',
-            'body_type', 
-            'fuel',
-            'transmission',
-            'drive_unit',
-            'review_img_collection',
-            )
-            ->orderBy('id')
-            ->get();
-         return $data;          
-    }
+    
 }
 
