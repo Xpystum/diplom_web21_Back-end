@@ -13,6 +13,7 @@ use App\Http\Resources\ChatMessageResponseResource;
 use App\Http\Resources\UserResourceChat;
 use App\Models\ChatMessages;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,13 +35,25 @@ class ChatController extends Controller
     }
 
     public function send(ChatMessageFormRequest $request, FindUserByToken $findUserByToken){
+
         $data = $request->validated();
         $message = ChatMessages::create([
             'user_id' => $data['user_id'],
             'message' => $data['message'],
         ]);
+
+        try{
+
+            $user = $findUserByToken->handler($request->bearerToken());
+
+        }catch(Exception  $error){
+
+            return response()
+            ->view('Unauthorized', $data, 401)
+            ->header('Content-Type', 'text/html; charset=utf-8');
+
+        }
         
-        $user = $findUserByToken->handler($request->bearerToken());
         broadcast(new MessageSentEvent($user, $message));
         // смысл возврата теряется, если мы получаем возврат через broadcast (возврат только для request)
         // return ChatMessageResponseResource::make($message);
