@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Actions\CheckTokenUser;
 use App\Actions\FindUserByToken;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -59,9 +62,14 @@ class User extends Authenticatable
         return $this->hasMany(ChatMessages::class);
     }
 
-    public function avatar(): HasOne
+    public function avatar(): BelongsTo
     {
-        return $this->hasOne(Avatar::class, 'avatar_id');
+        return $this->belongsTo(Avatar::class);
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 
 }

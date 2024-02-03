@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
@@ -61,6 +62,11 @@ class Product extends Model
     {
         return $this->hasMany(ImgCollection::class, 'product_id');
     }
+    public function user(): BelongsTo
+    {
+        return $this->BelongsTo(User::class, 'user_id', 'id');
+    }
+    
 
 
     // как объявить и функцию и фасад?
@@ -138,4 +144,5 @@ class Product extends Model
     {
         return $this->hasMany(Favorites::class, 'product_id');
     }
+
 }

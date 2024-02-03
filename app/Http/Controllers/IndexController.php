@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Action\FilterModel;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserResourceChat;
 use App\Models\Avatar;
 use App\Models\Brands;
 use App\Models\CategoryProducts;
@@ -76,12 +77,16 @@ class IndexController extends Controller
     }
     public function product(Request $request){
 
-        $data = Product::with('brand','model','category','color','organisation','drive_unit','transmission','fuel','body_type','imgCollection')
-            ->whereHas('category', function ($query) use ($request) {})
+        //TODO рассмотреть возможность сделать всё через 1 запрос.
+        $product = Product::with('brand','model' ,'category','color','organisation','drive_unit','transmission','fuel','body_type','imgCollection')
             ->where('id', $request->id)
             ->first();
-    
-        return $data;
+        
+        return $data = [
+            'product' => $product,
+            'user' => new UserResourceChat($product->user),
+        ];
+        
     }
 
     public function brands(){
