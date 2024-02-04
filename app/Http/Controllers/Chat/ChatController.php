@@ -46,11 +46,15 @@ class ChatController extends Controller
 
             $user = $findUserByToken->handler($request->bearerToken());
 
+            if($user == null){
+                return response('Unauthorized', 401)
+                ->header('Content-Type', 'text/plain');
+            }
+
         }catch(Exception  $error){
 
-            return response()
-            ->view('Unauthorized', $data, 401)
-            ->header('Content-Type', 'text/html; charset=utf-8');
+            return response('error', 500)
+            ->header('Content-Type', 'text/plain');
 
         }
         

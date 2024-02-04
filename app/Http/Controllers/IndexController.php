@@ -83,7 +83,7 @@ class IndexController extends Controller
             ->first();
         
         return $data = [
-            'product' => $product,
+            'product' => $product,  
             'user' => new UserResourceChat($product->user),
         ];
         

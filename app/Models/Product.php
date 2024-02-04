@@ -63,7 +63,7 @@ class Product extends Model
         return $this->hasMany(ImgCollection::class, 'product_id');
     }
     public function user(): BelongsTo
-    {
+    {   
         return $this->BelongsTo(User::class, 'user_id', 'id');
     }
     
