@@ -34,11 +34,13 @@ class AuthController extends Controller
 
         if($user && Hash::check($request->password, $user->password)){
             $token = $user->createToken('my_token');
+            // dump($token);
+            // dump($user->tokenCan('server:update'));
+            // dd($token->plainTextToken);
             return [
                 'token' => $token->plainTextToken, 
                 'code' => StatusRequestHelper::code('success'),
                 'token_name' => 'my_token',
-                'uid'=> $user->id,
             ];
         }
 

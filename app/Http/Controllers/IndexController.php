@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class IndexController extends Controller
 {   
@@ -77,9 +78,12 @@ class IndexController extends Controller
     public function widgets(){
         return Widgets::all();
     }
-
+//TODO найти токен через findToken        laravel внутрянка
     public function user(Request $request){
-        return User::where('id', $request->id)->first();
+        $token = PersonalAccessToken::findToken($request->my_token)->tokenable_id;
+        $user = User::where('id', $token)->first();
+
+        return $user;
     }
     public function products(){
         return Product::all();
