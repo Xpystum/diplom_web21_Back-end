@@ -76,12 +76,12 @@ Route::post('/ads', function(Request $request){
 // Chat
 Route::controller(ChatController::class)->group(function(){
 
-    Route::get('/chat', 'index');
+    Route::get('/chat', 'index')->name('chat');
 
-    Route::get('/chat/messages', 'messages');
+    Route::get('/chat/messages', 'messages')->name('chat.messages');
 
-    Route::post('/chat/send', 'send');
-
+    Route::post('/chat/send', 'send')->middleware('customthrottle:3, 10')->name('chat.send');
+    
 });
 
 
