@@ -80,8 +80,9 @@ Route::controller(ChatController::class)->group(function(){
 
     Route::get('/chat/messages', 'messages')->name('chat.messages');
 
-    Route::post('/chat/send', 'send')->middleware('customthrottle:3, 10')->name('chat.send');
-    
+    Route::post('/chat/send', 'send')
+    ->middleware('customThrottle:2, 1')->name('chat.send');
+
 });
 
 
