@@ -17,37 +17,32 @@ class CustomThrottleMiddleware extends ThrottleRequests
         throw new RuntimeException('Нету токена, ошибка авторизации');
     }   
   
-
-     /**
-     * Add the limit header information to the given response.
-     *
-     * @param  \Symfony\Component\HttpFoundation\Response  $response
-     * @param  int  $maxAttempts
-     * @param  int  $remainingAttempts
-     * @param  int|null  $retryAfter
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    // protected function addHeaders(Response $response, $maxAttempts, $remainingAttempts, $retryAfter = null){
-    //     $response->headers->add([
-    //         'X-RateLimit-Limit' => $maxAttempts,
-    //         'X-RateLimit-Remaining' => $remainingAttempts,
-    //         'X-RateLimit-Reset' => time() + ($retryAfter ?? 0),
-    //     ]);
-
-    //     if (is_null($retryAfter)) {
-    //         return $response;
-    //     }
-
-    //     $response->headers->add(['Retry-After' => $retryAfter]);
-    //     $response->setStatusCode(429);
-
-    //     return $response;
-    // }
-   
+    protected function getHeaders($maxAttempts,
+    $remainingAttempts,
+    $retryAfter = null,
+    ?Response $response = null){
+        {
+            if ($response &&
+                ! is_null($response->headers->get('X-RateLimit-Remaining')) &&
+                (int) $response->headers->get('X-RateLimit-Remaining') <= (int) $remainingAttempts) {
+                return [];
+            }
     
-
-
-
+            $headers = [
+                'X-RateLimit-Limit' => $maxAttempts,
+                'X-RateLimit-Remaining' => $remainingAttempts,
+            ];
+    
+            if (! is_null($retryAfter)) {
+                $headers['Retry-After'] = $retryAfter;
+                $headers['Access-Control-Expose-Headers'] = 'Retry-After';
+                $headers['X-RateLimit-Reset'] = $this->availableAt($retryAfter);
+            }
+    
+            return $headers;
+        }
+    }
+   
   
    
 }
