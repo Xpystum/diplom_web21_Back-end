@@ -14,6 +14,7 @@ class ChatMessages extends Model
     protected $fillable = [
         'user_id',
         'message',
+        'chatgroup_id',
     ];
 
     public function user(): BelongsTo 

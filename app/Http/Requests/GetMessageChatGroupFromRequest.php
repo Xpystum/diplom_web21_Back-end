@@ -2,20 +2,15 @@
 
 namespace App\Http\Requests;
 
-use App\Actions\CheckTokenUser;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChatMessageFormRequest extends FormRequest
+class GetMessageChatGroupFromRequest extends FormRequest
 {
-    protected $stopOnFirstFailure = true;
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(CheckTokenUser $checkTokenUser): bool
-    {      
-        $token = $this->bearerToken();
-        // return $checkTokenUser->handler($token);
+    public function authorize(): bool
+    {
         return true;
     }
 
@@ -27,8 +22,8 @@ class ChatMessageFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'integer'],
-            'message' => ['required', 'string', 'min:3'],
+            'user_main' => ['required', 'integer'],
+            'user_minor' => ['required', 'integer'],
         ];
     }
 }

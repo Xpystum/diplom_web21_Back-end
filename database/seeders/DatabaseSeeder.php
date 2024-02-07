@@ -56,7 +56,8 @@ class DatabaseSeeder extends Seeder
             ReviewAudiSeeder::class,
             ReviewSeeder::class,    
             AvatarSeeder::class,
-            ChatMessageSeeder::class,
+            ChatMessagesSeeder::class,
+            GroupChatMessageSeeder::class,
         ]);
     }
 }

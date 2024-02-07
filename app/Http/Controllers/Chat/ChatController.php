@@ -3,62 +3,77 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Actions\FindUserByToken;
-use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
-use App\Events\MessageSentEvent;
-use App\Events\ReturnMessageAllEvent;
-use App\Http\Requests\ChatMessageFormRequest;
-use App\Http\Resources\ChatMessageResponse;
+use App\Http\Requests\ChatMessageSendFormRequest;
+use App\Http\Requests\GetMessageChatGroupFromRequest;
 use App\Http\Resources\ChatMessageResponseResource;
-use App\Http\Resources\UserResourceChat;
+use App\Models\ChatGroup;
 use App\Models\ChatMessages;
-use App\Models\User;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
+
 
 class ChatController extends Controller
 {
     public function index(Request $request){
         //брать последнии 100
-        // return $request->bearerToken();
-        // return new UserResourceChat(User::findOrFail(2));
-        return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
+        
+        // return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
     }
 
-    public function messages()
+    public function messages(GetMessageChatGroupFromRequest $request)
     {
-        // broadcast(new ReturnMessageAllEvent());
-        return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
-        // return ChatMessageResponseResource::collection(ChatMessages::all());
+        $data = $request->validated();
+
+        $chatGroup = ChatGroup::where([
+            ['user_main_id' , '=' , "".$data['user_main'] ],
+            ['user_minor_id' , '=' , "".$data['user_minor'] ],
+        ])->firstOr(['id'] , function () {
+            abort(404);
+        });
+        return ChatMessageResponseResource::collection(ChatMessages::where('chatgroup_id', $chatGroup->id)->get());
+
+        // broadcast(new ReturnMessageAllEvent()); не трогать
+        // return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
     }
 
-    public function send(ChatMessageFormRequest $request, FindUserByToken $findUserByToken){
+
+    public function send(ChatMessageSendFormRequest $request, FindUserByToken $findUserByToken){
 
         $data = $request->validated();
-        $message = ChatMessages::create([
-            'user_id' => $data['user_id'],
-            'message' => $data['message'],
-        ]);
+        if($data['chatgroup_id'] == null){
 
-        try{
+            
+            return 'равен null';
 
-            $user = $findUserByToken->handler($request->bearerToken());
 
-            if($user == null){
-                return response('Unauthorized', 401)
-                ->header('Content-Type', 'text/plain');
-            }
-
-        }catch(Exception  $error){
-
-            return response('error', 500)
-            ->header('Content-Type', 'text/plain');
+        }else{
 
         }
+       
+
+        // $message = ChatMessages::create([
+        //     'user_id' => $data['user_id'],
+        //     'message' => $data['message'],
+        // ]);
+
+        // try{
+
+        //     $user = $findUserByToken->handler($request->bearerToken());
+
+        //     if($user == null){
+        //         return response('Unauthorized', 401)
+        //         ->header('Content-Type', 'text/plain');
+        //     }
+
+        // }catch(Exception  $error){
+
+        //     return response('error', 500)
+        //     ->header('Content-Type', 'text/plain');
+
+        // }
         
-        broadcast(new MessageSentEvent($user, $message));
+        // broadcast(new MessageSentEvent($user, $message));
         // смысл возврата теряется, если мы получаем возврат через broadcast (возврат только для request)
         // return ChatMessageResponseResource::make($message);
     }
