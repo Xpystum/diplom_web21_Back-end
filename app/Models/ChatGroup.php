@@ -10,9 +10,12 @@ class ChatGroup extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_main_id',
+        'owner_id',
         'user_minor_id',
     ];
 
+    // protected $guarded = [];
+    
     protected $table = 'chat_group';
+    public $timestamps = false;
 }

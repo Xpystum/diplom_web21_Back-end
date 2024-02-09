@@ -27,7 +27,7 @@ class ChatMessageSendFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_main' => ['required', 'integer'],
+            'owner' => ['required', 'integer'],
             'user_minor' => ['required', 'integer'],
             'message' => ['required', 'string', 'min:3'],
             'chatgroup_id' => ['integer', 'nullable'], 

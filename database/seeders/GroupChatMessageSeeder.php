@@ -14,8 +14,8 @@ class GroupChatMessageSeeder extends Seeder
     public function run(): void
     {
         $messagesDB = [
-            ['id' => 1, 'user_main_id' => 1, 'user_minor_id' => 2],
-            ['id' => 2, 'user_main_id' => 2, 'user_minor_id' => 1],
+            ['id' => 1, 'owner_id' => 1, 'user_minor_id' => 2],
+            ['id' => 2, 'onwer_id' => 2, 'user_minor_id' => 1],
         ];
         DB::table('chat_group')->insert($messagesDB);
         

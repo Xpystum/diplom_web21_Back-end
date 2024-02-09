@@ -40,17 +40,53 @@ class ChatController extends Controller
 
     public function send(ChatMessageSendFormRequest $request, FindUserByToken $findUserByToken){
 
+        //owner кто отправил сообщение
         $data = $request->validated();
         if($data['chatgroup_id'] == null){
-
             
-            return 'равен null';
+          try {
 
+            // $dataChatGroup = ChatGroup::where('owner_id' , '=' , $data['owner'])
+            //                     ->where('user_minor_id' , '=' , $data['user_minor'])->get();
+
+            return $dataChatGroup = ChatGroup::firstOrCreate(
+                ['owner_id' => $data['owner']],
+                ['user_minor_id' => $data['user_minor']],
+            )->firstOr('id', function () {
+
+                //если группа не найдена или другая ошибка
+                return response()->json([
+                    'messages' => 'Ошибка нахождение Группувого чата',
+                ], 404);
+
+            });
+
+          
+           
+            
+
+          } catch (\Throwable $th) {
+
+            return response('Error Group ID', 500)
+            ->header('Content-Type', 'text/plain');
+
+          }
 
         }else{
 
+            try {
+
+                $dataChatGroup = ChatGroup::findOrFail($data['chatgroup_id']);
+                return $dataChatGroup;
+
+            } catch (\Throwable $th) {
+
+                abort(404, 'Error Group ID');
+
+            }
         }
-       
+
+        broadcast(new MessageSentEvent($user, $message));
 
         // $message = ChatMessages::create([
         //     'user_id' => $data['user_id'],

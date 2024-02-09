@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('chat_group', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_main_id')->unsigned()
-                ->unique()->comment('пользователь товара');
+            $table->bigInteger('owner_id')->unsigned()
+                ->comment('пользователь товара');
             $table->bigInteger('user_minor_id')->unsigned()
-                ->unique()->comment('пользователь observ tovar');
+                ->comment('пользователь observ tovar');
         });
     }
 

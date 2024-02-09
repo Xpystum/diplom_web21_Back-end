@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Http\Requests\ChatMessageSendFormRequest;
+use App\Http\Resources\ChatBroadcastResource;
 use App\Http\Resources\ChatMessageResponseResource;
 use App\Models\ChatMessages;
 use App\Models\User;
@@ -21,14 +23,20 @@ class MessageSentEvent implements ShouldBroadcast
     use InteractsWithBroadcasting;
 
     //проверить private
-    public $user;
+    public $owner;
+    public $user_minor;
+    public $chatgroup_id;
     public $message;
 
-    public function __construct(User $user, ChatMessages $message)
-    {
+    public function __construct(ChatBroadcastResource $request)
+    {   
         $this->broadcastVia('pusher');
-        $this->user = $user;
-        $this->message = $message;
+
+        $this->owner = $request->owner;
+        $this->user_minor = $request->user_minor;
+        $this->chatgroup_id = $request->chatgroup_id;
+        $this->message = $request->message;
+
     }
 
     /**
@@ -39,7 +47,7 @@ class MessageSentEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'),
+            new PrivateChannel('chat'.$this->chatgroup_id),
         ];
     }
 
@@ -56,6 +64,8 @@ class MessageSentEvent implements ShouldBroadcast
 
     public function broadcastWith(): array
     {
+
+        //нужно отпрвлять только user_id
         return ChatMessageResponseResource::make($this->message)->resolve();
     }
 }
