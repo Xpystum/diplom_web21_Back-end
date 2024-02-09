@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->enum('moderation_status', ['in_review','approved', 'rejected'])->default('in_review');
+            $table->dropColumn('moderation_status');
         });
     }
 

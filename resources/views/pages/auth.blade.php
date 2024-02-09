@@ -51,7 +51,7 @@
                     formData.append('email', email.value);
                     formData.append('password', password.value);
 
-                    // console.log('40. \n логин: '+email.value +" \n пароль: "+ password.value);
+                    console.log('40. \n логин: '+email.value +" \n пароль: "+ password.value);
 
                     for (let pair of formData.entries()) {
                         console.log('44. \n'+pair[0]+': '+pair[1]);

@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->foreignId('user_id');
-            $table->foreignId('moderation_status_id');
-            $table->integer('looked')->comment("просмотров")->nullable("0");
+            $table->integer('moderation_status_id');
+            $table->integer('looked')->comment("просмотров")->default(0);
             $table->dateTime('raising')->nullable()->comment("повышение до:");
             $table->dateTime('attachment')->nullable()->comment("закреплен до:");
             $table->dateTime('special_accommodation')->nullable()->comment("в карусели до:");

@@ -6,6 +6,7 @@ use App\Action\FilterModel;
 use App\Models\BodyType;
 use App\Models\Brands;
 use App\Models\CategoryProducts;
+use App\Models\Color;
 use App\Models\DriveUnit;
 use App\Models\Fuel;
 use App\Models\Items_menu;
@@ -25,6 +26,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
+use Ramsey\Uuid\Uuid;
 
 class IndexController extends Controller
 {   
@@ -78,7 +80,7 @@ class IndexController extends Controller
     public function widgets(){
         return Widgets::all();
     }
-//TODO найти токен через findToken        laravel внутрянка
+
     public function user(Request $request){
         $token = PersonalAccessToken::findToken($request->my_token)->tokenable_id;
         $user = User::where('id', $token)->first();
@@ -87,6 +89,51 @@ class IndexController extends Controller
     }
     public function products(){
         return Product::all();
+    }
+    public function addproduct(Request $request){
+        $valid = $request->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'price' => 'required',
+            'userId' => 'required',
+            // 'color' => 'required',
+            'fuel' => 'required',
+            'power' => 'required',
+            'status' => 'required',
+        ]);
+
+        $data = [
+            'brand_id'=> $valid['brand'],
+            'model_id'=> $valid['model'],
+            'year' => $valid['year'],
+            'price' => $valid['price'],
+            'user_id' => $valid['userId'],
+            // 'color_id' => $color->id,
+            'fuel_id' => $valid['fuel'],
+            'power' => $valid['power'],
+            'moderation_status_id' => $valid['status'],
+            'category_id' => 1,
+        ];
+        // Создание новой записи в базе данных
+
+        $maxPrice = Product::where('brand_id', $valid['brand'])->where('model_id', $valid['model'])->where('moderation_status_id', 1)->max('price');
+        if($maxPrice * 1.5 > $data['price']){
+            $val = $maxPrice * 1.5." > ".$data['price'].' yes';
+            $data['moderation_status_id'] = 3;
+        }
+        else{
+            $val = $maxPrice * 1.5." > ".$data['price'].' no';
+            $data['moderation_status_id'] = 2; 
+        }
+
+        Product::create($data);
+
+        return response()->json([
+            'message' => 'Успешно создан',
+            'data' => $data, 
+            'valid' => $val,
+        ]);
     }
     public function product(Request $request){
 

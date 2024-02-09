@@ -15,7 +15,41 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
-
+    protected $fillable =[
+        'model_id',
+        'brand_id',
+        'year',
+        'price',
+        'old_price',
+        'mileage',
+        'status',
+        'moderation_status_id',
+        'main_img',
+        'fuel_id',
+        'engine_capacity',
+        'power',
+        'transmission_id',
+        'drive_unit_id',
+        'color_id',
+        'steering_wheel',
+        'generation',
+        'equipment',
+        'vin',
+        'city',
+        'category_id',
+        'wheel_formula',
+        'load_capacity',
+        'vin_body',
+        'body_length',
+        'body_volume',
+        'weight',
+        'desription',
+        'additional',
+        'body_type_id',
+        'user_id',
+        'looked',
+        'organisation_id',
+    ];
     public function category(): BelongsTo
     {
         return $this->belongsTo(CategoryProducts::class, 'category_id');

@@ -48,7 +48,7 @@ Route::controller(IndexController::class)->group(function () {
 
     Route::post('/user', 'user');
     Route::post('/product', 'product');
-
+    Route::post('/addproduct', 'addproduct');
     
     Route::post('/models', 'models');
     Route::post('/body-type', 'bodyType');
