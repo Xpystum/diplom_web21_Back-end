@@ -46,10 +46,8 @@ class ChatController extends Controller
             
           try {
 
-            // $dataChatGroup = ChatGroup::where('owner_id' , '=' , $data['owner'])
-            //                     ->where('user_minor_id' , '=' , $data['user_minor'])->get();
 
-            return $dataChatGroup = ChatGroup::firstOrCreate(
+            $dataChatGroup = ChatGroup::firstOrCreate(
                 ['owner_id' => $data['owner']],
                 ['user_minor_id' => $data['user_minor']],
             )->firstOr('id', function () {
@@ -60,15 +58,14 @@ class ChatController extends Controller
                 ], 404);
 
             });
-
-          
-           
+            $data['chatgroup_id']  = $dataChatGroup->id;
             
 
           } catch (\Throwable $th) {
 
-            return response('Error Group ID', 500)
-            ->header('Content-Type', 'text/plain');
+            return response()->json([
+                'messages' => 'Неизвестная Ошибка',
+            ], 404);
 
           }
 
@@ -76,8 +73,8 @@ class ChatController extends Controller
 
             try {
 
-                $dataChatGroup = ChatGroup::findOrFail($data['chatgroup_id']);
-                return $dataChatGroup;
+                ChatGroup::findOrFail($data['chatgroup_id']);
+
 
             } catch (\Throwable $th) {
 
@@ -86,7 +83,17 @@ class ChatController extends Controller
             }
         }
 
-        broadcast(new MessageSentEvent($user, $message));
+        return ChatMessages::create([
+            'user_id' => $data['owner'],
+            'chatgroup_id' => $data['chatgroup_id'],
+            'message' => $data['message'],
+        ])->FirstOr(['*'], function(){
+            return response()->json([
+                'messages' => 'Ошибка Отправки Сообщение',
+            ], 404);
+        });
+
+        // broadcast(new MessageSentEvent(ChatBroadcastResource::make($data)));
 
         // $message = ChatMessages::create([
         //     'user_id' => $data['user_id'],

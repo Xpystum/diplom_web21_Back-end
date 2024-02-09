@@ -16,7 +16,7 @@ class ChatBroadcastResource extends JsonResource
     {
         return [
             'owner' => $request->owner,
-            'user_minor' => $request->user_minor,
+            // 'user_minor' => $request->user_minor,
             'chatgroup_id' => $request->chatgroup_id,
             'message' => $request->message,
         ];
