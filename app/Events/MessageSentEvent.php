@@ -23,7 +23,7 @@ class MessageSentEvent implements ShouldBroadcast
     use InteractsWithBroadcasting;
 
     //проверить private
-    public $owner;
+    public $user_from_id;
     // public $user_minor;
     public $chatgroup_id;
     public $message;
@@ -32,7 +32,7 @@ class MessageSentEvent implements ShouldBroadcast
     {   
         $this->broadcastVia('pusher');
 
-        $this->owner = $request->owner;
+        $this->user_from_id = $request->user_from_id;
         // $this->user_minor = $request->user_minor;
         $this->chatgroup_id = $request->chatgroup_id;
         $this->message = $request->message;
@@ -67,7 +67,7 @@ class MessageSentEvent implements ShouldBroadcast
 
         //нужно отпрвлять только user_id
         return ChatMessageResponseResource::make([
-            'user_id' => $this->owner,
+            'user_id' => $this->user_from_id,
             'message' => $this->message,
             'chatgroup_id' => $this->chatgroup_id,
         ])->resolve();

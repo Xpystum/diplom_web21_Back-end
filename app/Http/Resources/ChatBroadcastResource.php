@@ -15,8 +15,7 @@ class ChatBroadcastResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'owner' => $request->owner,
-            // 'user_minor' => $request->user_minor,
+            'user_from_id' => $request->user_from_id,
             'chatgroup_id' => $request->chatgroup_id,
             'message' => $request->message,
         ];
