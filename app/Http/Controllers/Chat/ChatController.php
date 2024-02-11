@@ -9,9 +9,9 @@ use App\Http\Requests\GetMessageChatGroupFromRequest;
 use App\Http\Resources\ChatMessageResponseResource;
 use App\Models\ChatGroup;
 use App\Models\ChatMessages;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
@@ -24,15 +24,49 @@ class ChatController extends Controller
     public function messages(GetMessageChatGroupFromRequest $request)
     {
         $data = $request->validated();
+        $idChatGroup = ChatGroup::checkExisistTwoRecordTable($data['user_from_id'], $data['user_to_id']);
 
-        //TODO подумать о реворке название в бд (добавить unique ключ)
-        $chatGroup = ChatGroup::where([
-            ['user_main_id' , '=' , "".$data['user_main'] ],
-            ['user_minor_id' , '=' , "".$data['user_minor'] ],
-        ])->firstOr(['id'] , function () {
-            abort(404);
-        });
-        return ChatMessageResponseResource::collection(ChatMessages::where('chatgroup_id', $chatGroup->id)->get());
+        if( !is_null($idChatGroup) ){
+
+            return ChatMessageResponseResource::collection(ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() );
+
+        }
+
+        return response()->json([
+            'error' => 'Чата Нету.',
+        ], 404);
+
+            // if($data['user_from_id'] != $data['user_to_id']){
+            //     ChatGroup::create([
+
+            //         'user_from_id' => $data['user_from_id'],
+            //         'user_to_id' => $data['user_to_id'],
+    
+            //     ])->firstOr(['*'], function () {
+            //         return response()->json([
+            //             'error' => 'Ошибка Создание Чата',
+            //         ], 404);
+            //     });
+    
+            //     return response()->json([
+            //         'error' => 'Чат Создан',
+            //     ], 200);
+            // }
+
+            // return response()->json([
+            //     'error' => 'Ошибка Создание Чата',
+            // ], 404);
+           
+
+  
+
+        // $chatGroup = ChatGroup::where([
+        //     ['user_main_id' , '=' , "".$data['user_main'] ],
+        //     ['user_minor_id' , '=' , "".$data['user_minor'] ],
+        // ])->firstOr(['id'] , function () {
+        //     abort(404);
+        // });
+        // return ChatMessageResponseResource::collection(ChatMessages::where('chatgroup_id', $chatGroup->id)->get());
 
         // broadcast(new ReturnMessageAllEvent()); не трогать
         // return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();

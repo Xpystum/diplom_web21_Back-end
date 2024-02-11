@@ -10,12 +10,34 @@ class ChatGroup extends Model
     use HasFactory;
 
     protected $fillable = [
-        'owner_id',
-        'user_minor_id',
+        'user_from_id',
+        'user_to_id',
     ];
 
     // protected $guarded = [];
     
-    protected $table = 'chat_group';
+    protected $table = 'chatgroup';
     public $timestamps = false;
+
+    public static function isExistChatGroup(int $user_id){
+
+        if(count(ChatGroup::where('user_id', $user_id)->get()) != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function checkExisistTwoRecordTable(int $user_one, int $user_two) : ?object
+    {
+
+        $data = ChatGroup::where([
+            ['user_from_id', $user_one],
+            ['user_to_id', $user_two],
+        ])->firstOr(['id'], function () {
+            return null;
+        });
+
+        return $data;
+    }
 }

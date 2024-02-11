@@ -22,8 +22,8 @@ class GetMessageChatGroupFromRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_main' => ['required', 'integer'],
-            'user_minor' => ['required', 'integer'],
+            'user_from_id' => ['required', 'integer'],
+            'user_to_id' => ['required', 'integer'],
         ];
     }
 }
