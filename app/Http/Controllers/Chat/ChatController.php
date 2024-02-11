@@ -9,6 +9,7 @@ use App\Http\Requests\ChatMessageSendFormRequest;
 use App\Http\Requests\GetMessageChatGroupFromRequest;
 use App\Http\Resources\ChatBroadcastResource;
 use App\Http\Resources\ChatMessageResponseResource;
+use App\Http\Resources\TestCollection;
 use App\Models\ChatGroup;
 use App\Models\ChatMessages;
 use Illuminate\Database\Query\JoinClause;
@@ -29,13 +30,14 @@ class ChatController extends Controller
         
         $idChatGroup = ChatGroup::checkExisistTwoRecordTable($data['user_from_id'], $data['user_to_id']);
         if( !is_null($idChatGroup) ){
-
-            return ChatMessageResponseResource::collection(ChatMessages::where('chatgroup_id', $idChatGroup->id)->get())->resolve();
+            
+            return (new TestCollection( ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() ) ) );
+            // return ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() )->resolve();
 
         }
 
         return response()->json([
-            'error' => 'Чата Нету.',
+            'success' => false,
         ], 202 );
            
 
@@ -46,6 +48,7 @@ class ChatController extends Controller
     public function send(ChatMessageSendFormRequest $request, FindUserByToken $findUserByToken){
 
         //owner кто отправил сообщение
+
         $data = $request->validated();
         if(!isset($data['chatgroup_id'])){
           try {
@@ -86,9 +89,8 @@ class ChatController extends Controller
         }else{  
 
             try {
-
                 ChatGroup::findOrFail($data['chatgroup_id']);
-
+                
 
             } catch (\Throwable $th) {
 
