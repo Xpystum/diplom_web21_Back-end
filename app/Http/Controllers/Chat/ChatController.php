@@ -25,6 +25,7 @@ class ChatController extends Controller
     {
         $data = $request->validated();
 
+        //TODO подумать о реворке название в бд (добавить unique ключ)
         $chatGroup = ChatGroup::where([
             ['user_main_id' , '=' , "".$data['user_main'] ],
             ['user_minor_id' , '=' , "".$data['user_minor'] ],
