@@ -33,7 +33,6 @@ class MessageSentEvent implements ShouldBroadcast
         $this->broadcastVia('pusher');
 
         $this->user_from_id = $request->user_from_id;
-        // $this->user_minor = $request->user_minor;
         $this->chatgroup_id = $request->chatgroup_id;
         $this->message = $request->message;
 
@@ -47,7 +46,7 @@ class MessageSentEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('chat'.$this->chatgroup_id),
+            new PrivateChannel('chat.'.$this->chatgroup_id),
         ];
     }
 
