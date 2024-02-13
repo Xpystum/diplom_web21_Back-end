@@ -9,6 +9,7 @@ use App\Http\Requests\Sign\StoreRegisterRequest;
 use App\Http\Resources\FavoritesResource;
 use App\Models\Favorites;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -28,9 +29,12 @@ class AuthController extends Controller
     public function authUser(Request $request)
     {       
         $user = User::where('email', $request->email)->first();
+        
 
         if($user && Hash::check($request->password, $user->password)){
             $token = $user->createToken('my_token');
+            Auth::login($user);
+
             return [
                 'token' => $token->plainTextToken, 
                 'code' => StatusRequestHelper::code('success'),
@@ -54,6 +58,10 @@ class AuthController extends Controller
 
         $user = $token->tokenable;
         return true;
+    }
+
+    public function testUser(Request $request){
+        return Auth::user();
     }
 
     public function addFavorite(Request $request){

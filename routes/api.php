@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Broadcasting\BroadcastingAuthController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\AuthToken;
@@ -56,7 +57,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name('auth.RegisterUser');
     Route::post('/auth', 'authUser')->name('auth.LoginUser');
     Route::post('/token', 'tokenUser')->name('auth.TokenUser')->middleware(AuthToken::class);
-
+    Route::post('/testuser', 'testUser')->name('auth.testuser');
 
 
     Route::middleware(AuthToken::class)->group(function () {
@@ -76,14 +77,19 @@ Route::post('/ads', function(Request $request){
 // Chat
 Route::controller(ChatController::class)->group(function(){
 
-    Route::get('/chat', 'index')->name('chat');
+    Route::get('/chat', 'index')->name('chat')->middleware('authToken');
 
     Route::post('/chat/messages', 'messages')->name('chat.messages');
 
     Route::post('/chat/send', 'send');
     // ->middleware('customThrottle:2, 1')->name('chat.send');
 
-});
+    Route::post('/broadcasting/auth', function () {
+        return true;
+     });
+
+})->middleware('authToken');
+Route::post('/custom/broadcasting/auth', [BroadcastingAuthController::class, 'authenticate'])->middleware('authToken');
 
 
 

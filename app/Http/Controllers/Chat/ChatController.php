@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 class ChatController extends Controller
 {
     public function index(Request $request){
+        return 25;
         //брать последнии 100
         
         // return ChatMessageResponseResource::collection(ChatMessages::all())->resolve();
@@ -109,7 +110,7 @@ class ChatController extends Controller
             ], 404);
         });
 
-        broadcast(new MessageSentEvent(ChatBroadcastResource::make($data)));
+        // broadcast(new MessageSentEvent(ChatBroadcastResource::make($data)));
         // $message = ChatMessages::create([
         //     'user_id' => $data['user_id'],
         //     'message' => $data['message'],
