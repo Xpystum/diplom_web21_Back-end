@@ -30,14 +30,18 @@ class ChatGroup extends Model
 
     public static function checkExisistTwoRecordTable(int $user_one, int $user_two) : ?object
     {
-
         $data = ChatGroup::where([
             ['user_from_id', $user_one],
             ['user_to_id', $user_two],
-        ])->firstOr(['id'], function () {
+        ])
+        ->orWhere([
+            ['user_from_id', $user_two],
+            ['user_to_id', $user_one],
+        ])
+        ->firstOr(['id'], function () {
             return null;
         });
-
+        return $data;
         return $data;
     }
 }

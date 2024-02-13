@@ -26,10 +26,16 @@ class ChatController extends Controller
     public function messages(GetMessageChatGroupFromRequest $request)
     {
         $data = $request->validated();
-        
         $idChatGroup = ChatGroup::checkExisistTwoRecordTable($data['user_from_id'], $data['user_to_id']);
+        
         if( !is_null($idChatGroup) ){
-            
+           
+            if(count(ChatMessages::where('chatgroup_id', $idChatGroup->id)->get()) == 0){
+                return response()->json([
+                    'success' => false,
+                ], 202 );
+            }
+
             return (new TestCollection( ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() ) ) );
             // return ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() )->resolve();
 
@@ -46,20 +52,21 @@ class ChatController extends Controller
 
     public function send(ChatMessageSendFormRequest $request, FindUserByToken $findUserByToken){
 
-        //owner кто отправил сообщение
 
         $data = $request->validated();
         if(!isset($data['chatgroup_id'])){
           try {
 
             $idChatGroup = ChatGroup::checkExisistTwoRecordTable($data['user_from_id'], $data['user_to_id']);
+
             if(!is_null($idChatGroup))
             {
-
                 $data['chatgroup_id']  = $idChatGroup->id;
 
             }else{
 
+
+                //Создаём группу
                 $dataChatGroup = ChatGroup::firstOrCreate(
                     ['user_from_id' => $data['user_from_id']],
                     ['user_to_id' => $data['user_to_id']],
@@ -71,8 +78,16 @@ class ChatController extends Controller
                     ], 404);
     
                 });
+
                 $data['chatgroup_id']  = $dataChatGroup->id;
 
+        
+                return response()->json([
+                    'messages' => 'Send',
+                    'chatgroup_id' => $data['chatgroup_id'],
+                ], 200);
+
+                
             }
             
             
@@ -82,18 +97,24 @@ class ChatController extends Controller
             return response()->json([
                 'messages' => 'Неизвестная Ошибка',
             ], 404);
-
           }
 
         }else{  
 
             try {
-                ChatGroup::findOrFail($data['chatgroup_id']);
-                
 
+                ChatGroup::firstOrCreate(
+                [
+                    'user_from_id' => $data['user_from_id'],
+                    'user_to_id' => $data['user_to_id'],
+                ]);
+                
             } catch (\Throwable $th) {
 
-                abort(404, 'Error Group ID');
+                return response()->json([
+                    'messages' => 'Error search group',
+                ], 404);
+    
 
             }
         }
@@ -102,11 +123,8 @@ class ChatController extends Controller
             'user_id' => $data['user_from_id'],
             'chatgroup_id' => $data['chatgroup_id'],
             'message' => $data['message'],
-        ])->FirstOr(['*'], function(){
-            return response()->json([
-                'messages' => 'Ошибка Создание Сообщение',
-            ], 404);
-        });
+        ]);
+
 
         broadcast(new MessageSentEvent($chatMessages));
 
@@ -114,30 +132,6 @@ class ChatController extends Controller
             'messages' => 'Send',
         ], 200);
 
-        // $message = ChatMessages::create([
-        //     'user_id' => $data['user_id'],
-        //     'message' => $data['message'],
-        // ]);
-
-        // try{
-
-        //     $user = $findUserByToken->handler($request->bearerToken());
-
-        //     if($user == null){
-        //         return response('Unauthorized', 401)
-        //         ->header('Content-Type', 'text/plain');
-        //     }
-
-        // }catch(Exception  $error){
-
-        //     return response('error', 500)
-        //     ->header('Content-Type', 'text/plain');
-
-        // }
-        
-        // broadcast(new MessageSentEvent($user, $message));
-        // смысл возврата теряется, если мы получаем возврат через broadcast (возврат только для request)
-        // return ChatMessageResponseResource::make($message);
     }
 
 }

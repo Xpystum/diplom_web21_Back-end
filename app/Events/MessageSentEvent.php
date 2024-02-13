@@ -44,11 +44,10 @@ class MessageSentEvent implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn(): PrivateChannel 
     {
-        return [
-            new PrivateChannel('chat'.$this->chatMessages->chatgroup_id),
-        ];
+        return new PrivateChannel('chat.'.$this->chatMessages->chatgroup_id);
+    
     }
 
     public function broadcastAs(): string
