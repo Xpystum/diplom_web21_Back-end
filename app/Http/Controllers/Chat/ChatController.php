@@ -12,9 +12,8 @@ use App\Http\Resources\ChatMessageResponseResource;
 use App\Http\Resources\TestCollection;
 use App\Models\ChatGroup;
 use App\Models\ChatMessages;
-use Illuminate\Database\Query\JoinClause;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
@@ -99,17 +98,22 @@ class ChatController extends Controller
             }
         }
 
-        return ChatMessages::create([
+        $chatMessages = ChatMessages::create([
             'user_id' => $data['user_from_id'],
             'chatgroup_id' => $data['chatgroup_id'],
             'message' => $data['message'],
         ])->FirstOr(['*'], function(){
             return response()->json([
-                'messages' => 'Ошибка Отправки Сообщение',
+                'messages' => 'Ошибка Создание Сообщение',
             ], 404);
         });
 
-        broadcast(new MessageSentEvent(ChatBroadcastResource::make($data)));
+        broadcast(new MessageSentEvent($chatMessages));
+
+        return response()->json([
+            'messages' => 'Send',
+        ], 200);
+
         // $message = ChatMessages::create([
         //     'user_id' => $data['user_id'],
         //     'message' => $data['message'],

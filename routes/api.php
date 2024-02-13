@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Broadcasting\BroadcastingAuthController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\AuthToken;
@@ -85,22 +86,8 @@ Route::controller(ChatController::class)->group(function(){
 
 });
 
-
-
-
-// Route::get('/token', function(){
-
-//     $user = App\Models\User::where('email', 'test@example.com')->first();
-//     $token = $user->createToken('my_token');
-//     dd($token);
-
-//     /*
-//     $user->password = Hash::make('123');
-//     $user->save();*/
-// });
-
-
-
+//авторизация приватного канала
+Route::post('/custom/broadcasting/auth', [BroadcastingAuthController::class, 'authenticate']);
 
 
 
