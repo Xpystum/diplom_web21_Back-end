@@ -40,13 +40,7 @@ class ChatController extends Controller
             }
 
             return (new TestCollection( ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() ) ) );
-            // return ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() )->resolve();
 
-        }else{
-
-            return [
-                'gtoupChannel' => ($data['user_from_id'] + $data['user_to_id']),
-            ];
         }
 
         return response()->json([
@@ -86,10 +80,8 @@ class ChatController extends Controller
 
                 $data['chatgroup_id']  = $dataChatGroup->id;
                 
-                
-                //логика для liftime обновление групп
-                // $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_to_id']);
-                // broadcast(new GroupChatMessageEvent($data['chatgroup_id'], $groupChat ));
+                $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_to_id']);
+                broadcast(new GroupChatMessageEvent($data['user_to_id'],  $groupChat));
 
         
                 return response()->json([
@@ -152,21 +144,11 @@ class ChatController extends Controller
 
     public function returnNewGroupChat(AllChatGroupRequest $request){
 
-        // $data = $request->validated();
-        // $groupChat = ChatGroup::find($data['groupChat_id']);
+        $data = $request->validated();
+        $groupChat = ChatGroup::find($data['user_id']);
+        $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_id']);
 
-        // $groupChat = $groupChat->map(function (ChatGroup $chatGroup) use ($data) {
-
-        //     $userIdToUse = $chatGroup->user_from_id == $data['user_id'] ? $chatGroup->user_to_id : $chatGroup->user_from_id;
-    
-        //     return [
-        //         "id" => $chatGroup->id,
-        //         "user_id" => $userIdToUse,
-        //     ];
-
-        // });
-
-        // broadcast(new GroupChatMessageEvent($groupChat));
+        broadcast(new GroupChatMessageEvent($data['user_id'] , $groupChat));
 
         return [
             'message' => 'succes',

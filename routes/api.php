@@ -85,6 +85,10 @@ Route::controller(ChatController::class)->group(function(){
 
     Route::post('/chat/allgroup', 'allChatGroupUser');
 
+    Route::post('/chat/observgroupnew', 'returnNewGroupChat');
+    
+
+
 });
 
 //авторизация приватного канала
