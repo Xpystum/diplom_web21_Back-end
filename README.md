@@ -26,7 +26,7 @@
             Логин: admin@example.com
             Пароль: admin
         *ban*
-             Логин: bad_man@example.com
+            Логин: bad_man@example.com
             Пароль: banMan
 
 ## пример админки

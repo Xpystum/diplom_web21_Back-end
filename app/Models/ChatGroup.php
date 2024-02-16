@@ -10,6 +10,7 @@ class ChatGroup extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'user_from_id',
         'user_to_id',
     ];
@@ -42,6 +43,31 @@ class ChatGroup extends Model
             return null;
         });
         return $data;
-        return $data;
+    }
+
+    public static function returnAllGroupUser(int $user_id){
+
+        $groupChat = ChatGroup::where('user_from_id', $user_id)
+        ->orWhere('user_to_id', $user_id)->get();
+        return $groupChat;
+
+    }
+
+    public static function returnAllGroupChatToUser(int $userId){
+
+        $groupChat = ChatGroup::returnAllGroupUser($userId);
+
+        $groupChat = $groupChat->map(function (ChatGroup $chatGroup) use ($userId) {
+
+            $userIdToUse = $chatGroup->user_from_id == $userId ? $chatGroup->user_to_id : $chatGroup->user_from_id;
+    
+            return [
+                "id" => $chatGroup->id,
+                "user_id" => $userIdToUse,
+            ];
+
+        });
+
+        return $groupChat;
     }
 }

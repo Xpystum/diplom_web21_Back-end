@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('chat.{chatgroup_id}', ChatChannel::class);
+
+Broadcast::channel('chatGroup.{chatgroup_id}', ChatChannel::class);

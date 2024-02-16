@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Actions\FindUserByToken;
+use App\Events\GroupChatMessageEvent;
 use App\Events\MessageSentEvent;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AllChatGroupRequest;
 use App\Http\Requests\ChatMessageSendFormRequest;
 use App\Http\Requests\GetMessageChatGroupFromRequest;
 use App\Http\Resources\ChatBroadcastResource;
 use App\Http\Resources\ChatMessageResponseResource;
 use App\Http\Resources\TestCollection;
+use App\Http\Resources\UserGroupChatRecource;
 use App\Models\ChatGroup;
 use App\Models\ChatMessages;
 use App\Models\User;
@@ -39,6 +42,11 @@ class ChatController extends Controller
             return (new TestCollection( ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() ) ) );
             // return ChatMessageResponseResource::collection( ChatMessages::where('chatgroup_id', $idChatGroup->id)->get() )->resolve();
 
+        }else{
+
+            return [
+                'gtoupChannel' => ($data['user_from_id'] + $data['user_to_id']),
+            ];
         }
 
         return response()->json([
@@ -46,13 +54,10 @@ class ChatController extends Controller
         ], 202 );
            
 
-        // broadcast(new ReturnMessageAllEvent()); не трогать
     }
 
-
     public function send(ChatMessageSendFormRequest $request, FindUserByToken $findUserByToken){
-
-
+        
         $data = $request->validated();
         if(!isset($data['chatgroup_id'])){
           try {
@@ -80,6 +85,11 @@ class ChatController extends Controller
                 });
 
                 $data['chatgroup_id']  = $dataChatGroup->id;
+                
+                
+                //логика для liftime обновление групп
+                // $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_to_id']);
+                // broadcast(new GroupChatMessageEvent($data['chatgroup_id'], $groupChat ));
 
         
                 return response()->json([
@@ -103,11 +113,6 @@ class ChatController extends Controller
 
             try {
 
-                ChatGroup::firstOrCreate(
-                [
-                    'user_from_id' => $data['user_from_id'],
-                    'user_to_id' => $data['user_to_id'],
-                ]);
                 
             } catch (\Throwable $th) {
 
@@ -132,6 +137,40 @@ class ChatController extends Controller
             'messages' => 'Send',
         ], 200);
 
+    }
+
+    public function allChatGroupUser(AllChatGroupRequest $request){
+
+        $data = $request->validated();
+        $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_id']);
+    
+        // broadcast(new GroupChatMessageEvent( $data['user_id'] , $groupChat));
+
+        return UserGroupChatRecource::collection($groupChat)->resolve();
+
+    }
+
+    public function returnNewGroupChat(AllChatGroupRequest $request){
+
+        // $data = $request->validated();
+        // $groupChat = ChatGroup::find($data['groupChat_id']);
+
+        // $groupChat = $groupChat->map(function (ChatGroup $chatGroup) use ($data) {
+
+        //     $userIdToUse = $chatGroup->user_from_id == $data['user_id'] ? $chatGroup->user_to_id : $chatGroup->user_from_id;
+    
+        //     return [
+        //         "id" => $chatGroup->id,
+        //         "user_id" => $userIdToUse,
+        //     ];
+
+        // });
+
+        // broadcast(new GroupChatMessageEvent($groupChat));
+
+        return [
+            'message' => 'succes',
+        ];
     }
 
 }

@@ -82,7 +82,8 @@ Route::controller(ChatController::class)->group(function(){
     Route::post('/chat/messages', 'messages')->name('chat.messages');
 
     Route::post('/chat/send', 'send');
-    // ->middleware('customThrottle:2, 1')->name('chat.send');
+
+    Route::post('/chat/allgroup', 'allChatGroupUser');
 
 });
 
