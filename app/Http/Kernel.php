@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\tokenAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'authToken' => \App\Http\Middleware\AuthToken::class,
         // 'throttle' => \App\Http\Middleware\CustomThrottleMiddleware::class,
         'customThrottle' => \App\Http\Middleware\CustomThrottleMiddleware::class,
+        'tokenAuth' => \App\Http\Middleware\tokenAuth::class,
     ];
 }

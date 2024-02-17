@@ -86,10 +86,9 @@ Route::controller(ChatController::class)->group(function(){
     Route::post('/chat/allgroup', 'allChatGroupUser');
 
     Route::post('/chat/observgroupnew', 'returnNewGroupChat');
-    
 
 
-});
+})->middleware('tokenAuth');
 
 //авторизация приватного канала
 Route::post('/custom/broadcasting/auth', [BroadcastingAuthController::class, 'authenticate']);

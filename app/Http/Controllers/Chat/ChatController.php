@@ -79,12 +79,10 @@ class ChatController extends Controller
     
                 });
 
-                return $dataChatGroup;
                 $data['chatgroup_id']  = $dataChatGroup->id;
                 
                 $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_to_id']);
                 broadcast(new GroupChatMessageEvent($data['user_to_id'],  $groupChat));
-
         
                 return response()->json([
                     'messages' => 'Send',
