@@ -16,7 +16,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $table = 'reviews';
+    public $table = 'reviews';
 
     public function users(): BelongsTo
     {

@@ -1,3 +1,29 @@
+
+:root 
+    --status-yellow-background:rgb(101,74,18)
+    --status-yellow-background-opacity: rgba(200, 200, 0, 0.3)
+    --status-yellow-color: rgba(252, 185, 44, 1)
+ 
+    --status-green-background:rgb(10,74,22)
+    --status-green-background-opacity: rgba(0, 200, 0, 0.3)
+    --status-green-color: rgba(28, 187, 140, 1)
+
+    --status-red-background:rgb(102,24,38)
+    --status-red-background-opacity: rgba(200, 0, 0, 0.3)
+    --status-red-color: rgba(255, 61, 96, 1)
+
+    --status-blue-background:rgb(20,24,92)
+    --status-blue-background-opacity:rgba(0, 0, 200, 0.3)
+    --status-blue-color: rgba(61, 96, 255, 1)
+
+    --status-gray-background:rgb(150,150,150)
+    --status-gray-background-opacity: rgba(200, 0, 0, 0.3)
+    --status-gray-color: rgba(50, 50, 50, 1)
+
+    --status-purple-background:rgb(80,24,92)
+    --status-purple-background-opacity: rgba(200, 0, 200, 0.3)
+    --status-purple-color: rgba(255, 96, 255, 1)
+
 *
     padding: 0
     margin: 0
@@ -156,9 +182,17 @@ footer
     padding: 5px
     margin-right: auto 
     margin-left: auto
-table
-    border-collapse: collapse
-    
+.price
+
+    position: relative
+    & .old_price
+        position: absolute
+        top: 15px
+        left: 0
+.table
+    --bs-table-color: #fff
+    --bs-table-bg: transparent
+    margin-bottom: 0px
     
     
     font-size: 1.6rem
@@ -173,51 +207,65 @@ table
             border-right: 1px solid 
             border-bottom: 2px solid
             border-color: #2d3448
+            &:first-child
+                border-left: none 
+            &:last-child
+                border-right: none 
     & tbody
         & tr
             border-bottom: 2px solid #2d3448
-            // &:nth-child(2n)
-            //     background: #005f73
-            // &:nth-child(2n+1)
-            //     background: #023047
+            &:last-child
+                border-color: #252b3b
+            
                 
         & td
             text-align: center
+            vertical-align: middle
             padding: 5px 10px
-            & button
-                background: #ccc
+            & button,
+            & a
+                display: inline-block
+                background: transparent
                 border: none
                 width: 20px
                 height: 20px
+                line-height: 20px
                 border-radius: 2px
                 transition: 0.1s ease
+
                 &:hover
+                    transform: scale(1.1)
                     transition: 0.1s ease
-                &.change
-                    background: #aa0
-                    color: rgba(0, 0, 0, 0.7)
+                &.revise
+                    color:#0aa
                     &:hover
-                        background: #ff0
-                        color: #000
+                        color:#0ff
                     &:active
-                        background: #660
-                        color: rgba(0, 0, 0, 0.3)
+                        color: #066
+                &.change
+                    color: #aa0
+                    &:hover
+                        color: #ff0
+                    &:active
+                        color: #660
                         
                 &.remove
-                    background: #a00
-                    color: rgba(255, 255, 255, 0.7)
+                    color: #a00
                     &:hover
-                        background: #f00
-                        color: #fff
+                        color: #f00
                     &:active
-                        background: #600
-                        color: rgba(255, 255, 255, 0.3)
+                        color: #600
             & > div
                 position: relative
                 overflow: hidden
                 height: 100px
                 width: 120px
-
+                transition: 0.1s ease
+                margin: 0 auto
+                &:hover
+                    transform: scale(2)
+                    z-index: 10
+                    transition: 0.1s ease
             & .product__img
                 position: absolute
                 top: 50%
@@ -228,59 +276,258 @@ table
                 width: auto
                 height: auto
                 object-fit: cover
+                
             & .product__no-img
                 line-height: 100px
                 height: 100%
                 width: 100%
                 background: radial-gradient(#000 10%, transparent 70%)
-            & select
-                color: rgba(0, 0, 0, 0.7)
-                padding: 2px 5px
-                border-radius: 4px
-                
-                
-                text-transform: capitalize
-                
-                &.form-select
-                    padding: 2px 5px
-                    font-size: 1.4rem
-                    border: none
-                    outline: none
-                    &:focus
-                        box-shadow: none
-                &.user,
-                &.in_review,
-                & option[value="in_review"],
-                & option[value="user"]
-                    
-                    background: #654a12
-                    color: rgba(252, 185, 44, 1)
-                &.admin,
-                &.approved,
-                & option[value="admin"],
-                & option[value="approved"]
-                    background: #0b4b38
-                    color: rgba(28, 187, 140, 1)
-                &.ban,
-                &.rejected,
-                & option[value="ban"],
-                & option[value="rejected"]
-                    background: #661826
-                    color: rgba(255, 61, 96, 1)
-                & option
-                    text-align: center
-                    
-                    background: #0d121e
-                    color: #fff
-                    border-radius: 10px
+form
+    &.form
+        &__status
+            display: flex
+            justify-content: center
+            & button
+                font-size: 1.6rem
+            
+select
+    color: rgba(0, 0, 0, 0.7)
+    padding: 2px 5px
+    border-radius: 4px
+    text-transform: capitalize
+    
+    &.form-select
+        padding: 2px 5px
+        font-size: 1.4rem
+        border: none
+        outline: none
+        &:focus
+            box-shadow: none
+    &.user,
+    &.in_review,
+    & option[value="3"],
+    & option[value="user"]
+        
+        background: var(--status-yellow-background)
+        color: var(--status-yellow-color)
+    &.admin,
+    &.approved,
+    &.included,
+    & option[value="admin"],
+    & option[value="1"]
+        background: var(--status-green-background)
+        color: var(--status-green-color)
+    &.ban,
+    &.rejected,
+    &.turned_off,
+    & option[value="ban"],
+    & option[value="2"]
+        background: var(--status-red-background)
+        color: var(--status-red-color)
+    & option[value="4"]
+        background: var(--status-blue-background)
+        color: var(--status-blue-color)
+    & option[value="5"] 
+        background: var(--status-gray-background)
+        color: var(--status-gray-color)
+    & option[value="6"] 
+        background: var(--status-purple-background)
+        color: var(--status-purple-color)
+    & option
+        text-align: center
+        background: #0d121e
+        color: #fff
+        border-radius: 10px
+
+main
+    font-size: 1.6rem
+.flex
+    display: flex
+    & .card
+        &__info
+            margin-left: 10px 
+.carousel-inner
+    width: 450px
+.carousel-item
+    min-height: 400px
+
+.back
+    color: rgb(133, 144, 165)
+    background: #2b3244
+    padding: 1px 20px 0 10px 
+    border-radius: 30px
+    transition: 0.1s ease
+    &:hover
+        background: #4f5d80
+        transition: 0.1s ease
+    &:active
+        background: #2b3244
+.img
+    width: 100%
+    height: 100%
+    display: block
+    object-fit: cover
+    border-radius: 6px
+    overflow: hidden
+    &__wrap
+        flex-basis: 272px
+        width: 450px
+        height: 400px
+        position: relative
+        overflow: hidden
+        border-radius: 6px
+        
+
+    
 ::selection
   background: rgba(255, 255, 255, 0.5)
   color: #000
 
 ::-moz-selection 
   background: rgba(255, 255, 255, 0.5)
-  color: #000               
-                    
-                    
+  color: #000                           
+.status
+    padding: 2px 10px
+    &-wrap
+        display: inline-block
+        text-align: center
+        overflow: hidden
+        border-radius: 30px
+        min-width: 200px
+        box-shadow: inset 0 0 1px #fff
+    &-3,
+    &-user,
+    option[value="in_review"],
+    option[value="user"]
+        background: rgba(200, 200, 0, 0.3)
+        color: rgba(252, 185, 44, 1)
+    &-admin,
+    &-1,
+    option[value="admin"],
+    option[value="approved"]
+        background: rgba(0, 200, 0, 0.3)
+        color: rgba(28, 187, 140, 1)
+    &-ban,
+    &-2,
+    option[value="ban"],
+    option[value="rejected"]
+        background: rgba(200, 0, 0, 0.3)
+        color: rgba(255, 61, 96, 1)
+    &-4
+        background: rgba(0, 0, 200, 0.3)
+        color: rgba(61, 96, 255, 1)
+    &-5
+        background: rgba(150, 150, 150, 1)
+        color: rgba(50, 50, 50, 1)
+    &-6
+        background: rgba(200, 0, 200, 0.3)
+        color: rgba(255, 96, 255, 1)
+    
 
-                    
+.accordion
+    background: transparent
+    &-item
+        background: transparent
+        border: none
+    &-button
+        background: transparent
+        color: rgba(133, 144, 165, 0.5)
+        font-size: 1.6rem
+        &::after
+            content: '\f107'
+            font-weight: 900
+            font-family: 'Font Awesome 6 Free'
+        &:not(.collapsed)
+            color: rgba(133, 144, 165, 1)
+            background: transparent
+            box-shadow: none
+        &.active
+            color: rgba(133, 144, 165, 1)
+            background: transparent
+            box-shadow: none
+            border-radius: 50px
+            box-shadow: 0 0 5px #0d121e
+.pagination
+    border: 1px solid #4d5974
+    border-radius: 10px 
+    overflow: hidden
+    --bs-pagination-bg: transparent
+    --bs-pagination-active-bg: #1d222e
+    --bs-pagination-active-border-color: #2b3244
+    --bs-pagination-disabled-bg: #1d222e
+    --bs-pagination-disabled-border-color: #2b3244
+    --bs-pagination-disabled-color: rgba(255,255,255,0.1)
+    --bs-pagination-border-color: #4d5974
+    --bs-pagination-hover-bg: rgba(106, 118, 150, 0.4)
+    --bs-pagination-focus-box-shadow: transparent
+    & .page-item
+        user-select: none
+        &:first-child > .page-link
+            border-left: none
+        &:last-child > .page-link
+            border-right: none
+        & .page-link
+            border: none
+            border-left: 1px solid #4d5974
+            border-right: 1px solid #4d5974
+
+            font-size: 1.2rem
+            
+        & span.page-link
+            color: #4d5974
+        & a.page-link
+            color: #fff
+.name
+    margin: 0
+.bell
+    color: #fff
+    position: relative
+    font-size: 2rem
+    margin-right: 20px 
+    & span
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        top: -0.6rem
+        right: -1rem
+        min-width: 2.1rem
+        height: 2.1rem
+        border-radius: 50%
+        background: #f00
+        font-size: 1rem
+        & p
+            margin: 0
+
+.line
+    background: rgba(255, 255, 255, .1)
+    display: flex
+    height: 250px
+    width: 100px
+    padding: 0 10px
+    align-items: flex-end
+    & a
+        display: block
+        position: relative
+        text-align: center
+        color: #fff
+        width: 200px
+        & span
+            position: absolute
+            top: -2.4rem
+            left: 0
+            width: 100%
+      
+    & .green
+        background: var(--status-green-color)
+    & .yellow
+        background: var(--status-yellow-color)
+    & .red
+        background: var(--status-red-color)
+    & .blue
+        background: var(--status-blue-color)
+    & .gray
+        background: var(--status-gray-background)
+    & .purple
+        background: var(--status-purple-color)
+      

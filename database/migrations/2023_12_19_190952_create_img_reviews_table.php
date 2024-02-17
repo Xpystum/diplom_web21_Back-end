@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('review_id');
 
             $table->string('resource')->comment('путь до картинки');
+            $table->timestampsTz();
         });
     }
 

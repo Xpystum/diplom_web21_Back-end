@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('img_src')->comment('Путь Картинки');
             $table->string('engine')->comment('Двигатель');
-            $table->integer('power')->comment('Мощность');
+            $table->string('power')->comment('Мощность')->nullable();
             $table->string('transmission')->comment('Коробка Передач')->nullable();
             $table->string('drive_unit')->comment('Привод')->nullable();    
             $table->string('color')->comment('Цвет');
