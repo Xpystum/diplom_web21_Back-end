@@ -60,10 +60,50 @@ class AdminController extends Controller
         
         return redirect()->back();
     }
-    public function updateWidgetStatus(Request $request, $id)
+
+    public function updateWidgetStatusMain(Request $request, $id)
+    {
+        $widget = Widgets::findOrFail($id);
+        $widget->status_main = $request->input('status');
+        $widget->save();
+
+        return redirect()->back();
+    }
+    public function saveWidgetPositionMain(Request $request, $id)
+    {
+        $widget = Widgets::findOrFail($id);
+        $widget->position_main = $request->input('position');
+        $widget->status_main = null;
+        $widget->save();
+    }
+    public function updateWidgetStatusProduct(Request $request, $id)
     {
         $widget = Widgets::find($id);
-        $widget->status = $request->status;
+        $widget->status_product = $request->input('status');
+        $widget->save();
+
+        return redirect()->back();
+    }
+    public function updateWidgetStatusListProducts(Request $request, $id)
+    {
+        $widget = Widgets::find($id);
+        $widget->status_list_products = $request->input('status');
+        $widget->save();
+
+        return redirect()->back();
+    }
+    public function updateWidgetStatusCatalog(Request $request, $id)
+    {
+        $widget = Widgets::find($id);
+        $widget->status_catalog = $request->input('status');
+        $widget->save();
+
+        return redirect()->back();
+    }
+    public function updateWidgetStatusClientCabinet(Request $request, $id)
+    {
+        $widget = Widgets::find($id);
+        $widget->status_client_cabinet = $request->input('status');
         $widget->save();
 
         return redirect()->back();

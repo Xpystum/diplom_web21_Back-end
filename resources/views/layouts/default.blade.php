@@ -86,16 +86,25 @@
     </script>
     <script>
         // Находим все формы с классом "form__status"
-        var statusForms = document.querySelectorAll('.form__status');
+        let statusForms = document.querySelectorAll('.form__status');
     
         // Обрабатываем отправку каждой формы
         statusForms.forEach(function(form) {
-            var statusSelect = form.querySelector('select');
-    
-            statusSelect.addEventListener('change', function() {
-                form.submit();
-            });
+            let statusSelect = form.querySelector('select');
+            let checkbox = form.querySelector('input[type="checkbox"]');
+
+            if(statusSelect){
+                statusSelect.addEventListener('change', function() {
+                    form.submit();
+                });
+            }
+            if(checkbox){
+                checkbox.addEventListener('change', function() {
+                    form.submit();   
+                }); 
+            }
         });
+        
     </script>
     <script>
         // Находим все кнопки с классом "remove"

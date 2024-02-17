@@ -8,7 +8,7 @@
             background-image: url("{{ asset('storage/images/admin/logo.png') }}");
         }
     </style>
-    
+    {{-- {{ route('login') }} --}}
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <h3>Авторизация</h3>
@@ -37,14 +37,10 @@
         <button type="submit">Войти</button>
     </form>
     <script>
-
         function Check(){
-            //  
             let email = document.querySelector('#email');
             let password = document.querySelector('#password');
             let validation = true;
-            
-
 
                 if(validation){
                     let formData = new FormData();

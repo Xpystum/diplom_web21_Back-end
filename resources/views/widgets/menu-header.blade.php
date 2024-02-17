@@ -7,10 +7,10 @@
                     <i class="fa-solid fa-diagram-successor"></i><span class="text-menu">Модульная сетка</span>
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse @if(Request::url() == route('widgets')) show @endif" data-bs-parent="#accordion">
+            <div id="collapseOne" class="accordion-collapse collapse @if(Request::url() == route('widgets') || Request::url() == route('widgetsMain') || Request::url() == route('widgetsProduct')) show @endif" data-bs-parent="#accordion">
                 <ul class="accordion-body">
-                    <li><a href="{{ route('widgets') }}" class="@if(Request::url() == route('widgets')) active @endif"><i class="fa-solid fa-house"></i><span class="text-menu">Главная</span></a></li>
-                    <li><a href="{{ route('widgets') }}" class="@if(Request::url() == route('widgets')) active @endif"><i class="fa-solid fa-store"></i><span class="text-menu">Список Продуктов</span></a></li>
+                    <li><a href="{{ route('widgetsMain') }}" class="@if(Request::url() == route('widgetsMain')) active @endif"><i class="fa-solid fa-house"></i><span class="text-menu">Главная</span></a></li>
+                    <li><a href="{{ route('widgetsProduct') }}" class="@if(Request::url() == route('widgetsProduct')) active @endif"><i class="fa-solid fa-store"></i><span class="text-menu">Список Продуктов</span></a></li>
                     <li><a href="{{ route('widgets') }}" class="@if(Request::url() == route('widgets')) active @endif"><i class="fa-solid fa-house-user"></i><span class="text-menu">Личный кабинет</span></a></li>
                 </ul>
             </div>
@@ -21,13 +21,13 @@
                     <i class="fa-solid fa-cart-flatbed"></i><span class="text-menu">Товары</span>
                 </button>
             </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse @if(Request::url() == route('productsInReview') || Request::url() == route('productsApproved') || Request::url() == route('productsRejected')) show @endif" data-bs-parent="#accordion">
+            <div id="collapseTwo" class="accordion-collapse collapse @if(Request::url() == route('productsInReview') || Request::url() == route('productsApproved') || Request::url() == route('productsRejected')  || Request::url() == route('productsWithdrawn') || Request::url() == route('productsSales') || Request::url() == route('productsExpired')) show @endif" data-bs-parent="#accordion">
             <ul class="accordion-body">
                 <li><a href="{{ route('productsApproved') }}" class="@if(Request::url() == route('productsApproved')) active @endif"><i class="fa-solid fa-circle-check"></i><span class="text-menu">Одобренные</span></a></li>
                 <li><a href="{{ route('productsInReview') }}" class="@if(Request::url() == route('productsInReview')) active @endif"><i class="fa-solid fa-circle-question"></i><span class="text-menu">В ожидании</span></a></li>
                 <li><a href="{{ route('productsRejected') }}" class="@if(Request::url() == route('productsRejected')) active @endif"><i class="fa-solid fa-circle-xmark"></i><span class="text-menu">Отложенные</span></a></li>
                 <li><a href="{{ route('productsSales') }}" class="@if(Request::url() == route('productsSales')) active @endif"><i class="fa-solid fa-money-bill"></i><span class="text-menu">Проданные</span></a></li>
-                <li><a href="{{ route('productsWithdrawn') }}" class="@if(Request::url() == route('productsSales')) active @endif"><i class="fa-brands fa-creative-commons-nc"></i><span class="text-menu">Снят с продажи</span></a></li>
+                <li><a href="{{ route('productsWithdrawn') }}" class="@if(Request::url() == route('productsWithdrawn')) active @endif"><i class="fa-brands fa-creative-commons-nc"></i><span class="text-menu">Снят с продажи</span></a></li>
                 <li><a href="{{ route('productsExpired') }}" class="@if(Request::url() == route('productsExpired')) active @endif"><i class="fa-solid fa-calendar-xmark"></i><span class="text-menu">Истекшие</span></a></li>
             </ul>
             </div>
@@ -46,8 +46,8 @@
             </ul>
             </div>
         </li>
-        <li><a href="{{ route('database') }}" class="@if(Request::url() == route('database')) active @endif"><i class="fa-solid fa-database"></i><span class="text-menu">База данных</span></a></li>
+        {{-- <li><a href="{{ route('database') }}" class="@if(Request::url() == route('database')) active @endif"><i class="fa-solid fa-database"></i><span class="text-menu">База данных</span></a></li>
         <li><a href="{{ route('null') }}" class="@if(Request::url() == route('null')) active @endif"><i class="fa-solid fa-comment"></i><span class="text-menu">Комментарии</span></a></li>
-        <li><a href="{{ route('null') }}" class="@if(Request::url() == route('null')) active @endif"><i class="fa-solid fa-pen-ruler"></i><span class="text-menu">123</span></a></li>
+        <li><a href="{{ route('null') }}" class="@if(Request::url() == route('null')) active @endif"><i class="fa-solid fa-pen-ruler"></i><span class="text-menu">123</span></a></li> --}}
     </ul> 
 @endsection

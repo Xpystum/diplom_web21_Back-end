@@ -21,16 +21,10 @@ class DatabaseSeeder extends Seeder
             'cash' => 1000000,
             'city' => 'Нижний Новгород',
         ]);
-        \App\Models\User::factory(15)->create([
-            'status' => 'ban',
-            'password' => Hash::make('banMan'),
-        ]);
-        \App\Models\User::factory(150)->create([]);
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        
         \App\Models\User::factory()->create([
             'name' => 'Bad Man',
             'email' => 'bad_man@example.com',
@@ -38,6 +32,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('banMan'),
         ]);
 
+        \App\Models\User::factory(150)->create([]);
+
+        \App\Models\User::factory(15)->create([ 'status' => 'ban' ]);
+        
+        
+        
         $this->call([
             MenuSeeder::class,
             MenuitemsSeeder::class,

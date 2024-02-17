@@ -62,6 +62,36 @@ class AdminPagesController extends Controller
                 'productsInReviewCount'
             ));
     }
+    public function widgetsMain(){
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        $widgets = Widgets::all()->sortBy('id');
+        $layout=$this->layout;
+        $menuHeader = view('widgets.menu-header', compact('user','productsInReviewCount'));
+
+        return view('pages.widgetsMain', 
+        compact('layout', 
+                'user', 
+                'menuHeader', 
+                'widgets',
+                'productsInReviewCount'
+            ));
+    }
+    public function widgetsProduct(){
+        $user = Auth::user();
+        $productsInReviewCount = Product::where('moderation_status_id', 3)->count();
+        $widgets = Widgets::all()->sortBy('id');
+        $layout=$this->layout;
+        $menuHeader = view('widgets.menu-header', compact('user','productsInReviewCount'));
+
+        return view('pages.widgetsProduct',
+        compact('layout', 
+                'user', 
+                'menuHeader', 
+                'widgets',
+                'productsInReviewCount'
+            ));
+    }
     // .. ТОВАРЫ статусы:
     // идут показы
     public function productsApproved(){

@@ -24,20 +24,39 @@ Route::controller(AdminController::class)->group(function () {
 
     Route::get('/login', 'showLoginForm')->name('login');
 
-    Route::put('/product/{id}/update-status', 'updateProductStatus')->name('update-product-status');
-    Route::put('/user/{id}/update-user-status', 'updateUserStatus')->name('update-user-status');
-    Route::put('/widgets/{id}/update-widget-status', 'updateWidgetStatus')->name('update-widget-status');
-
     Route::post('/product-queue', 'productQueue')->name('productQueue');
     Route::post('/login', 'login');
     Route::post('/logout', 'logout')->name('logout');
     Route::post('/check-user', 'checkUser')->name('checkUser');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::put('/product/{id}/update-status', 'updateProductStatus')->name('update-product-status');
+        Route::put('/user/{id}/update-user-status', 'updateUserStatus')->name('update-user-status');
+    
+        Route::put('/widgets/{id}/update-widget-status-main', 'updateWidgetStatusMain')->name('update-widget-status-main');
+        Route::get('/widgets/{id}/save-widget-position-main', 'saveWidgetPositionMain')->name('save-widget-position-main');
+
+        Route::put('/widgets/{id}/update-widget-status-product', 'updateWidgetStatusProduct')->name('update-widget-status-product');
+
+        Route::put('/widgets/{id}/update-widget-status-list-product', 'updateWidgetStatusListProducts')->name('update-widget-status-list-product');
+
+        Route::put('/widgets/{id}/update-widget-status-catalog', 'updateWidgetStatusCatalog')->name('update-widget-status-catalog');
+
+        Route::put('/widgets/{id}/update-widget-status-client-cabinet', 'updateWidgetStatusClientCabinet')->name('update-widget-status-client-cabinet');
+
+    
+    });
+
 });
 
 Route::controller(AdminPagesController::class)->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'home')->name('home');
+        
         Route::get('/widgets', 'widgets')->name('widgets');
+        Route::get('/widgets/main', 'widgetsMain')->name('widgetsMain');
+        Route::get('/widgets/product', 'widgetsProduct')->name('widgetsProduct');
+
         Route::get('/database', 'database')->name('database');
 
         Route::get('/products/in_review', 'productsInReview')->name('productsInReview');

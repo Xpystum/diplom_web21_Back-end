@@ -44,7 +44,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/products', 'products');
     Route::post('/brands', 'brands');
     Route::post('/users', 'users');
-    Route::get('/widgets', 'widgets');
+    Route::post('/widgets', 'widgets');
 
     Route::post('/user', 'user');
     Route::post('/product', 'product');

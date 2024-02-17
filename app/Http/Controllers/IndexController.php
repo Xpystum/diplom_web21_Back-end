@@ -23,6 +23,7 @@ use GuzzleHttp\Handler\Proxy;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -82,10 +83,16 @@ class IndexController extends Controller
     }
 
     public function user(Request $request){
-        $token = PersonalAccessToken::findToken($request->my_token)->tokenable_id;
-        $user = User::where('id', $token)->first();
-
-        return $user;
+        $token = PersonalAccessToken::findToken($request->my_token);
+        if($token != null){
+            $token = $token->tokenable_id;
+            $user = User::where('id', $token)->first(); 
+            return $user;
+        }
+        else{
+            // TODO удаление не действительного токена
+            return $token;
+        }
     }
     public function products(){
         return Product::all();
@@ -115,7 +122,6 @@ class IndexController extends Controller
             'moderation_status_id' => $valid['status'],
             'category_id' => 1,
         ];
-        // Создание новой записи в базе данных
 
         $maxPrice = Product::where('brand_id', $valid['brand'])->where('model_id', $valid['model'])->where('moderation_status_id', 1)->max('price');
         if($maxPrice * 1.5 > $data['price']){
