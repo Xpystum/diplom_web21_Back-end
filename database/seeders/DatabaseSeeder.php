@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'status' => 'admin',
+            'avatar_id' => '8',
             'password' => Hash::make('admin'),
             'cash' => 1000000,
             'city' => 'Нижний Новгород',
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Bad Man',
             'email' => 'bad_man@example.com',
             'status' => 'ban',
+            'avatar_id' => '6',
             'password' => Hash::make('banMan'),
         ]);
 
@@ -57,8 +59,13 @@ class DatabaseSeeder extends Seeder
             
             ImgReviewsSeeder::class,
             ReviewAudiSeeder::class,
-            ReviewSeeder::class,
+
             WidgetsSeeder::class,
+
+            ReviewSeeder::class,    
+            AvatarSeeder::class,
+            ChatMessagesSeeder::class,
+            GroupChatMessageSeeder::class,
 
         ]);
     }

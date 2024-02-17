@@ -10,38 +10,6 @@ use Illuminate\Support\Facades\DB;
 class ProductSeeder extends Seeder
 {
    
-
-    /* 
-    name
-    year
-    price
-    old_price
-    mileage
-    status
-    main_img
-    engine
-    power
-    transmission_id
-    drive_unit_id
-    color_id
-    steering_wheel
-    generation
-    equipment
-    vin
-
-    city
-    category_id
-    wheel_formula
-    load_capacity
-    vin_body
-    body_length
-    body_volume
-    weight
-    desription
-
-    */
-    
-    
     public function run(): void
     {   
 
@@ -51,6 +19,7 @@ class ProductSeeder extends Seeder
                 'id'=> 1,
                 'model_id' => 6,
                 'brand_id' => 16,
+                'user_id' => 2,
                 'year' => "2019",
                 'price' => "5800000",
                 'old_price' => null,
@@ -88,7 +57,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
-                'user_id' => 1,
+                'user_id' => 2,
                 'looked' => 0,
                 'organisation_id' => 1,
             ],
@@ -97,6 +66,7 @@ class ProductSeeder extends Seeder
                 'id'=> 2,
                 'model_id' => 7,
                 'brand_id' => 16,
+                'user_id' => 2,
                 'year' => "2023",
                 'price' => "17500000",
                 'old_price' => null,
@@ -159,7 +129,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 3,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -168,6 +138,7 @@ class ProductSeeder extends Seeder
                 'id'=> 3,
                 'model_id' => 8,
                 'brand_id' => 16,
+                'user_id' => 3,
                 'year' => "2020",
                 'price' => "4150000",
                 'old_price' => null,
@@ -206,7 +177,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 3,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -215,6 +186,7 @@ class ProductSeeder extends Seeder
                 'id'=> 4,
                 'model_id' => 11,
                 'brand_id' => 110,
+                'user_id' => 5,
                 'year' => "2015",
                 'price' => "3299000",
                 'old_price' => null,
@@ -336,7 +308,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 4,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -345,6 +317,7 @@ class ProductSeeder extends Seeder
                 'id'=> 5,
                 'model_id' => 9,
                 'brand_id' => 110,
+                'user_id' => 6,
                 'year' => "2020 ",
                 'price' => "24399000",
                 'old_price' => null,
@@ -420,7 +393,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 5,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -429,6 +402,7 @@ class ProductSeeder extends Seeder
                 'id'=> 6,
                 'model_id' => 9,
                 'brand_id' => 110,
+                'user_id' => 4,
                 'year' => "2013",
                 'price' => "4199999",
                 'old_price' => null,
@@ -469,7 +443,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 6,
                 'looked' => 0,
                 'organisation_id' => null,
                 
@@ -479,6 +453,7 @@ class ProductSeeder extends Seeder
                 'id'=> 7,
                 'model_id' => 10,
                 'brand_id'  => 110,
+                'user_id' => 2,
                 'year' => "2023",
                 'price' => "24495000",
                 'old_price' => "23995000",
@@ -518,7 +493,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 7,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -527,6 +502,7 @@ class ProductSeeder extends Seeder
                 'id'=> 8,
                 'model_id' => 10,
                 'brand_id' => 110,
+                'user_id' => 5,
                 'year' => "2013",
                 'price' => "940000",
                 'old_price' => null,
@@ -566,7 +542,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 4,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -575,6 +551,7 @@ class ProductSeeder extends Seeder
                 'id'=> 9,
                 'model_id' => 13,
                 'brand_id' => 163,
+                'user_id' => 1,
                 'year' => "2013",
                 'price' => "369000",
                 'old_price' => null,
@@ -615,6 +592,7 @@ class ProductSeeder extends Seeder
                 'id'=> 10,
                 'model_id' => 12,
                 'brand_id' => 163,
+                'user_id' => 1,
                 'year' => "2006",
                 'price' => "550000",
                 'old_price' => null,
@@ -653,7 +631,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 12,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -661,6 +639,7 @@ class ProductSeeder extends Seeder
                 'id'=> 11,
                 'model_id' => 13,
                 'brand_id' => 163,
+                'user_id' => 2,
                 'year' => "2012",
                 'price' => "660000",
                 'old_price' => null,
@@ -712,7 +691,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 12,
                 'looked' => 0,
                 'organisation_id' => null,
             ],
@@ -720,6 +699,7 @@ class ProductSeeder extends Seeder
                 'id'=> 12,
                 'model_id' => 14,
                 'brand_id' => 218,
+                'user_id' => 3,
                 'year' => "2020",
                 'price' => "13200000",
                 'old_price' => null,
@@ -760,7 +740,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => null,
-                'user_id' => 1,
+                'user_id' => 5,
                 'looked' => 0,
                 'organisation_id' => null,
 
@@ -769,6 +749,7 @@ class ProductSeeder extends Seeder
                 'id'=> 13,
                 'model_id' => 6,
                 'brand_id' => 16,
+                'user_id' => 6,
                 'year' => "2019",
                 'price' => "5800000",
                 'old_price' => null,
@@ -806,7 +787,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 5,
-                'user_id' => 1,
+                'user_id' => 168,
                 'looked' => 0,
                 'organisation_id' => 1,
             ],
@@ -814,6 +795,7 @@ class ProductSeeder extends Seeder
                 'id'=> 14,
                 'model_id' => 6,
                 'brand_id' => 16,
+                'user_id' => 56,
                 'year' => "2019",
                 'price' => "5800000",
                 'old_price' => null,
@@ -859,6 +841,7 @@ class ProductSeeder extends Seeder
                 'id'=> 15,
                 'model_id' => 6,
                 'brand_id' => 16,
+                'user_id' => 3,
                 'year' => "2023",
                 'price' => "13490000",
                 'old_price' => null,
@@ -899,6 +882,7 @@ class ProductSeeder extends Seeder
                 'id'=> 16,
                 'model_id' => 6,
                 'brand_id' => 16,
+                'user_id' => 67,
                 'year' => "2023",
                 'price' => "20500000",
                 'old_price' => null,
@@ -939,6 +923,8 @@ class ProductSeeder extends Seeder
                 'id'=> 17,
                 'model_id' => 6,
                 'brand_id' => 16,
+                'user_id' => 168,
+                'user_id' => 2,
                 'year' => "2000",
                 'price' => "800000",
                 'old_price' => null,
@@ -969,12 +955,13 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'body_type_id' => 12,
-                'user_id' => 1,
+               
                 'looked' => 0,
                 'organisation_id' => 1,
             ],
 
         ];
+
         DB::table('products')->insert($menu);
         // через factory
         // Product::factory()->count(3)->create();

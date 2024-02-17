@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminWidgetsController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Broadcasting\BroadcastingAuthController;
+use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Review\ReviewController;
 use App\Http\Middleware\AuthToken;
@@ -11,25 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 use function Laravel\Prompts\password;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 
 
@@ -93,10 +76,24 @@ Route::post('/ads', function(Request $request){
 })->middleware(AuthToken::class);
 
 
+// Chat
+Route::controller(ChatController::class)->group(function(){
+
+    Route::get('/chat', 'index')->name('chat');
+
+    Route::post('/chat/messages', 'messages')->name('chat.messages');
+
+    Route::post('/chat/send', 'send');
+
+    Route::post('/chat/allgroup', 'allChatGroupUser');
+
+    Route::post('/chat/observgroupnew', 'returnNewGroupChat');
+
+})->middleware('tokenAuth');
 
 
-
-
+//авторизация приватного канала
+Route::post('/custom/broadcasting/auth', [BroadcastingAuthController::class, 'authenticate']);
 
 
 

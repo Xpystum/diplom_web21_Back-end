@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Action\FilterModel;
+
 use App\Models\BodyType;
+
+use App\Http\Resources\UserResource;
+use App\Http\Resources\UserResourceChat;
+use App\Models\Avatar;
+
 use App\Models\Brands;
 use App\Models\CategoryProducts;
 use App\Models\Color;
@@ -24,9 +30,13 @@ use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
 use Ramsey\Uuid\Uuid;
+
+use Illuminate\Support\Facades\Log;
+
 
 class IndexController extends Controller
 {   
@@ -82,10 +92,14 @@ class IndexController extends Controller
     }
 
     public function user(Request $request){
+
         $token = PersonalAccessToken::findToken($request->my_token)->tokenable_id;
         $user = User::where('id', $token)->first();
 
-        return $user;
+        return (new UserResource($user))->resolve();
+
+        // return (new UserResource(User::findOrFail($request->id)))->resolve();
+
     }
     public function products(){
         return Product::all();
@@ -137,12 +151,16 @@ class IndexController extends Controller
     }
     public function product(Request $request){
 
-        $data = Product::with('brand','model','category','color','organisation','drive_unit','transmission','fuel','body_type','imgCollection')
-            ->whereHas('category', function ($query) use ($request) {})
+        //TODO рассмотреть возможность сделать всё через 1 запрос.
+        $product = Product::with('brand','model' ,'category','color','organisation','drive_unit','transmission','fuel','body_type','imgCollection')
             ->where('id', $request->id)
             ->first();
-    
-        return $data;
+        
+        return $data = [
+            'product' => $product,  
+            'user' => new UserResourceChat($product->user),
+        ];
+        
     }
 
     public function brands(){

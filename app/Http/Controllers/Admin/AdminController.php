@@ -17,9 +17,86 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function auth(){
+
         $layout = 'auth';
         return view('pages.auth', compact('layout'));
+
+        if(!Auth::check()){
+            $layout = 'auth';
+            return view('pages.auth', compact('layout'));
+        }
+        else{
+            return redirect()->route('home');
+        }
     }
+    public function home(){
+        if(Auth::check()){  
+            $user = Auth::user();
+            $layout = $this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+    
+            return view('pages.home', compact('layout', 'user', 'menuHeader'));
+        }
+        else{
+            return redirect()->route('auth');
+        }
+    }
+    public function widgets(){
+        if(Auth::check()){
+            $user = Auth::user();
+
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.widgets', compact('layout', 'user', 'menuHeader'));
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function products(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $products = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
+            ->orderBy('id')
+            ->get();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.products', compact('layout', 'user', 'menuHeader', 'products'));
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function database(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.database', compact('layout', 'user', 'menuHeader'));
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+    }
+    public function null(){
+
+        if(Auth::check()){
+            $user = Auth::user();
+            $layout=$this->layout;
+            $menuHeader = view('widgets.menu-header', compact('layout', 'user'));
+
+            return view('pages.test', compact('layout', 'user', 'menuHeader'));
+            
+        }
+        else{
+            return redirect()->route('auth');
+        }  
+
+    }
+
     public function productQueue(){
         
         $products = Product::with('brand', 'model', 'category','color', 'organisation', 'drive_unit', 'transmission', 'fuel', 'body_type', 'imgCollection')
@@ -51,6 +128,7 @@ class AdminController extends Controller
 
 
     }
+
     public function updateUserStatus(Request $request, $id)
     {
 
@@ -60,6 +138,7 @@ class AdminController extends Controller
         
         return redirect()->back();
     }
+
     public function updateWidgetStatus(Request $request, $id)
     {
         $widget = Widgets::find($id);
@@ -68,6 +147,7 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+    
     public function login(Request $request)
     {
         $validatedData = $request->validate([

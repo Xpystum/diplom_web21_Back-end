@@ -20,13 +20,13 @@
 
     status:
         *user*
-             Логин: test@example.com
+            Логин: test@example.com
             Пароль: password
         *admin*
-             Логин: admin@example.com
+            Логин: admin@example.com
             Пароль: admin
         *ban*
-             Логин: bad_man@example.com
+            Логин: bad_man@example.com
             Пароль: banMan
 
 ## пример админки

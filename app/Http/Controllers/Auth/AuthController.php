@@ -10,9 +10,6 @@ use App\Http\Resources\FavoritesResource;
 use App\Models\Favorites;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\PersonalAccessToken;
-
-use Whoops\Handler\PlainTextHandler;
 
 class AuthController extends Controller
 {
@@ -74,7 +71,7 @@ class AuthController extends Controller
 
     public function favoritesUser(Request $request){
         $token = \Laravel\Sanctum\PersonalAccessToken::findToken($request->token);
-
+        
         if(!$token)
             return false;
         
