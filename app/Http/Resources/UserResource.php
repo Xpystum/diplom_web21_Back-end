@@ -25,6 +25,8 @@ class UserResource extends JsonResource
             'status' => $this->status,
             'avatar_id' => $this->status,
             'pathAvatar' => Avatar::returnAvatarUrl($this->id)->resolve(),
+            'cash' => $this->cash,
+            'city' => $this->city,
         ];  
     }
 }

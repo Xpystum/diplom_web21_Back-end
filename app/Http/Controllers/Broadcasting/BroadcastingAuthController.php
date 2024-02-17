@@ -12,6 +12,7 @@ class BroadcastingAuthController extends Controller
     public function authenticate(Request $request, CheckTokenUser $CheckTokenUser)
     {
 
+        
         if (!$CheckTokenUser->handler($request->bearerToken())) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }

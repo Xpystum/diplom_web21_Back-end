@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Action\FilterModel;
-
+use App\Actions\FindUserByToken;
 use App\Models\BodyType;
 
 use App\Http\Resources\UserResource;
@@ -91,14 +91,12 @@ class IndexController extends Controller
         return Widgets::all();
     }
 
-    public function user(Request $request){
+    public function user(Request $request, FindUserByToken $findUserByToken){
 
-        $token = PersonalAccessToken::findToken($request->my_token)->tokenable_id;
-        $user = User::where('id', $token)->first();
+        
+        $user = $findUserByToken->handler($request->bearerToken());
 
         return (new UserResource($user))->resolve();
-
-        // return (new UserResource(User::findOrFail($request->id)))->resolve();
 
     }
     public function products(){

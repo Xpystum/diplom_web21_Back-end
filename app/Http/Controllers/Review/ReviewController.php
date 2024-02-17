@@ -21,7 +21,7 @@ class ReviewController extends Controller
     }
 
     public function allInfoReviews(){
-        $data =  Review::with(
+        $data = Review::with(
             'brand',
             'model',
             'body_type', 

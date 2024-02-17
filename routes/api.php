@@ -52,6 +52,7 @@ Route::controller(ReviewController::class)->group(function () {
     Route::post('/add-review-img', 'addReviewImg');
     Route::post('/save-img', 'saveImg');
 });
+
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name('auth.RegisterUser');
     Route::post('/auth', 'authUser')->name('auth.LoginUser');
