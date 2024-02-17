@@ -54,9 +54,11 @@ class ChatController extends Controller
         
         $data = $request->validated();
         if(!isset($data['chatgroup_id'])){
+           
           try {
 
             $idChatGroup = ChatGroup::checkExisistTwoRecordTable($data['user_from_id'], $data['user_to_id']);
+           
 
             if(!is_null($idChatGroup))
             {
@@ -64,12 +66,11 @@ class ChatController extends Controller
 
             }else{
 
-
                 //Создаём группу
-                $dataChatGroup = ChatGroup::firstOrCreate(
-                    ['user_from_id' => $data['user_from_id']],
-                    ['user_to_id' => $data['user_to_id']],
-                )->firstOr('id', function () {
+                $dataChatGroup = ChatGroup::create([
+                    'user_from_id' => $data['user_from_id'],
+                    'user_to_id' => $data['user_to_id'],
+                ])->firstOr('id', function () {
     
                     //если группа не найдена или другая ошибка
                     return response()->json([
@@ -78,6 +79,7 @@ class ChatController extends Controller
     
                 });
 
+                return $dataChatGroup;
                 $data['chatgroup_id']  = $dataChatGroup->id;
                 
                 $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_to_id']);
@@ -102,6 +104,7 @@ class ChatController extends Controller
           }
 
         }else{  
+
 
             try {
 
