@@ -40,6 +40,14 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('banMan'),
         ]);
 
+        \App\Models\User::factory()->create([
+            'name' => 'ИЛЬЯ',
+            'email' => 'bad_man1@example.com',
+            'status' => 'ban',
+            'avatar_id' => '6',
+            'password' => Hash::make('banMan'),
+        ]);
+
         $this->call([
             MenuSeeder::class,
             MenuitemsSeeder::class,
@@ -64,8 +72,9 @@ class DatabaseSeeder extends Seeder
 
             ReviewSeeder::class,    
             AvatarSeeder::class,
-            ChatMessagesSeeder::class,
-            GroupChatMessageSeeder::class,
+
+            // ChatMessagesSeeder::class,
+            // GroupChatMessageSeeder::class,
 
         ]);
     }

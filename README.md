@@ -28,6 +28,10 @@
         *ban*
             Логин: bad_man@example.com
             Пароль: banMan
+        *user*
+            Логин: bad_man1@example.com
+            Пароль: banMan'
+
 
 ## пример админки
 

@@ -9,13 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AllChatGroupRequest;
 use App\Http\Requests\ChatMessageSendFormRequest;
 use App\Http\Requests\GetMessageChatGroupFromRequest;
-use App\Http\Resources\ChatBroadcastResource;
 use App\Http\Resources\ChatMessageResponseResource;
 use App\Http\Resources\TestCollection;
 use App\Http\Resources\UserGroupChatRecource;
 use App\Models\ChatGroup;
 use App\Models\ChatMessages;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
