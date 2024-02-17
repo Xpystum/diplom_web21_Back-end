@@ -133,6 +133,7 @@ class ChatController extends Controller
     public function allChatGroupUser(AllChatGroupRequest $request){
 
         $data = $request->validated();
+        
         $groupChat = ChatGroup::returnAllGroupChatToUser($data['user_id']);
     
         // broadcast(new GroupChatMessageEvent( $data['user_id'] , $groupChat));
